@@ -16,29 +16,29 @@
    <top>
       <TextFlow prefHeight="55.0" prefWidth="600.0" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <opaqueInsets>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets/>
+            <Insets />
          </BorderPane.margin>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <Text opacity="0.48" strokeLineCap="ROUND" strokeWidth="0.0" text="%main.title" textAlignment="CENTER">
             <font>
-               <Font size="30.0"/>
+               <Font size="32.0" />
             </font>
             <fill>
-               <LinearGradient startX="0.8706624363123053" startY="0.29968451851926015">
+               <LinearGradient endX="0.8832807330303012" startX="0.8738170345122881" startY="0.2712933513268311">
                   <stops>
                      <Stop>
                         <color>
-                           <Color/>
+                           <Color />
                         </color>
                      </Stop>
                      <Stop offset="1.0">
                         <color>
-                           <Color red="1.0" green="1.0" blue="1.0"/>
+                           <Color red="1.0" green="1.0" blue="1.0" />
                         </color>
                      </Stop>
                   </stops>
@@ -48,13 +48,14 @@
       </TextFlow>
    </top>
    <left>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="400.0" prefWidth="130.0" BorderPane.alignment="CENTER">
+         <fx:include source="SideMenu.fxml"/>
+      </HBox>
    </left>
    <center>
-      <ImageView fitHeight="287.0" fitWidth="330.0" opacity="0.98" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../icons/MainIcon.png" />
-         </image>
+      <ImageView fitHeight="307.0" fitWidth="324.0" opacity="0.98" pickOnBounds="true" preserveRatio="true"
+                 BorderPane.alignment="CENTER">
+         <Image url="@../icons/MainIcon.png"/>
       </ImageView>
    </center>
 </BorderPane>
