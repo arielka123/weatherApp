@@ -1,10 +1,7 @@
-package pl.weatherApp.model.Utils;
+package pl.weatherApp.model.utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
-import javafx.scene.text.Text;
-
-import java.util.ResourceBundle;
 
 public class DialogUtils {
 

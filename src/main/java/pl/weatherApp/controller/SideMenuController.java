@@ -2,7 +2,7 @@ package pl.weatherApp.controller;
 
 public class SideMenuController {
 
-    public static final String SETTINGS_FXML ="/fxml/Settings1.fxml";
+    public static final String SETTINGS_FXML ="/fxml/Settings.fxml";
     public static final String DAY_FXML = "/fxml/Day.fxml";
     public static final String WEEK_FXML = "/fxml/Week.fxml";
     public static final String MONTHS_FXML = "/fxml/Months.fxml";

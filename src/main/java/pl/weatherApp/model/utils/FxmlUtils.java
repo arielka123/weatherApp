@@ -1,4 +1,4 @@
-package pl.weatherApp.model.Utils;
+package pl.weatherApp.model.utils;
 
 import java.util.ResourceBundle;
 

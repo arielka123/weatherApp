@@ -2,8 +2,10 @@ package pl.weatherApp.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
-import pl.weatherApp.model.Utils.DialogUtils;
-import java.util.ResourceBundle;
+import pl.weatherApp.model.utils.DialogUtils;
+import pl.weatherApp.model.utils.FxmlUtils;
+
+import java.io.IOException;
 
 public class MainController {
 
@@ -20,10 +22,10 @@ public class MainController {
     public void setCenter(String Path) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Path));
 
-        loader.setResources(ResourceBundle.getBundle("bundle.message"));
+        loader.setResources(FxmlUtils.getResourceBundle());
         try {
             borderPane.setCenter(loader.load());
-        } catch (Exception e) {
+        } catch (IOException e) {
             DialogUtils.errorDialog(e.getMessage());
         }
     }
