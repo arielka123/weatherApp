@@ -28,7 +28,7 @@ public class App extends Application
         try {
             borderPane = loader.load();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);  //TODO
         }
         Scene scene = new Scene(borderPane);
         primaryStage.setTitle(bundle.getString("main.title"));
