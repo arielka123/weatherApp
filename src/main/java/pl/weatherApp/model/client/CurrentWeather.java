@@ -1,5 +1,6 @@
 package pl.weatherApp.model.client;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -10,16 +11,14 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CurrentWeather extends Weather {
+public class CurrentWeather {
 
-//    Double temp;  //oC
-//    Long humidity;   //%
-//    Long pressure; //hPa
-//    Double feels_like;
-//    Long visibility; //km
-////    String description;
-//    Long clouds; //%
-    public CurrentWeather(){
+    public CurrentWeather(){};
+
+    public void init(){
+
+        //$ curl -k 'https://geocoding-api.open-meteo.com/v1/search?name=london&count=10&language=pl&format=json&count=1'
+
         try {
             URL url = new URL(WeatherClient.getCurrentWeatherURL());
 
@@ -33,42 +32,40 @@ public class CurrentWeather extends Weather {
 
                 ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
-                Object obj = parse.parse(String.valueOf(ApiUtils.informationString));
-                JSONObject weatherData = ApiUtils.getJsonObject(obj);
+                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(ApiUtils.informationString));
 
-                Object objMain = parse.parse(String.valueOf(weatherData.get("main")));
-                JSONObject weatherDataMain = ApiUtils.getJsonObject(objMain);
+                JSONObject objMain = (JSONObject) weatherData.get("main");
 
-                Object objClouds = parse.parse(String.valueOf(weatherData.get("clouds")));
-                JSONObject weatherDataClouds = ApiUtils.getJsonObject(objClouds);
+                JSONObject objClouds = (JSONObject) weatherData.get("clouds");
 
-//                Object objDesc = parse.parse(String.valueOf(weatherData.get("weather")));
-//                JSONArray arrayWeather = new JSONArray();
-//                arrayWeather.add(objDesc);
+                JSONArray arrayWeather = (JSONArray) weatherData.get("weather");
 
-//                JSONArray array1 = (JSONArray) arrayWeather.get(0);
+                Weather Weather = new Weather();
 
+                for(int i=0; i<arrayWeather.size(); i++){
+                      JSONObject new_obj = (JSONObject) arrayWeather.get(i);
+                      if(new_obj.get("main").equals("Clouds")){
+//                          System.out.println("desc: " + new_obj.get("description"));
+                          Weather.setDescription((String) new_obj.get("description"));
+                      }
+                  }
 
-//                JSONObject x = (JSONObject) arrayWeather.get(0);
+                Weather.setTemp((Double) objMain.get("temp"));
+                Weather.setHumidity((Long) objMain.get("humidity"));
+                Weather.setPressure((Long) objMain.get("pressure"));
+                Weather.setFeels_like((Double) objMain.get("feels_like"));
+                Weather.setVisibility((Long) weatherData.get("visibility"));
+                Weather.setClouds((Long) objClouds.get("all"));
+
+                System.out.println("Opis: "+ Weather.getDescription());
+                System.out.println("Temperatura: "+ Weather.getTemp());
+                System.out.println("Temp odczuwalna: "+ Weather.getFeels_like());
+                System.out.println("Ciśnienie: "+ Weather.getPressure());
+                System.out.println("Wilgotność: "+ Weather.getHumidity());
+                System.out.println("Zachmurzenie: "+ Weather.getClouds());
+                System.out.println("Widoczność: "+ Weather.getVisibility());
 
                 System.out.println(weatherData.get("main"));
-                System.out.println(weatherData.get("weather"));
-                System.out.println(weatherData.get("clouds"));
-
-
-//                Object objWeather = parse.parse(String.valueOf(weatherData.get("weather")));
-//                JSONArray arrayWeather = new JSONArray();
-//                arrayWeather.add(objWeather);
-
-//                description = (String) weatherDataWeather.get("description");
-//                System.out.println(description);
-
-                Weather.temp = (Double) weatherDataMain.get("temp");
-                Weather.humidity = (Long) weatherDataMain.get("humidity");
-                Weather.pressure = (Long) weatherDataMain.get("pressure");
-                Weather.feels_like = (Double) weatherDataMain.get("feels_like");
-                Weather.visibility = (Long) weatherData.get("visibility");
-                Weather.clouds = (Long) weatherDataClouds.get("all");
             }
             } catch (IOException | ParseException | RuntimeException e) {
             DialogUtils.errorDialog(e.getMessage());
