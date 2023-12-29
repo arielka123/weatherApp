@@ -2,8 +2,9 @@ package pl.weatherApp.model.client;
 
 import javafx.beans.property.*;
 
-public class WeatherParam {
-    private final DoubleProperty temp = new SimpleDoubleProperty();
+public class CurrentWeatherParam {
+
+    private final IntegerProperty temp = new SimpleIntegerProperty();
     private final LongProperty humidity = new SimpleLongProperty();
     private final LongProperty pressure= new SimpleLongProperty(); //hPa
     private final DoubleProperty feels_like= new SimpleDoubleProperty();
@@ -11,15 +12,15 @@ public class WeatherParam {
     private final StringProperty description= new SimpleStringProperty();
     private final LongProperty clouds= new SimpleLongProperty(); //%
 
-    public double getTemp() {
+    public int getTemp() {
         return temp.get();
     }
 
-    public DoubleProperty tempProperty() {
+    public IntegerProperty tempProperty() {
         return temp;
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(int temp) {
         this.temp.set(temp);
     }
 
@@ -55,7 +56,7 @@ public class WeatherParam {
         return feels_like;
     }
 
-    public void setFeels_like(double feels_like) {
+    public void setFeelsLike(double feels_like) {
         this.feels_like.set(feels_like);
     }
 
