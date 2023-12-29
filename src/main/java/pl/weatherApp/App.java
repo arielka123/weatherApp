@@ -2,14 +2,11 @@ package pl.weatherApp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import pl.weatherApp.model.client.Geocoding;
 import pl.weatherApp.model.client.WeatherServiceFactory;
-import pl.weatherApp.model.utils.DialogUtils;
-import pl.weatherApp.view.MainView;
 import pl.weatherApp.view.ViewFactory;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.Locale;
 
 public class App extends Application
 {
@@ -18,6 +15,8 @@ public class App extends Application
         launch(args);
     }
     public void start(Stage primaryStage) {
+        Locale.setDefault(new Locale(Geocoding.getLanguage()));
+
         ViewFactory.createMainView(primaryStage);
         WeatherServiceFactory.createWeatherClient();
     }

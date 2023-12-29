@@ -13,6 +13,7 @@ public class MainView extends ViewFactory {
     private static final Scene scene = new Scene(MAIN_VIEW);
 
     public static void showMainWindow(Stage primaryStage) {
+
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("main.title"));
         primaryStage.setScene(scene);
         primaryStage.show();
