@@ -10,11 +10,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeather {
+    String icon;
+    String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png";
+  //  https://openweathermap.org/weather-conditions
 
     public CurrentWeather(){
         Localization localization = new Localization();
         localization.init();
-        Weather Weather = new Weather();
+        WeatherParam Weather = new WeatherParam();
 
         try {
             URL url = new URL(WeatherClient.getCurrentWeatherURL());
@@ -39,14 +42,13 @@ public class CurrentWeather {
                 for (Object o : arrayWeather) {
                     JSONObject new_obj = (JSONObject) o;
                     Weather.setDescription((String) new_obj.get("description"));
+                    icon = (String) new_obj.get("icon"); //TODO
                 }
 
-                try{
-                    Weather.setTemp((Double) objMain.get("temp"));
-                }catch (Exception e){
-                    Weather.setTemp((Long) objMain.get("temp"));
-                }
-
+                double tempD= (double) objMain.get("temp");
+                int value = (int) Math.round(tempD);
+                System.out.println(tempD+" "+value);
+                Weather.setTemp(value);
                 Weather.setTemp((Double) objMain.get("temp"));
                 Weather.setHumidity((Long) objMain.get("humidity"));
                 Weather.setPressure((Long) objMain.get("pressure"));
@@ -62,7 +64,6 @@ public class CurrentWeather {
                 System.out.println("Wilgotność: "+ Weather.getHumidity());
                 System.out.println("Zachmurzenie: "+ Weather.getClouds());
                 System.out.println("Widoczność: "+ Weather.getVisibility());
-
             }
             } catch (Exception e) {
             DialogUtils.errorDialog(e.getMessage());

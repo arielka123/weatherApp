@@ -3,17 +3,17 @@ package pl.weatherApp.model.client;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import pl.weatherApp.model.utils.ApiUtils;
-import pl.weatherApp.model.utils.DialogUtils;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Localization {
-    private String city ;
+    private String city = "Warszawa";
     private String country_code;
-    private String  country;
-
     private Double latitude;
     private Double longitude;
 
@@ -22,7 +22,7 @@ public class Localization {
 
     public void init() {
         try {
-            URL url = new URL(WeatherClient.getLocatizationURL());
+            URL url = new URL(WeatherClient.getLocalizationURL());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
 
@@ -32,37 +32,32 @@ public class Localization {
             } else {
                 ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
-                JSONObject localizationData = (JSONObject) parse.parse(String.valueOf(ApiUtils.informationString));
+                JSONArray localizationData = (JSONArray) parse.parse(String.valueOf(ApiUtils.informationString));
 
                 System.out.println(ApiUtils.informationString);
 
-                JSONArray results = (JSONArray) localizationData.get("results");
-
-                for (Object result : results) {
+                for (Object result : localizationData) {
                     JSONObject resultObj = (JSONObject) result;
 
-                    longitude = (Double) resultObj.get("longitude");
-                    latitude = (Double) resultObj.get("latitude");
-                    city = (String) resultObj.get("name");
-                    country = (String) resultObj.get("country");
-                    country_code = (String) resultObj.get("country_code");
+                    longitude = (Double) resultObj.get("lon");
+                    latitude = (Double) resultObj.get("lat");
+                    country_code = (String) resultObj.get("country");
                 }
+                System.out.println("country "+country_code);
+                System.out.println("latitude "+latitude);
+                System.out.println("longitude "+longitude);
             }
-        } catch (Exception e) {
-            DialogUtils.errorDialog(e.getMessage());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
-    }
-
-    public String getCity() {
-        return city;
     }
 
     public String getCountry_code() {
         return country_code;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public Double getLatitude() {
@@ -72,4 +67,9 @@ public class Localization {
     public Double getLongitude() {
         return longitude;
     }
+
+    public  String getCity() {
+        return city;
+    }
 }
+

@@ -2,7 +2,7 @@ package pl.weatherApp.model.client;
 
 import javafx.beans.property.*;
 
-public class Weather {
+public class WeatherParam {
     private final DoubleProperty temp = new SimpleDoubleProperty();
     private final LongProperty humidity = new SimpleLongProperty();
     private final LongProperty pressure= new SimpleLongProperty(); //hPa

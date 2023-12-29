@@ -2,7 +2,6 @@ package pl.weatherApp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import pl.weatherApp.model.client.Geocoding;
 import pl.weatherApp.view.ViewFactory;
 
 import java.util.Locale;
@@ -14,8 +13,7 @@ public class App extends Application
         launch(args);
     }
     public void start(Stage primaryStage) {
-        Locale.setDefault(new Locale(Geocoding.getLanguage()));
-
+        Locale.setDefault(new Locale(Config.language));
         ViewFactory.createMainView(primaryStage);
     }
 }
