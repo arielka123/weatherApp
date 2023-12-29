@@ -3,22 +3,13 @@ package pl.weatherApp.model.client;
 import javafx.beans.property.*;
 
 public class Weather {
-    private DoubleProperty temp = new SimpleDoubleProperty();
-    private LongProperty humidity = new SimpleLongProperty();
-    private LongProperty pressure= new SimpleLongProperty(); //hPa
-    private DoubleProperty feels_like= new SimpleDoubleProperty();
-    private LongProperty visibility= new SimpleLongProperty(); //km
-    private StringProperty description= new SimpleStringProperty();
-    private LongProperty clouds= new SimpleLongProperty(); //%
-
-//    public static Double temp = null;  //oC
-//    public static Long humidity = null;   //%
-//    public static Long pressure= null; //hPa
-//    public static Double feels_like= null;
-//    public static Long visibility= null; //km
-//    public static String description= null;
-//    public static Long clouds= null; //%
-
+    private final DoubleProperty temp = new SimpleDoubleProperty();
+    private final LongProperty humidity = new SimpleLongProperty();
+    private final LongProperty pressure= new SimpleLongProperty(); //hPa
+    private final DoubleProperty feels_like= new SimpleDoubleProperty();
+    private final LongProperty visibility= new SimpleLongProperty(); //km
+    private final StringProperty description= new SimpleStringProperty();
+    private final LongProperty clouds= new SimpleLongProperty(); //%
 
     public double getTemp() {
         return temp.get();

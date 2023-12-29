@@ -12,10 +12,8 @@ import java.net.URL;
 public class CurrentWeather {
 
     public CurrentWeather(){
-        init();
-    }
-
-    public void init(){
+        Localization localization = new Localization();
+        localization.init();
         Weather Weather = new Weather();
 
         try {
@@ -56,6 +54,7 @@ public class CurrentWeather {
                 Weather.setVisibility((Long) weatherData.get("visibility"));
                 Weather.setClouds((Long) objClouds.get("all"));
 
+                System.out.println("Miasto: "+localization.getCity());
                 System.out.println("Opis: "+ Weather.getDescription());
                 System.out.println("Temperatura: "+ Weather.getTemp());
                 System.out.println("Temp odczuwalna: "+ Weather.getFeels_like());

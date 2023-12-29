@@ -22,7 +22,6 @@ public class Localization {
 
     public void init() {
         try {
-
             URL url = new URL(WeatherClient.getLocatizationURL());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
@@ -39,8 +38,8 @@ public class Localization {
 
                 JSONArray results = (JSONArray) localizationData.get("results");
 
-                for(int i =0; i<results.size(); i++){
-                    JSONObject resultObj = (JSONObject) results.get(i);
+                for (Object result : results) {
+                    JSONObject resultObj = (JSONObject) result;
 
                     longitude = (Double) resultObj.get("longitude");
                     latitude = (Double) resultObj.get("latitude");

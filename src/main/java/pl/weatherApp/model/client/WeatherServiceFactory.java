@@ -5,7 +5,11 @@ public class WeatherServiceFactory {
 //        return new WeatherService(createWeatherClient());
 //    }
 
-    public static CurrentWeather createWeatherClient(){
+    public static void createWeatherClient(){
+        createCurrentWeather();
+    }
+
+    public static CurrentWeather createCurrentWeather(){
         return new CurrentWeather();
     }
 }
