@@ -1,64 +1,90 @@
 package pl.weatherApp.model.client;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import pl.weatherApp.model.utils.ApiUtils;
-import pl.weatherApp.model.utils.DialogUtils;
-
-import java.net.HttpURLConnection;
-import java.net.URL;
+import javafx.beans.property.*;
 
 public class ForecastWeather {
 
-    public ForecastWeather() {
-        ForecastWeatherParam forecastWeatherParam = new ForecastWeatherParam();
-        int days = 5;
+    private final IntegerProperty tempMax = new SimpleIntegerProperty();
+    private final IntegerProperty tempMin = new SimpleIntegerProperty();
+    private final IntegerProperty feels_likeMax= new SimpleIntegerProperty();
+    private final IntegerProperty feels_likeMin= new SimpleIntegerProperty();
+    private  String weather_code;
+    private final StringProperty windSpeed = new SimpleStringProperty();
+    private Integer windDirection;
 
-        try {
-            URL url = new URL(WeatherClient.getFiveDaysForecastURL());
+    public int getTempMax() {
+        return tempMax.get();
+    }
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.connect();
+    public IntegerProperty tempMaxProperty() {
+        return tempMax;
+    }
 
-            int responseCode = conn.getResponseCode();
-            if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
-                ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
-                JSONParser parse = new JSONParser();
-                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(ApiUtils.informationString));
+    public void setTempMax(int tempMax) {
+        this.tempMax.set(tempMax);
+    }
 
-                System.out.println(weatherData.get("daily_units"));
+    public int getTempMin() {
+        return tempMin.get();
+    }
 
-                JSONObject weatherDataObj = (JSONObject) weatherData.get("daily_units");
-                System.out.println(weatherDataObj);
-                String tempUnit = (String) weatherDataObj.get("temperature_2m_max");
-                String speedUnit=(String) weatherDataObj.get("wind_speed_10m_max");
-                String directionUnit=(String) weatherDataObj.get("wind_direction_10m_dominant");
+    public IntegerProperty tempMinProperty() {
+        return tempMin;
+    }
 
-                JSONObject dailyObj = (JSONObject) weatherData.get("daily");
+    public void setTempMin(int tempMin) {
+        this.tempMin.set(tempMin);
+    }
 
-                JSONArray tempMaxArray = (JSONArray) dailyObj.get("temperature_2m_max");
-                JSONArray feelsLikeArray = (JSONArray) dailyObj.get("apparent_temperature_max");
-                JSONArray windSpeedArray = (JSONArray) dailyObj.get("wind_speed_10m_max");
-                JSONArray windDirectionArray = (JSONArray) dailyObj.get("wind_direction_10m_dominant");
-                JSONArray timeArray = (JSONArray) dailyObj.get("time");
-                JSONArray weatherCodeArray = (JSONArray) dailyObj.get("weather_code");
-                JSONArray precipitationArray = (JSONArray) dailyObj.get("precipitation_sum");
+    public int getFeels_likeMax() {
+        return feels_likeMax.get();
+    }
 
-                long codeL = (Long) weatherCodeArray.get(1);
-                int code = Math.toIntExact(codeL);
-                System.out.println(code);
-                System.out.println("kod: "+WeatherCodes.mapCodes(code));
+    public IntegerProperty feels_likeMaxProperty() {
+        return feels_likeMax;
+    }
 
-                for(int i=0; i<days; i++){
-                    System.out.println(timeArray.get(i) +" "+tempMaxArray.get(i)+tempUnit+" odczuwalna: "+feelsLikeArray.get(i)+tempUnit+" opady: "+precipitationArray.get(i)+" wiatr: "+windSpeedArray.get(i) +speedUnit+" kierunek: "+windDirectionArray.get(i)+directionUnit+" kod: "+ weatherCodeArray.get(i));
-                }
-            }
-        } catch (Exception e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
+    public void setFeels_likeMax(int feels_likeMax) {
+        this.feels_likeMax.set(feels_likeMax);
+    }
+
+    public int getFeels_likeMin() {
+        return feels_likeMin.get();
+    }
+
+    public IntegerProperty feels_likeMinProperty() {
+        return feels_likeMin;
+    }
+
+    public void setFeels_likeMin(int feels_likeMin) {
+        this.feels_likeMin.set(feels_likeMin);
+    }
+
+    public String getWeather_code() {
+        return weather_code;
+    }
+
+    public void setWeather_code(String weather_code) {
+        this.weather_code = weather_code;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed.get();
+    }
+
+    public StringProperty windSpeedProperty() {
+        return windSpeed;
+    }
+
+    public void setWindSpeed(String windSpeed) {
+        this.windSpeed.set(windSpeed);
+    }
+
+    public Integer getWindDirection() {
+        return windDirection;
+    }
+
+    public void setWindDirection(Integer windDirection) {
+        this.windDirection = windDirection;
     }
 }
-

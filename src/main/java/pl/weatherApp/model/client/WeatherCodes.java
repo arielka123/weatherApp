@@ -35,16 +35,6 @@ public class WeatherCodes {
         mapCode.put(95, "Thunderstorm");
         mapCode.put(96, "Thunderstorm");
         mapCode.put(99, "Thunderstorm");
-
-
-//        map.put("0", Integer.valueOf("clear sky"));
-//        map.put("1", Integer.valueOf("mainly clear"));
-//        map.put("2", Integer.valueOf("partly cloudy"));
-//        map.put("3", Integer.valueOf("overcast"));
-//        map.put("45", Integer.valueOf("fog"));
-//        map.put("48", Integer.valueOf("fog"));
-//        map.get("n1");
-
         return mapCode.get(key);
     }
 }

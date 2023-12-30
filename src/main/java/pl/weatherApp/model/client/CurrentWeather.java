@@ -1,69 +1,98 @@
 package pl.weatherApp.model.client;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import pl.weatherApp.model.utils.ApiUtils;
-import pl.weatherApp.model.utils.DialogUtils;
-
-import java.net.HttpURLConnection;
-import java.net.URL;
+import javafx.beans.property.*;
 
 public class CurrentWeather {
-    String icon;
-    //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO
-  //  https://openweathermap.org/weather-conditions
 
-    public CurrentWeather(){
-        Localization localization = new Localization(); //todo
-        CurrentWeatherParam currentWeatherParam = new CurrentWeatherParam();
+    private final IntegerProperty temp = new SimpleIntegerProperty();
+    private final LongProperty humidity = new SimpleLongProperty();
+    private final LongProperty pressure= new SimpleLongProperty(); //hPa
+    private final DoubleProperty feels_like= new SimpleDoubleProperty();
+    private final LongProperty visibility= new SimpleLongProperty(); //km
+    private final StringProperty description= new SimpleStringProperty();
+    private final LongProperty clouds= new SimpleLongProperty(); //%
 
-        try {
-            URL url = new URL(WeatherClient.getCurrentWeatherURL());
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.connect();
-
-            int responseCode = conn.getResponseCode();
-            if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
-                ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
-                JSONParser parse = new JSONParser();
-                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(ApiUtils.informationString));
-
-                JSONObject objMain = (JSONObject) weatherData.get("main");
-                JSONObject objClouds = (JSONObject) weatherData.get("clouds");
-                JSONArray arrayWeather = (JSONArray) weatherData.get("weather");
-
-                for (Object o : arrayWeather) {
-                    JSONObject new_obj = (JSONObject) o;
-                    currentWeatherParam.setDescription((String) new_obj.get("description"));
-                    icon = (String) new_obj.get("icon"); //TODO
-                }
-
-                double tempD= (double) objMain.get("temp");
-                int temp = (int) Math.round(tempD);
-
-                currentWeatherParam.setTemp(temp);
-                currentWeatherParam.setHumidity((Long) objMain.get("humidity"));
-                currentWeatherParam.setPressure((Long) objMain.get("pressure"));
-                currentWeatherParam.setFeelsLike((double) objMain.get("feels_like"));
-                currentWeatherParam.setVisibility((Long) weatherData.get("visibility"));
-                currentWeatherParam.setClouds((Long) objClouds.get("all"));
-
-                System.out.println("Miasto: "+localization.getCity());
-                System.out.println("Opis: "+ currentWeatherParam.getDescription());
-                System.out.println("Temperatura: "+ currentWeatherParam.getTemp());
-                System.out.println("Temp odczuwalna: "+ currentWeatherParam.getFeels_like());
-                System.out.println("Ciśnienie: "+ currentWeatherParam.getPressure());
-                System.out.println("Wilgotność: "+ currentWeatherParam.getHumidity());
-                System.out.println("Zachmurzenie: "+ currentWeatherParam.getClouds());
-                System.out.println("Widoczność: "+ currentWeatherParam.getVisibility());
-            }
-            } catch (Exception e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
+    public int getTemp() {
+        return temp.get();
     }
 
+    public IntegerProperty tempProperty() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp.set(temp);
+    }
+
+    public long getHumidity() {
+        return humidity.get();
+    }
+
+    public LongProperty humidityProperty() {
+        return humidity;
+    }
+
+    public void setHumidity(long humidity) {
+        this.humidity.set(humidity);
+    }
+
+    public long getPressure() {
+        return pressure.get();
+    }
+
+    public LongProperty pressureProperty() {
+        return pressure;
+    }
+
+    public void setPressure(long pressure) {
+        this.pressure.set(pressure);
+    }
+
+    public double getFeels_like() {
+        return feels_like.get();
+    }
+
+    public DoubleProperty feels_likeProperty() {
+        return feels_like;
+    }
+
+    public void setFeelsLike(double feels_like) {
+        this.feels_like.set(feels_like);
+    }
+
+    public long getVisibility() {
+        return visibility.get();
+    }
+
+    public LongProperty visibilityProperty() {
+        return visibility;
+    }
+
+    public void setVisibility(long visibility) {
+        this.visibility.set(visibility);
+    }
+
+    public String getDescription() {
+        return description.get();
+    }
+
+    public StringProperty descriptionProperty() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description.set(description);
+    }
+
+    public long getClouds() {
+        return clouds.get();
+    }
+
+    public LongProperty cloudsProperty() {
+        return clouds;
+    }
+
+    public void setClouds(long clouds) {
+        this.clouds.set(clouds);
+    }
 }

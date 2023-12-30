@@ -10,11 +10,11 @@ public class WeatherServiceFactory {
         createForecastFiveDays();
     }
 
-    public static CurrentWeather createCurrentWeather(){
-        return new CurrentWeather();
+    public static CurrentWeatherService createCurrentWeather(){
+        return new CurrentWeatherService();
     }
 
-    public static ForecastWeather createForecastFiveDays(){
-        return new ForecastWeather();
+    public static ForecastWeatherService createForecastFiveDays(){
+        return new ForecastWeatherService();
     }
 }
