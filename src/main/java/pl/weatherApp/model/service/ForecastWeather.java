@@ -1,4 +1,4 @@
-package pl.weatherApp.model.client;
+package pl.weatherApp.model.service;
 
 import javafx.beans.property.*;
 
@@ -6,9 +6,9 @@ public class ForecastWeather {
 
     private  final StringProperty time = new SimpleStringProperty();
     private final IntegerProperty tempMax = new SimpleIntegerProperty();
-    private final IntegerProperty tempMin = new SimpleIntegerProperty();
+//    private final IntegerProperty tempMin = new SimpleIntegerProperty();
     private final IntegerProperty feels_likeMax= new SimpleIntegerProperty();
-    private final IntegerProperty feels_likeMin= new SimpleIntegerProperty();
+//    private final IntegerProperty feels_likeMin= new SimpleIntegerProperty();
     private final DoubleProperty precipitation = new SimpleDoubleProperty();
     private  String weather_code;
     private final DoubleProperty windSpeed = new SimpleDoubleProperty();
@@ -50,17 +50,17 @@ public class ForecastWeather {
         this.tempMax.set(tempMax);
     }
 
-    public int getTempMin() {
-        return tempMin.get();
-    }
-
-    public IntegerProperty tempMinProperty() {
-        return tempMin;
-    }
-
-    public void setTempMin(int tempMin) {
-        this.tempMin.set(tempMin);
-    }
+//    public int getTempMin() {
+//        return tempMin.get();
+//    }
+//
+//    public IntegerProperty tempMinProperty() {
+//        return tempMin;
+//    }
+//
+//    public void setTempMin(int tempMin) {
+//        this.tempMin.set(tempMin);
+//    }
 
     public int getFeels_likeMax() {
         return feels_likeMax.get();
@@ -74,17 +74,17 @@ public class ForecastWeather {
         this.feels_likeMax.set(feels_likeMax);
     }
 
-    public int getFeels_likeMin() {
-        return feels_likeMin.get();
-    }
-
-    public IntegerProperty feels_likeMinProperty() {
-        return feels_likeMin;
-    }
-
-    public void setFeels_likeMin(int feels_likeMin) {
-        this.feels_likeMin.set(feels_likeMin);
-    }
+//    public int getFeels_likeMin() {
+//        return feels_likeMin.get();
+//    }
+//
+//    public IntegerProperty feels_likeMinProperty() {
+//        return feels_likeMin;
+//    }
+//
+//    public void setFeels_likeMin(int feels_likeMin) {
+//        this.feels_likeMin.set(feels_likeMin);
+//    }
 
     public String getWeather_code() {
         return weather_code;

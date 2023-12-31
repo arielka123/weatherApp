@@ -1,4 +1,4 @@
-package pl.weatherApp.model.client;
+package pl.weatherApp.model.service;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -8,11 +8,10 @@ import pl.weatherApp.model.utils.ApiUtils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Localization {
-    private String city = "Warszawa";
+    private final String city = "Warszawa";
     private String country_code;
     private Double latitude;
     private Double longitude;
@@ -47,11 +46,7 @@ public class Localization {
                 System.out.println("latitude "+latitude);
                 System.out.println("longitude "+longitude);
             }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
     }

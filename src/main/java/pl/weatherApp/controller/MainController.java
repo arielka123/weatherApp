@@ -3,7 +3,7 @@ package pl.weatherApp.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
-import pl.weatherApp.model.client.WeatherServiceFactory;
+import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.FxmlUtils;
 

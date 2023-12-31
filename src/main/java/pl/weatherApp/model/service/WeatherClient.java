@@ -1,4 +1,7 @@
-package pl.weatherApp.model.client;
+package pl.weatherApp.model.service;
+
+import pl.weatherApp.model.client.OpenMeteo;
+import pl.weatherApp.model.client.OpenWeatherMap;
 
 public class WeatherClient extends WeatherServiceFactory {
 

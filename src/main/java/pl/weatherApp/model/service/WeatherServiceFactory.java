@@ -1,4 +1,4 @@
-package pl.weatherApp.model.client;
+package pl.weatherApp.model.service;
 
 public class WeatherServiceFactory {
 //    public static WeatherService createWeatherService(){

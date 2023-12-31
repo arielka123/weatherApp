@@ -1,6 +1,7 @@
 package pl.weatherApp.model.client;
 
 import pl.weatherApp.Config;
+import pl.weatherApp.model.service.Localization;
 
 public class OpenWeatherMap {
     public static String currentWeatherURL ="https://api.openweathermap.org/data/2.5/weather?q=" + loadCity() + "&appid=" + Config.WEATHER_API+"&lang="+Config.language +"&units=metric";
@@ -9,7 +10,6 @@ public class OpenWeatherMap {
 
     private static String loadCity(){
         Localization localization = new Localization();
-        String city = localization.getCity();
-        return city;
+        return localization.getCity();
     }
 }

@@ -1,4 +1,4 @@
-package pl.weatherApp.model.client;
+package pl.weatherApp.model.service;
 
 import javafx.beans.property.*;
 
