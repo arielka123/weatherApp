@@ -19,7 +19,7 @@ public class MainController {
     @FXML
     public void initialize(){
         sideMenuController.setMainController(this);
-        WeatherServiceFactory.createWeatherClient();
+        WeatherServiceFactory.createWeatherService();
     }
 
     public void setCenter(String Path) {

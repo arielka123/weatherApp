@@ -1,15 +1,17 @@
 package pl.weatherApp.model.service;
 
 public class WeatherServiceFactory {
-//    public static WeatherService createWeatherService(){
-//        return new WeatherService(createWeatherClient());
-//    }
 
-    public static void createWeatherClient(){
+    public static void createWeatherService(){
+        createLocalization();
         createCurrentWeather();
         createForecastFiveDays();
     }
 
+    public static void createLocalization(){
+        LocalizationService localizationService = new LocalizationService();
+        localizationService.init();
+    }
     public static CurrentWeatherService createCurrentWeather(){
         return new CurrentWeatherService();
     }

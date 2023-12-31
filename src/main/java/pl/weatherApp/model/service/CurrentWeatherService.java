@@ -12,12 +12,13 @@ import java.net.URL;
 
 public class CurrentWeatherService {
     String icon;
-    //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO
+    //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO icons for current weather // mapa ?
   //  https://openweathermap.org/weather-conditions
 
     public CurrentWeatherService(){
-//        Localization localization = new Localization(); //todo
         CurrentWeather currentWeather = new CurrentWeather();
+        int temp=0;
+        int feelsLike = 0;
 
         try {
             URL url = new URL(WeatherClient.getCurrentWeatherURL());
@@ -27,7 +28,7 @@ public class CurrentWeatherService {
 
             int responseCode = conn.getResponseCode();
             if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
+                throw new RuntimeException("HttpResponseCode_currentWeather: " + responseCode);
             } else {
                 ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
@@ -42,12 +43,28 @@ public class CurrentWeatherService {
                     currentWeather.setDescription((String) new_obj.get("description"));
                     icon = (String) new_obj.get("icon"); //TODO
                 }
-                int temp = Converters.convertDoubleToInt((double) objMain.get("temp"));
+
+                if(objMain.get("temp")!=null){
+                    temp = Converters.convertDoubleToInt((Double)objMain.get("feels_like"));
+                }else{
+                    Long tempL = (Long)objMain.get("feels_like");
+                    temp = Math.toIntExact(tempL);
+                }
+
+                if(objMain.get("feels_like") != null){
+                    feelsLike = Converters.convertDoubleToInt((Double)objMain.get("feels_like"));
+                }else{
+                    Long feelsLikeL= (Long)objMain.get("feels_like");
+                    feelsLike = Math.toIntExact(feelsLikeL);
+                }
+
+                System.out.println("feelsLike: "+objMain.get("feels_like"));
+                System.out.println("temp: "+objMain.get("temp"));
 
                 currentWeather.setTemp(temp);
                 currentWeather.setHumidity((Long) objMain.get("humidity"));
                 currentWeather.setPressure((Long) objMain.get("pressure"));
-                currentWeather.setFeelsLike((Double) objMain.get("feels_like"));
+                currentWeather.setFeels_like(feelsLike);
                 currentWeather.setVisibility((Long) weatherData.get("visibility"));
                 currentWeather.setClouds((Long) objClouds.get("all"));
             }

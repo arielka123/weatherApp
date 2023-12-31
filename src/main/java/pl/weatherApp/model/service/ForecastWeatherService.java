@@ -23,7 +23,7 @@ public class ForecastWeatherService {
 
             int responseCode = conn.getResponseCode();
             if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
+                throw new RuntimeException("HttpResponseCode_Forecast: " + responseCode);
             } else {
                 ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
@@ -52,6 +52,7 @@ public class ForecastWeatherService {
                 JSONArray weatherCodeArray = (JSONArray) dailyObj.get("weather_code");
                 JSONArray precipitationArray = (JSONArray) dailyObj.get("precipitation_sum");
 
+                System.out.println(LocalizationService.getCity());
                 for (int i = 0; i < days; i++) {
                     int code = Converters.convertLongToIntArray(weatherCodeArray, i);
 
@@ -68,6 +69,7 @@ public class ForecastWeatherService {
 
                     System.out.println(dayWeather.getTime() + " " + dayWeather.getTempMax() + tempUnit + " odczuwalna: " + dayWeather.getFeels_likeMax() + tempUnit + " opady: " + dayWeather.getPrecipitation() + WeatherCollection.getWeatherUnits(0).getPrecipitation() + " wiatr: " + windSpeedArray.get(i) + speedUnit + " kierunek: " + windDirectionArray.get(i) + directionUnit + " kod: " + WeatherCodes.mapCodes(code));
                 }
+                System.out.println(WeatherCollection.getForecastList(0).getTime()+" "+WeatherCollection.getForecastList(0).getFeels_likeMax()); //todo inna niż w current // pobrac min value
             }
         } catch (Exception e) {
             DialogUtils.errorDialog(e.getMessage());

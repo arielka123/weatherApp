@@ -7,10 +7,14 @@ public class CurrentWeather {
     private final IntegerProperty temp = new SimpleIntegerProperty();
     private final LongProperty humidity = new SimpleLongProperty();
     private final LongProperty pressure= new SimpleLongProperty(); //hPa
-    private final DoubleProperty feels_like= new SimpleDoubleProperty();
+    private final IntegerProperty feels_like= new SimpleIntegerProperty();
     private final LongProperty visibility= new SimpleLongProperty(); //km
     private final StringProperty description= new SimpleStringProperty();
     private final LongProperty clouds= new SimpleLongProperty(); //%
+
+    public void setFeels_like(int feels_like) {
+        this.feels_like.set(feels_like);
+    }
 
     public int getTemp() {
         return temp.get();
@@ -50,14 +54,6 @@ public class CurrentWeather {
 
     public double getFeels_like() {
         return feels_like.get();
-    }
-
-    public DoubleProperty feels_likeProperty() {
-        return feels_like;
-    }
-
-    public void setFeelsLike(double feels_like) {
-        this.feels_like.set(feels_like);
     }
 
     public long getVisibility() {
