@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import pl.weatherApp.model.utils.ApiUtils;
+import pl.weatherApp.model.utils.Converters;
 import pl.weatherApp.model.utils.DialogUtils;
 
 import java.net.HttpURLConnection;
@@ -15,8 +16,8 @@ public class CurrentWeatherService {
   //  https://openweathermap.org/weather-conditions
 
     public CurrentWeatherService(){
-        Localization localization = new Localization(); //todo
-        CurrentWeather currentWeatherParam = new CurrentWeather();
+//        Localization localization = new Localization(); //todo
+        CurrentWeather currentWeather = new CurrentWeather();
 
         try {
             URL url = new URL(WeatherClient.getCurrentWeatherURL());
@@ -38,32 +39,20 @@ public class CurrentWeatherService {
 
                 for (Object o : arrayWeather) {
                     JSONObject new_obj = (JSONObject) o;
-                    currentWeatherParam.setDescription((String) new_obj.get("description"));
+                    currentWeather.setDescription((String) new_obj.get("description"));
                     icon = (String) new_obj.get("icon"); //TODO
                 }
+                int temp = Converters.convertDoubleToInt((double) objMain.get("temp"));
 
-                double tempD= (double) objMain.get("temp");
-                int temp = (int) Math.round(tempD);
-
-                currentWeatherParam.setTemp(temp);
-                currentWeatherParam.setHumidity((Long) objMain.get("humidity"));
-                currentWeatherParam.setPressure((Long) objMain.get("pressure"));
-                currentWeatherParam.setFeelsLike((double) objMain.get("feels_like"));
-                currentWeatherParam.setVisibility((Long) weatherData.get("visibility"));
-                currentWeatherParam.setClouds((Long) objClouds.get("all"));
-
-                System.out.println("Miasto: "+localization.getCity());
-                System.out.println("Opis: "+ currentWeatherParam.getDescription());
-                System.out.println("Temperatura: "+ currentWeatherParam.getTemp());
-                System.out.println("Temp odczuwalna: "+ currentWeatherParam.getFeels_like());
-                System.out.println("Ciśnienie: "+ currentWeatherParam.getPressure());
-                System.out.println("Wilgotność: "+ currentWeatherParam.getHumidity());
-                System.out.println("Zachmurzenie: "+ currentWeatherParam.getClouds());
-                System.out.println("Widoczność: "+ currentWeatherParam.getVisibility());
+                currentWeather.setTemp(temp);
+                currentWeather.setHumidity((Long) objMain.get("humidity"));
+                currentWeather.setPressure((Long) objMain.get("pressure"));
+                currentWeather.setFeelsLike((Double) objMain.get("feels_like"));
+                currentWeather.setVisibility((Long) weatherData.get("visibility"));
+                currentWeather.setClouds((Long) objClouds.get("all"));
             }
             } catch (Exception e) {
             DialogUtils.errorDialog(e.getMessage());
         }
     }
-
 }

@@ -4,13 +4,39 @@ import javafx.beans.property.*;
 
 public class ForecastWeather {
 
+    private  final StringProperty time = new SimpleStringProperty();
     private final IntegerProperty tempMax = new SimpleIntegerProperty();
     private final IntegerProperty tempMin = new SimpleIntegerProperty();
     private final IntegerProperty feels_likeMax= new SimpleIntegerProperty();
     private final IntegerProperty feels_likeMin= new SimpleIntegerProperty();
+    private final DoubleProperty precipitation = new SimpleDoubleProperty();
     private  String weather_code;
-    private final StringProperty windSpeed = new SimpleStringProperty();
+    private final DoubleProperty windSpeed = new SimpleDoubleProperty();
     private Integer windDirection;
+
+    public double getPrecipitation() {
+        return precipitation.get();
+    }
+
+    public DoubleProperty precipitationProperty() {
+        return precipitation;
+    }
+
+    public void setPrecipitation(double precipitation) {
+        this.precipitation.set(precipitation);
+    }
+
+    public String getTime() {
+        return time.get();
+    }
+
+    public StringProperty timeProperty() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time.set(time);
+    }
 
     public int getTempMax() {
         return tempMax.get();
@@ -68,15 +94,15 @@ public class ForecastWeather {
         this.weather_code = weather_code;
     }
 
-    public String getWindSpeed() {
+    public double getWindSpeed() {
         return windSpeed.get();
     }
 
-    public StringProperty windSpeedProperty() {
+    public DoubleProperty windSpeedProperty() {
         return windSpeed;
     }
 
-    public void setWindSpeed(String windSpeed) {
+    public void setWindSpeed(double windSpeed) {
         this.windSpeed.set(windSpeed);
     }
 

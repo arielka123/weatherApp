@@ -6,11 +6,10 @@ public class WeatherClient extends WeatherServiceFactory {
         return OpenWeatherMap.currentWeatherURL;
     }
     public static String getLocalizationURL(){
-//        return Geocoding.geocodingURL;
         return OpenWeatherMap.geolocationURL;
     }
 
-    public static String getFiveDaysForecastURL(){
-        return OpenMeteo.fiveDaysForecast;
+    public static String getForecastURL(){
+        return OpenMeteo.forecastURL;
     }
 }
