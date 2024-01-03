@@ -6,5 +6,4 @@ public class ViewFactory {
     public static void createMainView(Stage primaryStage){
         MainView.showMainWindow(primaryStage);
     }
-
 }
