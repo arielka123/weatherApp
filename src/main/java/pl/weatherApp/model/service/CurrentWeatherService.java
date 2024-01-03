@@ -11,14 +11,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeatherService {
-    String icon;
+    String iconNumber;
     //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO icons for current weather // mapa ?
   //  https://openweathermap.org/weather-conditions
 
     public CurrentWeatherService(){
         CurrentWeather currentWeather = new CurrentWeather();
-        int temp=0;
-        int feelsLike = 0;
+        int temp;
+        int feelsLike;
 
         try {
             URL url = new URL(WeatherClient.getCurrentWeatherURL());
@@ -41,35 +41,38 @@ public class CurrentWeatherService {
                 for (Object o : arrayWeather) {
                     JSONObject new_obj = (JSONObject) o;
                     currentWeather.setDescription((String) new_obj.get("description"));
-                    icon = (String) new_obj.get("icon"); //TODO
+                    iconNumber = (String) new_obj.get("icon");
                 }
-
                 if(objMain.get("temp")!=null){
-                    temp = Converters.convertDoubleToInt((Double)objMain.get("feels_like"));
+                    temp = Converters.convertDoubleToInt((Double)objMain.get("temp"));
                 }else{
-                    Long tempL = (Long)objMain.get("feels_like");
+                    Long tempL = (Long)objMain.get("temp");
                     temp = Math.toIntExact(tempL);
                 }
-
-                if(objMain.get("feels_like") != null){
+                if(objMain.get("feels_like") !=null){
                     feelsLike = Converters.convertDoubleToInt((Double)objMain.get("feels_like"));
                 }else{
                     Long feelsLikeL= (Long)objMain.get("feels_like");
                     feelsLike = Math.toIntExact(feelsLikeL);
                 }
-
-                System.out.println("feelsLike: "+objMain.get("feels_like"));
-                System.out.println("temp: "+objMain.get("temp"));
-
                 currentWeather.setTemp(temp);
                 currentWeather.setHumidity((Long) objMain.get("humidity"));
                 currentWeather.setPressure((Long) objMain.get("pressure"));
                 currentWeather.setFeels_like(feelsLike);
                 currentWeather.setVisibility((Long) weatherData.get("visibility"));
                 currentWeather.setClouds((Long) objClouds.get("all"));
+
+                System.out.println("temp: "+temp +" "+ currentWeather.getTemp());
+                System.out.println("feelsLike: "+feelsLike +" " +currentWeather.getFeels_like());
+
+                //WriteOutVariables(currentWeather);
             }
-            } catch (Exception e) {
+        } catch (Exception e) {
             DialogUtils.errorDialog(e.getMessage());
         }
+    }
+
+    private void WriteOutVariables(CurrentWeather currentWeather) {
+        System.out.println(iconNumber + " "+ currentWeather.getDescription() + " "+ currentWeather.getTemp() + " "+ currentWeather.getFeels_like());
     }
 }

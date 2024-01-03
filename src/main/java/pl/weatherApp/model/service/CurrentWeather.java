@@ -15,6 +15,9 @@ public class CurrentWeather {
     public void setFeels_like(int feels_like) {
         this.feels_like.set(feels_like);
     }
+    public int getFeels_like() {
+        return feels_like.get();
+    }
 
     public int getTemp() {
         return temp.get();
@@ -50,10 +53,6 @@ public class CurrentWeather {
 
     public void setPressure(long pressure) {
         this.pressure.set(pressure);
-    }
-
-    public double getFeels_like() {
-        return feels_like.get();
     }
 
     public long getVisibility() {
