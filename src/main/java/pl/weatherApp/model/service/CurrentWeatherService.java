@@ -11,11 +11,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeatherService {
-    String iconNumber;
+    static String iconNumber;
     //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO icons for current weather // mapa ?
   //  https://openweathermap.org/weather-conditions
 
-    public CurrentWeatherService(){
+    public static CurrentWeather init(){
         CurrentWeather currentWeather = new CurrentWeather();
         int temp;
         int feelsLike;
@@ -62,17 +62,20 @@ public class CurrentWeatherService {
                 currentWeather.setVisibility((Long) weatherData.get("visibility"));
                 currentWeather.setClouds((Long) objClouds.get("all"));
 
-                System.out.println("temp: "+temp +" "+ currentWeather.getTemp());
-                System.out.println("feelsLike: "+feelsLike +" " +currentWeather.getFeels_like());
+
+
+                System.out.println(currentWeather.getVisibility());
 
                 //WriteOutVariables(currentWeather);
             }
         } catch (Exception e) {
             DialogUtils.errorDialog(e.getMessage());
         }
+        return currentWeather;
     }
 
     private void WriteOutVariables(CurrentWeather currentWeather) {
         System.out.println(iconNumber + " "+ currentWeather.getDescription() + " "+ currentWeather.getTemp() + " "+ currentWeather.getFeels_like());
+
     }
 }
