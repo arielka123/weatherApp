@@ -15,13 +15,14 @@ public class CurrentWeatherService {
     //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO icons for current weather // mapa ?
   //  https://openweathermap.org/weather-conditions
 
-    public static CurrentWeather init(){
-        CurrentWeather currentWeather = new CurrentWeather();
+
+    public static CurrentWeather init(LocalizationService localizationService){
+       CurrentWeather currentWeather = new CurrentWeather();
         int temp;
         int feelsLike;
 
         try {
-            URL url = new URL(WeatherClient.getCurrentWeatherURL());
+            URL url = new URL(WeatherClient.getCurrentWeatherURL(localizationService));
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
@@ -61,21 +62,10 @@ public class CurrentWeatherService {
                 currentWeather.setFeels_like(feelsLike);
                 currentWeather.setVisibility((Long) weatherData.get("visibility"));
                 currentWeather.setClouds((Long) objClouds.get("all"));
-
-
-
-                System.out.println(currentWeather.getVisibility());
-
-                //WriteOutVariables(currentWeather);
             }
         } catch (Exception e) {
             DialogUtils.errorDialog(e.getMessage());
         }
         return currentWeather;
-    }
-
-    private void WriteOutVariables(CurrentWeather currentWeather) {
-        System.out.println(iconNumber + " "+ currentWeather.getDescription() + " "+ currentWeather.getTemp() + " "+ currentWeather.getFeels_like());
-
     }
 }

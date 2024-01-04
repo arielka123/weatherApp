@@ -11,7 +11,7 @@ public class CurrentWeatherController {
     //todo bundlesy
 
     @FXML
-    private TextField textFieldCity1;  //todo input
+    private TextField textFieldCity1;
     @FXML
     private TextField TextFieldCity2;
 
@@ -44,47 +44,50 @@ public class CurrentWeatherController {
     @FXML
     private Text visibilityCity1;
 
-    private CurrentWeather currentWeather;
-
     @FXML
     public void initialize(){
-        this.currentWeather = WeatherServiceFactory.createCurrentWeather();
-        this.descCity1.setText("");
-        this.tempCity1.setText(Units.temperature);
-        this.feelsLikeCity1.setText(Units.temperature);
-        this.pressureCity1.setText(Units.pressure);
-        this.visibilityCity1.setText(Units.visibility); //TODO cos nie tak z widocznością wyswietla 10000%
-        this.cloudsCity1.setText(Units.cloud);
-        this.humidityCity1.setText(Units.humidity);
-
-        this.descCity2.setText("");
-        this.tempCity2.setText(Units.temperature);
-        this.feelsLikeCity2.setText(Units.temperature);
-        this.pressureCity2.setText(Units.pressure);
-        this.visibilityCity2.setText(Units.visibility); //TODO cos nie tak z widocznością wyswietla 10000%
-        this.cloudsCity2.setText(Units.cloud);
-        this.humidityCity2.setText(Units.humidity);
+        descCity1.setText("");
+        tempCity1.setText(Units.temperature);
+        feelsLikeCity1.setText(Units.temperature);
+        pressureCity1.setText(Units.pressure);
+        visibilityCity1.setText(Units.visibility);
+        cloudsCity1.setText(Units.cloud);
+        humidityCity1.setText(Units.humidity);
+        descCity2.setText("");
+        tempCity2.setText(Units.temperature);
+        feelsLikeCity2.setText(Units.temperature);
+        pressureCity2.setText(Units.pressure);
+        visibilityCity2.setText(Units.visibility);
+        cloudsCity2.setText(Units.cloud);
+        humidityCity2.setText(Units.humidity);
     }
 
     public void showWeatherCity1() {
-        this.currentWeather = WeatherServiceFactory.createCurrentWeather();
-        this.descCity1.setText(this.currentWeather.getDescription());
-        this.tempCity1.setText(this.currentWeather.getTemp()+Units.temperature);
-        this.feelsLikeCity1.setText(this.currentWeather.getFeels_like() +Units.temperature);
-        this.pressureCity1.setText(this.currentWeather.getPressure() +Units.pressure);
-        this.visibilityCity1.setText(this.currentWeather.getVisibility() +Units.visibility);
-        this.cloudsCity1.setText(this.currentWeather.getClouds()+Units.cloud);
-        this.humidityCity1.setText(this.currentWeather.getHumidity()+Units.humidity);
+        CurrentWeather currentWeather;
+        WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
+        if(textFieldCity1==null){
+            //todo dialogs when something is wrong with city string or is null
+        }
+        currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity1.getText());
+        descCity1.setText(currentWeather.getDescription());
+        tempCity1.setText(currentWeather.getTemp()+Units.temperature);
+        feelsLikeCity1.setText(currentWeather.getFeels_like() +Units.temperature);
+        pressureCity1.setText(currentWeather.getPressure() +Units.pressure);
+        visibilityCity1.setText(currentWeather.getVisibility() +Units.visibility);
+        cloudsCity1.setText(currentWeather.getClouds()+Units.cloud);
+        humidityCity1.setText(currentWeather.getHumidity()+Units.humidity);
     }
 
     public void showWeatherCity2() {
-        this.currentWeather = WeatherServiceFactory.createCurrentWeather();
-        this.descCity2.setText(this.currentWeather.getDescription());
-        this.tempCity2.setText(this.currentWeather.getTemp()+Units.temperature);
-        this.feelsLikeCity2.setText(this.currentWeather.getFeels_like() +Units.temperature);
-        this.pressureCity2.setText(this.currentWeather.getPressure() +Units.pressure);
-        this.visibilityCity2.setText(this.currentWeather.getVisibility() +Units.visibility);
-        this.cloudsCity2.setText(this.currentWeather.getClouds()+Units.cloud);
-        this.humidityCity2.setText(this.currentWeather.getHumidity()+Units.humidity);
+        CurrentWeather currentWeather;
+        WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
+        currentWeather = weatherServiceFactory.createCurrentWeather(TextFieldCity2.getText());
+        descCity2.setText(currentWeather.getDescription());
+        tempCity2.setText(currentWeather.getTemp()+Units.temperature);
+        feelsLikeCity2.setText(currentWeather.getFeels_like() +Units.temperature);
+        pressureCity2.setText(currentWeather.getPressure() +Units.pressure);
+        visibilityCity2.setText(currentWeather.getVisibility() +Units.visibility);
+        cloudsCity2.setText(currentWeather.getClouds()+Units.cloud);
+        humidityCity2.setText(currentWeather.getHumidity()+Units.humidity);
     }
 }

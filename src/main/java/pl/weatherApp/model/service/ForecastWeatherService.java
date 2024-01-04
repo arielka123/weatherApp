@@ -12,11 +12,11 @@ import java.net.URL;
 
 public class ForecastWeatherService {
 
-    public ForecastWeatherService() {
+    public ForecastWeatherService(LocalizationService localizationService) {
         int days = 5; //todo user set days
 
         try {
-            URL url = new URL(WeatherClient.getForecastURL());
+            URL url = new URL(WeatherClient.getForecastURL(localizationService));
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
@@ -54,7 +54,6 @@ public class ForecastWeatherService {
                 JSONArray weatherCodeArray = (JSONArray) dailyObj.get("weather_code");
                 JSONArray precipitationArray = (JSONArray) dailyObj.get("precipitation_sum");
 
-                System.out.println(LocalizationService.getCity());
                 for (int i = 0; i < days; i++) {
                     int code = Converters.convertLongToIntArray(weatherCodeArray, i);
                     ForecastWeather dayWeather = new ForecastWeather();

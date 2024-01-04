@@ -11,18 +11,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class LocalizationService {
-    private static String city;
-    private static String country_code;
-    private static Double latitude;
-    private static Double longitude;
+    private String city=null;
+    private String country_code=null;
+    private Double latitude=null;
+    private Double longitude=null;
 
-    public LocalizationService(){
-        LocalizationService.setCity("Warszawa"); //TODO user set city
-    };
+    public LocalizationService(String city){
+        this.setCity(city);
+    }
 
     public void init() {
      try {
-            URL url = new URL(WeatherClient.getLocalizationURL());
+            URL url = new URL(WeatherClient.getLocalizationURL(this));
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
 
@@ -37,9 +37,10 @@ public class LocalizationService {
                 for (Object result : localizationData) {
                     JSONObject resultObj = (JSONObject) result;
 
-                    LocalizationService.longitude = (Double) resultObj.get("lon");
-                    LocalizationService.latitude = (Double) resultObj.get("lat");
-                    LocalizationService.country_code = (String) resultObj.get("country");
+                    LocalizationService localizationService = new LocalizationService(getCity());
+                    localizationService.longitude = (Double) resultObj.get("lon");
+                    localizationService.latitude = (Double) resultObj.get("lat");
+                    localizationService.country_code = (String) resultObj.get("country");
                 }
             }
         } catch (IOException | ParseException e) {
@@ -47,24 +48,24 @@ public class LocalizationService {
         }
     }
 
-    public static String getCountry_code() {
+    public  String getCountry_code() {
         return country_code;
     }
 
-    public static Double getLatitude() {
+    public  Double getLatitude() {
         return latitude;
     }
 
-    public static Double getLongitude() {
+    public  Double getLongitude() {
         return longitude;
     }
 
-    public static String getCity() {
+    public  String getCity() {
         return city;
     }
 
-    public static void setCity(String city) {
-        LocalizationService.city = city;
+    public  void setCity(String city) {
+        this.city = city;
     }
 }
 

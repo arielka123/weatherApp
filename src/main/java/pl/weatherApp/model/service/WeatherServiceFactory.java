@@ -4,22 +4,17 @@ import static pl.weatherApp.model.service.CurrentWeatherService.init;
 
 public class WeatherServiceFactory {
 
-    public static void createWeatherService(){
-        createLocalization();
-        createCurrentWeather();
-        createForecastFiveDays();
-    }
-
-    public static void createLocalization(){
-        LocalizationService localizationService = new LocalizationService();
+    public LocalizationService createLocalization(String city){
+        LocalizationService localizationService;
+        localizationService = new LocalizationService(city);
         localizationService.init();
+        return localizationService;
     }
-    public static CurrentWeather createCurrentWeather(){
-        createLocalization();
-        return init();
+    public CurrentWeather createCurrentWeather(String city){
+        return init(createLocalization(city));
     }
 
-    public static ForecastWeatherService createForecastFiveDays(){
-        return new ForecastWeatherService();
+    public ForecastWeatherService createForecastFiveDays(String city){
+        return new ForecastWeatherService(createLocalization(city));
     }
 }

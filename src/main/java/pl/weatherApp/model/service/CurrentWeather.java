@@ -12,6 +12,15 @@ public class CurrentWeather {
     private final StringProperty description= new SimpleStringProperty();
     private final LongProperty clouds= new SimpleLongProperty(); //%
 
+    public CurrentWeather() {
+        setFeels_like(0);
+        setClouds(0);
+        setTemp(0);
+        setHumidity(0);
+        setDescription("");
+        setVisibility(0);
+    }
+
     public void setFeels_like(int feels_like) {
         this.feels_like.set(feels_like);
     }
