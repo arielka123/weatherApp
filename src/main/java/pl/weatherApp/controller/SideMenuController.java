@@ -6,6 +6,8 @@ public class SideMenuController {
     public static final String DAY_FXML = "/fxml/CurrentDay.fxml";
     public static final String WEEK_FXML = "/fxml/Week.fxml";
     public static final String MONTHS_FXML = "/fxml/Months.fxml";
+    public static final String MAINVIEW_FXML = "/fxml/MainView.fxml";
+
 
     private MainController mainController;
 
@@ -27,6 +29,10 @@ public class SideMenuController {
 
     public void settingsOnAction() {
         mainController.setCenter(SETTINGS_FXML);
+    }
+
+    public void mainViewOnAction() {
+        mainController.setCenter(MAINVIEW_FXML);
     }
 }
 

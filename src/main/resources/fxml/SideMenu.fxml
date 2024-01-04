@@ -16,28 +16,28 @@
       <padding>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
       </padding>
-      <Text fill="#412525a3" strokeType="OUTSIDE" strokeWidth="2.0" text="%sideBar.title" textAlignment="CENTER">
+      <Text fill="#412525a3" onMouseClicked="#mainViewOnAction" strokeType="OUTSIDE" strokeWidth="2.0" text="%sideBar.title" textAlignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
    </TextFlow>
-   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#todayWeatherOnAction" prefHeight="45.0" prefWidth="135.0" text="%sideBar.today">
+   <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#todayWeatherOnAction" prefHeight="45.0" prefWidth="135.0" text="%sideBar.today">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#weakWeatherOnAction" prefHeight="45.0" text="%sideBar.week">
+   <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#weakWeatherOnAction" prefHeight="45.0" text="%sideBar.week">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#monthsWeatherOnAction" prefHeight="45.0" text="%sideBar.months">
+   <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#monthsWeatherOnAction" prefHeight="45.0" text="%sideBar.months">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settingsOnAction" prefHeight="45.0" text="%sideBar.settings">
+   <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settingsOnAction" prefHeight="45.0" text="%sideBar.settings">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
