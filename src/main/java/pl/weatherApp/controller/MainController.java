@@ -11,14 +11,13 @@ import java.io.IOException;
 public class MainController {
 
     @FXML
-    private SideMenuController sideMenuController=null;
+    private SideMenuController sideMenuController;
     @FXML
     private BorderPane borderPane;
 
     @FXML
     public void initialize(){
         sideMenuController.setMainController(this);
-//        WeatherServiceFactory.createWeatherService();
     }
 
     public void setCenter(String Path) {

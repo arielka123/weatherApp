@@ -1,4 +1,4 @@
 package pl.weatherApp.controller;
 
-public class MainController2 {
+public class StartViewController {
 }

@@ -46,7 +46,7 @@
       </TextFlow>
    </top>
    <center>
-      <fx:include fx:id="mainView" source="MainView.fxml" />
+      <fx:include fx:id="mainView" source="StartView.fxml" />
    </center>
    <left>
       <HBox prefHeight="400.0" prefWidth="130.0" BorderPane.alignment="CENTER">
