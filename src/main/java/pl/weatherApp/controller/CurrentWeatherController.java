@@ -63,7 +63,6 @@ public class CurrentWeatherController {
         humidityCity2.setText(Units.humidity);
     }
 
-    //todo polskie znaki w input
     public void showWeatherCity1() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
@@ -111,6 +110,6 @@ public class CurrentWeatherController {
         }
     }
     private boolean containNumbers(TextField textFieldCity1) {
-        return !textFieldCity1.getText().matches("^[a-zA-Z]+");
+        return !textFieldCity1.getText().matches("^[a-zA-ZąćęłńóśźżĄĘŁĆŃÓŚŹŻ]+");
     }
 }
