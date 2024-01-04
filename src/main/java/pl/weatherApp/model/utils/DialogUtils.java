@@ -17,4 +17,12 @@ public class DialogUtils {
         errorAlert.showAndWait();
     }
 
+    public static void inputDialog(){
+        Alert inputAlert = new Alert(Alert.AlertType.INFORMATION);
+        inputAlert.setTitle(FxmlUtils.getResourceBundle().getString("warningInput"));
+        inputAlert.setHeaderText(FxmlUtils.getResourceBundle().getString("warningInput"));
+        inputAlert.getDialogPane().setContentText(FxmlUtils.getResourceBundle().getString("warningInput.text"));
+        inputAlert.showAndWait();
+    }
+
 }

@@ -6,6 +6,7 @@ import javafx.scene.text.Text;
 import pl.weatherApp.model.service.CurrentWeather;
 import pl.weatherApp.model.service.Units;
 import pl.weatherApp.model.service.WeatherServiceFactory;
+import pl.weatherApp.model.utils.DialogUtils;
 
 public class CurrentWeatherController {
     //todo bundlesy
@@ -13,7 +14,7 @@ public class CurrentWeatherController {
     @FXML
     private TextField textFieldCity1;
     @FXML
-    private TextField TextFieldCity2;
+    private TextField textFieldCity2;
 
     @FXML
     private Text cloudsCity2;
@@ -62,32 +63,54 @@ public class CurrentWeatherController {
         humidityCity2.setText(Units.humidity);
     }
 
+    //todo polskie znaki w input
     public void showWeatherCity1() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        if(textFieldCity1==null){
-            //todo dialogs when something is wrong with city string or is null
+        if(isNotCorrectInput(textFieldCity1)){
+            DialogUtils.inputDialog();
+        }else {
+            currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity1.getText());
+            descCity1.setText(currentWeather.getDescription());
+            tempCity1.setText(currentWeather.getTemp() + Units.temperature);
+            feelsLikeCity1.setText(currentWeather.getFeels_like() + Units.temperature);
+            pressureCity1.setText(currentWeather.getPressure() + Units.pressure);
+            visibilityCity1.setText(currentWeather.getVisibility() + Units.visibility);
+            cloudsCity1.setText(currentWeather.getClouds() + Units.cloud);
+            humidityCity1.setText(currentWeather.getHumidity() + Units.humidity);
         }
-        currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity1.getText());
-        descCity1.setText(currentWeather.getDescription());
-        tempCity1.setText(currentWeather.getTemp()+Units.temperature);
-        feelsLikeCity1.setText(currentWeather.getFeels_like() +Units.temperature);
-        pressureCity1.setText(currentWeather.getPressure() +Units.pressure);
-        visibilityCity1.setText(currentWeather.getVisibility() +Units.visibility);
-        cloudsCity1.setText(currentWeather.getClouds()+Units.cloud);
-        humidityCity1.setText(currentWeather.getHumidity()+Units.humidity);
     }
 
+    //todo refactoring
     public void showWeatherCity2() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        currentWeather = weatherServiceFactory.createCurrentWeather(TextFieldCity2.getText());
-        descCity2.setText(currentWeather.getDescription());
-        tempCity2.setText(currentWeather.getTemp()+Units.temperature);
-        feelsLikeCity2.setText(currentWeather.getFeels_like() +Units.temperature);
-        pressureCity2.setText(currentWeather.getPressure() +Units.pressure);
-        visibilityCity2.setText(currentWeather.getVisibility() +Units.visibility);
-        cloudsCity2.setText(currentWeather.getClouds()+Units.cloud);
-        humidityCity2.setText(currentWeather.getHumidity()+Units.humidity);
+        if(isNotCorrectInput(textFieldCity2)){
+            DialogUtils.inputDialog();
+        }else {
+            currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity2.getText());
+            descCity2.setText(currentWeather.getDescription());
+            tempCity2.setText(currentWeather.getTemp() + Units.temperature);
+            feelsLikeCity2.setText(currentWeather.getFeels_like() + Units.temperature);
+            pressureCity2.setText(currentWeather.getPressure() + Units.pressure);
+            visibilityCity2.setText(currentWeather.getVisibility() + Units.visibility);
+            cloudsCity2.setText(currentWeather.getClouds() + Units.cloud);
+            humidityCity2.setText(currentWeather.getHumidity() + Units.humidity);
+        }
+    }
+
+    private boolean isNotCorrectInput(TextField textFieldCity) {
+        removeSpaces(textFieldCity);
+        return textFieldCity.getText().isEmpty() || containNumbers(textFieldCity);
+    }
+
+    private void removeSpaces(TextField textFieldCity) {
+        if(!textFieldCity.getText().isEmpty()) {
+            String newText = textFieldCity.getText().replace(" ", "");
+            textFieldCity.setText(newText);
+        }
+    }
+    private boolean containNumbers(TextField textFieldCity1) {
+        return !textFieldCity1.getText().matches("^[a-zA-Z]+");
     }
 }
