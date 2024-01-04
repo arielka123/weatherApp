@@ -11,12 +11,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeatherService {
-    static String iconNumber;
+    String iconNumber;
+    int responseCode;
     //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO icons for current weather // mapa ?
   //  https://openweathermap.org/weather-conditions
 
 
-    public static CurrentWeather init(LocalizationService localizationService){
+    public CurrentWeather init(LocalizationService localizationService){
        CurrentWeather currentWeather = new CurrentWeather();
         int temp;
         int feelsLike;
@@ -27,9 +28,9 @@ public class CurrentWeatherService {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
 
-            int responseCode = conn.getResponseCode();
-            if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode_currentWeather: " + responseCode);
+            this.responseCode = conn.getResponseCode();
+            if (this.responseCode != 200) {
+                throw new RuntimeException("HttpResponseCode_currentWeather: " + this.responseCode);
             } else {
                 ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
@@ -42,7 +43,7 @@ public class CurrentWeatherService {
                 for (Object o : arrayWeather) {
                     JSONObject new_obj = (JSONObject) o;
                     currentWeather.setDescription((String) new_obj.get("description"));
-                    iconNumber = (String) new_obj.get("icon");
+                    this.iconNumber = (String) new_obj.get("icon");
                 }
                 if(objMain.get("temp")!=null){
                     temp = Converters.convertDoubleToInt((Double)objMain.get("temp"));
@@ -64,7 +65,7 @@ public class CurrentWeatherService {
                 currentWeather.setClouds((Long) objClouds.get("all"));
             }
         } catch (Exception e) {
-            DialogUtils.errorDialog(e.getMessage());
+            DialogUtils.errorDialog(String.valueOf(this.responseCode));
         }
         return currentWeather;
     }

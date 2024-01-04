@@ -66,9 +66,7 @@ public class CurrentWeatherController {
     public void showWeatherCity1() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        if(isNotCorrectInput(textFieldCity1)){
-            DialogUtils.inputDialog();
-        }else {
+        if(inputValidation(textFieldCity1)){
             currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity1.getText());
             descCity1.setText(currentWeather.getDescription());
             tempCity1.setText(currentWeather.getTemp() + Units.temperature);
@@ -84,9 +82,7 @@ public class CurrentWeatherController {
     public void showWeatherCity2() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        if(isNotCorrectInput(textFieldCity2)){
-            DialogUtils.inputDialog();
-        }else {
+        if(inputValidation(textFieldCity2)){
             currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity2.getText());
             descCity2.setText(currentWeather.getDescription());
             tempCity2.setText(currentWeather.getTemp() + Units.temperature);
@@ -98,18 +94,22 @@ public class CurrentWeatherController {
         }
     }
 
-    private boolean isNotCorrectInput(TextField textFieldCity) {
+    private boolean inputValidation (TextField textFieldCity) {
         removeSpaces(textFieldCity);
-        return textFieldCity.getText().isEmpty() || containNumbers(textFieldCity);
+        if(textFieldCity.getText().isEmpty() || containNumbers(textFieldCity)){
+            DialogUtils.inputDialog();
+            return false;
+        }
+        return true;
     }
 
     private void removeSpaces(TextField textFieldCity) {
         if(!textFieldCity.getText().isEmpty()) {
-            String newText = textFieldCity.getText().replace(" ", "");
+            String newText = textFieldCity.getText().trim();
             textFieldCity.setText(newText);
         }
     }
     private boolean containNumbers(TextField textFieldCity1) {
-        return !textFieldCity1.getText().matches("^[a-zA-ZąćęłńóśźżĄĘŁĆŃÓŚŹŻ]+");
+        return !textFieldCity1.getText().matches("^[a-zA-ZąćęłńóśźżĄĘŁĆŃÓŚŹŻ ]+");
     }
 }

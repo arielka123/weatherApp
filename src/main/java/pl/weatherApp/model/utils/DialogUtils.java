@@ -12,7 +12,7 @@ public class DialogUtils {
         errorAlert.setTitle(FxmlUtils.getResourceBundle().getString("error"));
         errorAlert.setHeaderText(FxmlUtils.getResourceBundle().getString("error"));
         String text = FxmlUtils.getResourceBundle().getString("error.text");
-        TextArea textArea = new TextArea(text +"\r\n"+ error);
+        TextArea textArea = new TextArea(text +"\r\n"+ FxmlUtils.getResourceBundle().getString("error")+": "+ error);
         errorAlert.getDialogPane().setContent(textArea);
         errorAlert.showAndWait();
     }
