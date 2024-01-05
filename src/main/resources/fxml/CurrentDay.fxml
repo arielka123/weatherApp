@@ -17,7 +17,7 @@
          <children>
             <VBox prefHeight="445.0" prefWidth="279.0">
                <children>
-                  <Label text="Wpisz Miasto" />
+                  <Label text="%current.inputCity" />
                   <TextField fx:id="textFieldCity1">
                      <opaqueInsets>
                         <Insets />
@@ -42,19 +42,19 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualna temperatura" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.temperature" />
                         <Text fx:id="tempCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="124.66665399074554" GridPane.columnIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feels Like" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.feelsLike" GridPane.rowIndex="1" />
                         <Text fx:id="feelsLikeCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="125.00002789497375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciśnienie" GridPane.rowIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.pressure" GridPane.rowIndex="2" />
                         <Text fx:id="pressureCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.66669178009033" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Widoczność" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.visibility" GridPane.rowIndex="3" />
                         <Text fx:id="visibilityCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.9999668598175" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wilgotność powietrza" GridPane.rowIndex="4" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.humidity" GridPane.rowIndex="4" />
                         <Text fx:id="humidityCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.66666173934937" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stopień zachmurzenia" GridPane.rowIndex="5" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.clouds" GridPane.rowIndex="5" />
                         <Text fx:id="cloudsCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="127.99997448921204" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Button mnemonicParsing="false" onAction="#showWeatherCity1" prefHeight="25.0" prefWidth="63.0" text="Wyświetl" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button mnemonicParsing="false" onAction="#showWeatherCity1" prefHeight="25.0" prefWidth="63.0" text="%show.button" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                      <opaqueInsets>
                         <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
@@ -76,7 +76,7 @@
             </VBox>
             <VBox prefHeight="361.0" prefWidth="279.0">
                <children>
-                  <Label text="Wpisz Miasto" />
+                  <Label text="%current.inputCity" />
                   <TextField fx:id="textFieldCity2">
                      <VBox.margin>
                         <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -97,19 +97,19 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualna temperatura" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.temperature" />
                         <Text fx:id="tempCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="124.66665399074554" GridPane.columnIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feels Like" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.feelsLike" GridPane.rowIndex="1" />
                         <Text fx:id="feelsLikeCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="125.00002789497375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciśnienie" GridPane.rowIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.pressure" GridPane.rowIndex="2" />
                         <Text fx:id="pressureCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.66669178009033" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Widoczność" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.visibility" GridPane.rowIndex="3" />
                         <Text fx:id="visibilityCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.9999668598175" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wilgotność powietrza" GridPane.rowIndex="4" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.humidity" GridPane.rowIndex="4" />
                         <Text fx:id="humidityCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.66666173934937" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stopień zachmurzenia" GridPane.rowIndex="5" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.clouds" GridPane.rowIndex="5" />
                         <Text fx:id="cloudsCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="127.99997448921204" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Button mnemonicParsing="false" onAction="#showWeatherCity2" prefHeight="25.0" prefWidth="63.0" text="Wyświetl" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button mnemonicParsing="false" onAction="#showWeatherCity2" prefHeight="25.0" prefWidth="63.0" text="%show.button" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                      <opaqueInsets>
                         <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

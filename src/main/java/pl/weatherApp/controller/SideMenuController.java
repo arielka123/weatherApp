@@ -4,8 +4,8 @@ public class SideMenuController {
 
     public static final String SETTINGS_FXML ="/fxml/Settings.fxml";
     public static final String DAY_FXML = "/fxml/CurrentDay.fxml";
-    public static final String WEEK_FXML = "/fxml/Week.fxml";
-    public static final String MONTHS_FXML = "/fxml/Months.fxml";
+    public static final String WEEK_FXML = "/fxml/5days.fxml";
+    public static final String MONTHS_FXML = "/fxml/16days.fxml";
     public static final String START_VIEW_FXML = "/fxml/StartView.fxml";
 
 
