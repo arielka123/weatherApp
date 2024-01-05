@@ -2,8 +2,8 @@ package pl.weatherApp.model.service;
 
 public class WeatherServiceFactory {
 
-    public LocalizationService createLocalization(String city){
-        LocalizationService localizationService= new LocalizationService(city);
+    public LocationService createLocalization(String city){
+        LocationService localizationService= new LocationService(city);
         localizationService.init();
         return localizationService;
     }
@@ -12,7 +12,9 @@ public class WeatherServiceFactory {
         return currentWeatherService.init(createLocalization(city));
     }
 
-    public ForecastWeatherService createForecastFiveDays(String city){
-        return new ForecastWeatherService(createLocalization(city));
+    public void createForecastFiveDays(String city){
+        ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
+        forecastWeatherService.init(createLocalization(city));
+//        return new ForecastWeatherService(createLocalization(city));
     }
 }

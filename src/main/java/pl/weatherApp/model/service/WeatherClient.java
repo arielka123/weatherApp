@@ -5,14 +5,14 @@ import pl.weatherApp.model.client.OpenWeatherMap;
 
 public class WeatherClient extends WeatherServiceFactory {
 
-    public static String getCurrentWeatherURL(LocalizationService localizationService){
-        return OpenWeatherMap.getCurrentWeatherURL(localizationService);
+    public static String getCurrentWeatherURL(LocationService locationService){
+        return OpenWeatherMap.getCurrentWeatherURL(locationService);
     }
-    public static String getLocalizationURL(LocalizationService localizationService){
-        return OpenWeatherMap.getGeolocationURL(localizationService);
+    public static String getLocationURL(String city){
+        return OpenWeatherMap.getGeolocationURL(city);
     }
 
-    public static String getForecastURL(LocalizationService localizationService){
-        return OpenMeteo.getForecastURL(localizationService);
+    public static String getForecastURL(LocationService locationService){
+        return OpenMeteo.getForecastURL(locationService);
     }
 }

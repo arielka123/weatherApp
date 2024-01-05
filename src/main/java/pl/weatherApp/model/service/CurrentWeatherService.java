@@ -17,7 +17,7 @@ public class CurrentWeatherService {
   //  https://openweathermap.org/weather-conditions
 
 
-    public CurrentWeather init(LocalizationService localizationService){
+    public CurrentWeather init(LocationService localizationService){
        CurrentWeather currentWeather = new CurrentWeather();
         int temp;
         int feelsLike;

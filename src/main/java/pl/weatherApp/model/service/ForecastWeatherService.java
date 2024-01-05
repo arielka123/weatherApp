@@ -12,7 +12,9 @@ import java.net.URL;
 
 public class ForecastWeatherService {
 
-    public ForecastWeatherService(LocalizationService localizationService) {
+    public ForecastWeatherService(){}
+
+    public void init(LocationService localizationService){
         int days = 5; //todo user set days
 
         try {
