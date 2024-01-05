@@ -12,9 +12,9 @@ public class WeatherServiceFactory {
         return currentWeatherService.init(createLocalization(city));
     }
 
-    public void createForecastFiveDays(String city){
+    public WeatherCollection createForecastFiveDays(String city){
         ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
-        forecastWeatherService.init(createLocalization(city));
+        return forecastWeatherService.init(createLocalization(city));
 //        return new ForecastWeatherService(createLocalization(city));
     }
 }

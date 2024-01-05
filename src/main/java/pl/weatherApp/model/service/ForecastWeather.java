@@ -62,7 +62,7 @@ public class ForecastWeather {
         this.tempMax.set(tempMax);
     }
 
-    public int getTempMin() {
+    public Integer getTempMin() {
         return tempMin.get();
     }
 

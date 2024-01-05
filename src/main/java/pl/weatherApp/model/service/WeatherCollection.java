@@ -6,11 +6,11 @@ public class WeatherCollection {
     static private final ArrayList<ForecastWeather> ForecastList = new ArrayList<>();
     static private final ArrayList<Units> WeatherUnits = new ArrayList<>();
 
-    public static Units getWeatherUnits(int i){
+    public Units getWeatherUnits(int i){
         return WeatherUnits.get(i);
     }
 
-    public static ForecastWeather getForecastList(int i){
+    public ForecastWeather getForecastList(int i){
         return ForecastList.get(i);
     }
 

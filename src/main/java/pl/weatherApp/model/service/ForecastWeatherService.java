@@ -11,11 +11,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ForecastWeatherService {
-
     public ForecastWeatherService(){}
 
-    public void init(LocationService localizationService){
+    public WeatherCollection init(LocationService localizationService){
         int days = 5; //todo user set days
+        ForecastWeather dayWeather;
+        WeatherCollection weatherCollection = new WeatherCollection();
 
         try {
             URL url = new URL(WeatherClient.getForecastURL(localizationService));
@@ -58,20 +59,18 @@ public class ForecastWeatherService {
 
                 for (int i = 0; i < days; i++) {
                     int code = Converters.convertLongToIntArray(weatherCodeArray, i);
-                    ForecastWeather dayWeather = new ForecastWeather();
+                    dayWeather = new ForecastWeather();
 
                     addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather);
 
                     WeatherCollection.addObjectToForecastList(dayWeather);
-
-                    writeOutVariables(tempUnit, speedUnit, directionUnit, windSpeedArray, windDirectionArray, i, code, dayWeather);
                 }
             }
         } catch (Exception e) {
             DialogUtils.errorDialog(e.getMessage());
         }
+        return weatherCollection;
     }
-
     private static void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather) {
         dayWeather.setTime((String) timeArray.get(i));
         dayWeather.setWeather_code(WeatherCodes.mapCodes(code));
@@ -83,15 +82,5 @@ public class ForecastWeatherService {
         dayWeather.setWindDirection(Converters.convertLongToIntArray(windDirectionArray, i));
         dayWeather.setPrecipitation((Double) precipitationArray.get(i));
     }
-
-    private static void writeOutVariables(String tempUnit, String speedUnit, String directionUnit, JSONArray windSpeedArray, JSONArray windDirectionArray, int i, int code, ForecastWeather dayWeather) {
-        System.out.println("tempMin " + dayWeather.getTempMin());
-        System.out.println("tempfeelMin " + dayWeather.getFeels_likeMin());
-
-        System.out.println(dayWeather.getTime() + " " + dayWeather.getTempMax() + " "+ dayWeather.getTempMin()+ tempUnit + " odczuwalna: " + dayWeather.getFeels_likeMax() + " "+ dayWeather.getFeels_likeMin()+ tempUnit + " opady: " + dayWeather.getPrecipitation() + WeatherCollection.getWeatherUnits(0).getPrecipitation() + " wiatr: " + windSpeedArray.get(i) + speedUnit + " kierunek: " + windDirectionArray.get(i) + directionUnit + " kod: " + WeatherCodes.mapCodes(code));
-
-//        System.out.println(WeatherCollection.getForecastList(0).getTime()+" "+WeatherCollection.getForecastList(0).getFeels_likeMax());
-    }
-
 }
 
