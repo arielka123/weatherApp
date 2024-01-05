@@ -12,6 +12,8 @@ public class MainView extends ViewFactory {
     private static final Scene scene = new Scene(MAIN_VIEW);
 
     public static void showMainWindow(Stage primaryStage) {
+        primaryStage.setHeight(600);
+        primaryStage.setWidth(800);
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("main.title"));
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -9,7 +9,7 @@ public class WeatherCodes {
 
     public static String mapCodes(int key){
         Map<Integer, String> mapCode = new HashMap<>();
-        mapCode.put(0, getBundles("weather.mainlyClear"));
+        mapCode.put(0, getBundles("weather.clearSky"));
         mapCode.put(1, getBundles("weather.mainlyClear"));
         mapCode.put(2, getBundles("weather.partlyCloud"));
         mapCode.put(3, getBundles("weather.overcast"));
@@ -32,8 +32,8 @@ public class WeatherCodes {
         mapCode.put(80, getBundles("weather.rainShowers"));
         mapCode.put(81, getBundles("weather.rainShowers"));
         mapCode.put(82, getBundles("weather.rainShowers"));
-        mapCode.put(85, getBundles("weather.rainShowers"));
-        mapCode.put(86, getBundles("weather.rainShowers"));
+        mapCode.put(85, getBundles("weather.snowShowers"));
+        mapCode.put(86, getBundles("weather.snowShowers"));
         mapCode.put(95, getBundles("weather.thunderstorm"));
         mapCode.put(96, getBundles("weather.thunderstorm"));
         mapCode.put(99, getBundles("weather.thunderstorm"));
