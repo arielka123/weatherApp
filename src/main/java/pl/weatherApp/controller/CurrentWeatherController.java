@@ -6,16 +6,13 @@ import javafx.scene.text.Text;
 import pl.weatherApp.model.service.CurrentWeather;
 import pl.weatherApp.model.service.Units;
 import pl.weatherApp.model.service.WeatherServiceFactory;
-import pl.weatherApp.model.utils.DialogUtils;
+import pl.weatherApp.model.utils.TextValidation;
 
 public class CurrentWeatherController {
-    //todo bundlesy
-
     @FXML
     private TextField textFieldCity1;
     @FXML
     private TextField textFieldCity2;
-
     @FXML
     private Text cloudsCity2;
     @FXML
@@ -62,11 +59,10 @@ public class CurrentWeatherController {
         cloudsCity2.setText(Units.cloud);
         humidityCity2.setText(Units.humidity);
     }
-
     public void showWeatherCity1() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        if(inputValidation(textFieldCity1)){
+        if(TextValidation.inputValidation(textFieldCity1)){
             currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity1.getText());
             descCity1.setText(currentWeather.getDescription());
             tempCity1.setText(currentWeather.getTemp() + Units.temperature);
@@ -77,12 +73,10 @@ public class CurrentWeatherController {
             humidityCity1.setText(currentWeather.getHumidity() + Units.humidity);
         }
     }
-
-    //todo refactoring
     public void showWeatherCity2() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        if(inputValidation(textFieldCity2)){
+        if(TextValidation.inputValidation(textFieldCity2)){
             currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity2.getText());
             descCity2.setText(currentWeather.getDescription());
             tempCity2.setText(currentWeather.getTemp() + Units.temperature);
@@ -92,24 +86,5 @@ public class CurrentWeatherController {
             cloudsCity2.setText(currentWeather.getClouds() + Units.cloud);
             humidityCity2.setText(currentWeather.getHumidity() + Units.humidity);
         }
-    }
-
-    private boolean inputValidation (TextField textFieldCity) {
-        removeSpaces(textFieldCity);
-        if(textFieldCity.getText().isEmpty() || containNumbers(textFieldCity)){
-            DialogUtils.inputDialog();
-            return false;
-        }
-        return true;
-    }
-
-    private void removeSpaces(TextField textFieldCity) {
-        if(!textFieldCity.getText().isEmpty()) {
-            String newText = textFieldCity.getText().trim();
-            textFieldCity.setText(newText);
-        }
-    }
-    private boolean containNumbers(TextField textFieldCity1) {
-        return !textFieldCity1.getText().matches("^[a-zA-ZąćęłńóśźżĄĘŁĆŃÓŚŹŻ ]+");
     }
 }

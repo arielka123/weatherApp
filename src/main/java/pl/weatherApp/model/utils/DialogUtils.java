@@ -7,7 +7,6 @@ public class DialogUtils {
 
 
     public static void errorDialog(String error){
-
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle(FxmlUtils.getResourceBundle().getString("error"));
         errorAlert.setHeaderText(FxmlUtils.getResourceBundle().getString("error"));

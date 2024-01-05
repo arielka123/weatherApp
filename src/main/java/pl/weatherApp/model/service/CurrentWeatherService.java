@@ -24,10 +24,8 @@ public class CurrentWeatherService {
 
         try {
             URL url = new URL(WeatherClient.getCurrentWeatherURL(localizationService));
-
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
-
             this.responseCode = conn.getResponseCode();
             if (this.responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode_currentWeather: " + this.responseCode);
