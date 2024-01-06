@@ -22,7 +22,6 @@ public class MainController {
 
     public void setCenter(String Path) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Path));
-
         loader.setResources(FxmlUtils.getResourceBundle());
         try {
             borderPane.setCenter(loader.load());

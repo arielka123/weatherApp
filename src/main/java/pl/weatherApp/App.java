@@ -2,7 +2,6 @@ package pl.weatherApp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.view.ViewFactory;
 
 import java.util.Locale;
@@ -16,11 +15,5 @@ public class App extends Application
     public void start(Stage primaryStage) {
         Locale.setDefault(new Locale(Config.language));
         ViewFactory.createMainView(primaryStage);
-
-        WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        System.out.println(weatherServiceFactory.createLocalization("Warszawa").getLatitude());
-        System.out.println(weatherServiceFactory.createLocalization("Warszawa").getLongitude());
-        System.out.println(weatherServiceFactory.createLocalization("Warszawa").getCity());
-        weatherServiceFactory.createForecastFiveDays("Warszawa");
     }
 }

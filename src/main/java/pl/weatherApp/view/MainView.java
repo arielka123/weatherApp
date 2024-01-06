@@ -15,6 +15,7 @@ public class MainView extends ViewFactory {
         primaryStage.setHeight(600);
         primaryStage.setWidth(800);
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("main.title"));
+//        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
