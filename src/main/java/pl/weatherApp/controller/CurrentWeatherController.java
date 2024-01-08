@@ -1,6 +1,7 @@
 package pl.weatherApp.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import pl.weatherApp.model.service.CurrentWeather;
@@ -9,6 +10,11 @@ import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.TextValidation;
 
 public class CurrentWeatherController {
+    @FXML
+    private Button buttonCity2;
+    @FXML
+    private Button buttonCity1;
+
     @FXML
     private TextField textFieldCity1;
     @FXML
@@ -44,6 +50,9 @@ public class CurrentWeatherController {
 
     @FXML
     public void initialize(){
+        buttonCity1.disableProperty().bind(this.textFieldCity1.textProperty().isEmpty());
+        buttonCity2.disableProperty().bind(this.textFieldCity2.textProperty().isEmpty());
+
         descCity1.setText("");
         tempCity1.setText(Units.temperature);
         feelsLikeCity1.setText(Units.temperature);

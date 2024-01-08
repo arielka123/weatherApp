@@ -3,10 +3,8 @@ package pl.weatherApp.controller;
 public class SideMenuController {
 
     public static final String DAY_FXML = "/fxml/CurrentDay.fxml";
-    public static final String FORECAST_FXML = "/fxml/forecast.fxml";
+    public static final String FORECAST_FXML = "/fxml/Forecast.fxml";
     public static final String START_VIEW_FXML = "/fxml/StartView.fxml";
-
-
     private MainController mainController;
 
     public void setMainController(MainController mainController) {

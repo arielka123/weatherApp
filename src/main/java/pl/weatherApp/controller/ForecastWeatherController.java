@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,6 +18,9 @@ public class ForecastWeatherController {
 
     @FXML
     private ChoiceBox choiceBoxId;
+
+    @FXML
+    private Button showButton;
     @FXML
     private TextField inputCityId;
     @FXML
@@ -29,6 +33,9 @@ public class ForecastWeatherController {
         choiceBoxId.setItems(FXCollections.observableArrayList(
                 "5", "10", "15"
         ));
+
+        showButton.disableProperty().bind(this.inputCityId.textProperty().isEmpty());
+        choiceBoxId.setValue(5);
     }
 
     public void showOnAction() {
@@ -57,7 +64,7 @@ public class ForecastWeatherController {
                 Label labelPrecipitation1 = new Label();
                 Label labelWindSpeed1 = new Label();
 
-                int windValue = weatherCollection.getForecastList(0).getWindDirection();
+                int windValue = weatherCollection.getForecastList(i).getWindDirection();
                 if(windValue==0 || windValue==360){ directions="N";}
                 if(windValue>0 && windValue<90){directions="NE";}
                 if(windValue==90){directions="E";}
@@ -71,8 +78,8 @@ public class ForecastWeatherController {
                 labelInfo1.setText(weatherCollection.getForecastList(i).getWeather_code());
                 labelTempMin.setText("Temperatura: " + weatherCollection.getForecastList(i).getTempMin() + Units.temperature);
                 labelFeelsLike1.setText("Temperatura odczuwalna: " + weatherCollection.getForecastList(i).getFeels_likeMin() + Units.temperature);
-                labelPrecipitation1.setText("Opady: " + weatherCollection.getForecastList(0).getPrecipitation() + Units.precipitation);
-                labelWindSpeed1.setText("Wiatr: " +directions+" "+weatherCollection.getForecastList(0).getWindSpeed() + Units.wind);
+                labelPrecipitation1.setText("Opady: " + weatherCollection.getForecastList(i).getPrecipitation() + Units.precipitation);
+                labelWindSpeed1.setText("Wiatr: " +directions+" "+weatherCollection.getForecastList(i).getWindSpeed() + Units.wind);
 
                 labelDate1.setPadding(new Insets(5));
                 labelInfo1.setPadding(new Insets(5));
@@ -95,7 +102,6 @@ public class ForecastWeatherController {
     private void clear() {
         tilePaneId.getChildren().clear();
         directions = null;
-        days=5;
-        choiceBoxId.setValue(5);
+//        days=5;
     }
 }

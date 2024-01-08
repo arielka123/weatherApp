@@ -35,7 +35,7 @@ public class ForecastWeatherService {
                 JSONObject dailyObj = (JSONObject) weatherData.get("daily");
                 JSONArray tempMaxArray = (JSONArray) dailyObj.get("temperature_2m_max");
                 JSONArray tempMinArray = (JSONArray) dailyObj.get("temperature_2m_min");
-                JSONArray feelsLikeArray = (JSONArray) dailyObj.get("apparent_temperature_max");
+                JSONArray feelsLikeMaxArray = (JSONArray) dailyObj.get("apparent_temperature_max");
                 JSONArray feelsLikeMinArray = (JSONArray) dailyObj.get("apparent_temperature_min");
                 JSONArray windSpeedArray = (JSONArray) dailyObj.get("wind_speed_10m_max");
                 JSONArray windDirectionArray = (JSONArray) dailyObj.get("wind_direction_10m_dominant");
@@ -47,9 +47,12 @@ public class ForecastWeatherService {
                     int code = Converters.convertLongToIntArray(weatherCodeArray, i);
                     dayWeather = new ForecastWeather();
 
-                    addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather);
+                    addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather);
 
                     weatherCollection.addObjectToForecastList(dayWeather);
+
+//                    System.out.println(weatherCollection.getForecastList(i).getPrecipitation());
+//                    System.out.println(weatherCollection.getForecastList(i).getWindSpeed());
                 }
             }
         } catch (Exception e) {
