@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import pl.weatherApp.model.Units;
-import pl.weatherApp.model.service.CurrentWeather;
+import pl.weatherApp.model.service.objects.CurrentWeather;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.TextValidation;
 
@@ -26,7 +26,6 @@ public class CurrentWeatherView {
     private final WeatherServiceFactory weatherServiceFactory;
 
     public CurrentWeatherView(WeatherServiceFactory weatherServiceFactory, TextField textField, Text desc, Text temp,Text feelsLike, Text pressure,Text visibility,Text clouds,Text humidity,Label countryCode,ImageView imageView) {
-
         this.weatherServiceFactory = weatherServiceFactory;
         this.textField = textField;
         this.humidity = humidity;
@@ -52,7 +51,6 @@ public class CurrentWeatherView {
             clouds.setText(currentWeather.getClouds() + Units.cloud);
             humidity.setText(currentWeather.getHumidity() + Units.humidity);
             setImage(currentWeather, imageView);
-
             countryCode.setTextFill(Color.GRAY);
         }
     }

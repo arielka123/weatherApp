@@ -1,6 +1,8 @@
 package pl.weatherApp.model.service;
 
 import pl.weatherApp.model.WeatherCollection;
+import pl.weatherApp.model.service.objects.CurrentWeather;
+import pl.weatherApp.model.service.objects.Location;
 
 public class WeatherServiceFactory {
 

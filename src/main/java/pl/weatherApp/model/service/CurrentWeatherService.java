@@ -4,8 +4,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import pl.weatherApp.model.client.WeatherClient;
-import pl.weatherApp.model.utils.ApiUtils;
-import pl.weatherApp.model.utils.Converters;
+import pl.weatherApp.model.service.objects.CurrentWeather;
+import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.utils.Utils;
 import pl.weatherApp.model.utils.DialogUtils;
 
 import java.net.HttpURLConnection;
@@ -28,9 +29,9 @@ public class CurrentWeatherService {
             if (this.responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode: " + this.responseCode);
             } else {
-                ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
+                Utils.informationString = Utils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
-                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(ApiUtils.informationString));
+                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(Utils.informationString));
 
                 JSONObject objMain = (JSONObject) weatherData.get("main");
                 JSONObject objClouds = (JSONObject) weatherData.get("clouds");
@@ -43,13 +44,13 @@ public class CurrentWeatherService {
                     currentWeather.setIconURL("https://openweathermap.org/img/wn/"+iconNumber+"@2x.png");
                 }
                 if(objMain.get("temp")!=null){
-                    temp = Converters.convertDoubleToInt((Double)objMain.get("temp"));
+                    temp = Utils.convertDoubleToInt((Double)objMain.get("temp"));
                 }else{
                     Long tempL = (Long)objMain.get("temp");
                     temp = Math.toIntExact(tempL);
                 }
                 if(objMain.get("feels_like") !=null){
-                    feelsLike = Converters.convertDoubleToInt((Double)objMain.get("feels_like"));
+                    feelsLike = Utils.convertDoubleToInt((Double)objMain.get("feels_like"));
                 }else{
                     Long feelsLikeL= (Long)objMain.get("feels_like");
                     feelsLike = Math.toIntExact(feelsLikeL);

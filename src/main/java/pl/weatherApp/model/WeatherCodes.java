@@ -1,6 +1,6 @@
 package pl.weatherApp.model;
 
-import pl.weatherApp.model.utils.FxmlUtils;
+import pl.weatherApp.model.utils.Utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +41,6 @@ public class WeatherCodes {
     }
 
     private static String getBundles(String name){
-        return FxmlUtils.getResourceBundle().getString(name);
+        return Utils.getResourceBundle().getString(name);
     }
 }

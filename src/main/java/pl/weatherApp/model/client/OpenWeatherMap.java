@@ -1,7 +1,7 @@
 package pl.weatherApp.model.client;
 
 import pl.weatherApp.Config;
-import pl.weatherApp.model.service.Location;
+import pl.weatherApp.model.service.objects.Location;
 
 public class OpenWeatherMap {
 

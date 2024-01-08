@@ -5,7 +5,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pl.weatherApp.model.client.WeatherClient;
-import pl.weatherApp.model.utils.ApiUtils;
+import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.utils.Utils;
 import pl.weatherApp.model.utils.DialogUtils;
 
 import java.io.IOException;
@@ -31,9 +32,9 @@ public class LocationService {
             if (responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode: " + this.responseCode);
             } else {
-                ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
+                Utils.informationString = Utils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
-                JSONArray localizationData = (JSONArray) parse.parse(String.valueOf(ApiUtils.informationString));
+                JSONArray localizationData = (JSONArray) parse.parse(String.valueOf(Utils.informationString));
 
                 for (Object result : localizationData) {
                     JSONObject resultObj = (JSONObject) result;

@@ -58,6 +58,11 @@ public class CurrentWeatherController {
     private WeatherServiceFactory weatherServiceFactory;
     private ViewFactory viewFactory;
 
+    public CurrentWeatherController() {
+        this.viewFactory = new ViewFactory();
+        this.weatherServiceFactory = new WeatherServiceFactory();
+    }
+
     @FXML
     public void initialize(){
         buttonCity1.disableProperty().bind(this.textFieldCity1.textProperty().isEmpty());
@@ -86,16 +91,10 @@ public class CurrentWeatherController {
     }
 
     public void showWeatherCity1() {
-        weatherServiceFactory = new WeatherServiceFactory();
-        viewFactory =new ViewFactory();
-
         viewFactory.createCurrentWeather(weatherServiceFactory, textFieldCity1, descCity1, tempCity1, feelsLikeCity1, pressureCity1, visibilityCity1, cloudsCity1, humidityCity1, countryCodeCity1, imageViewCity1);
     }
 
     public void showWeatherCity2() {
-        weatherServiceFactory = new WeatherServiceFactory();
-        viewFactory = new ViewFactory();
-
         viewFactory.createCurrentWeather(weatherServiceFactory, textFieldCity2, descCity2, tempCity2, feelsLikeCity2, pressureCity2, visibilityCity2,cloudsCity2, humidityCity2, countryCodeCity2, imageViewCity2);
     }
 }

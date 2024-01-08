@@ -23,7 +23,7 @@ public class ForecastView {
         this.countryCode=countryCode;
     }
 
-    public void createForecastView() {
+    public void create() {
         directions="";
         for (int i = 0; i < days; i++) {
             TilePane tilePaneInner = new TilePane();

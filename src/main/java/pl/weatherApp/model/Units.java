@@ -1,7 +1,7 @@
 package pl.weatherApp.model;
 
 public class Units {
-    public static String degree = Character.toString((char)186);
+//    public static String degree = Character.toString((char)186);
     public static String temperature = (char)186 +"C";
     public static String pressure = "hPa";
     public static String wind = "km/h";

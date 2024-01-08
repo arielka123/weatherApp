@@ -6,8 +6,9 @@ import org.json.simple.parser.JSONParser;
 import pl.weatherApp.model.WeatherCodes;
 import pl.weatherApp.model.WeatherCollection;
 import pl.weatherApp.model.client.WeatherClient;
-import pl.weatherApp.model.utils.ApiUtils;
-import pl.weatherApp.model.utils.Converters;
+import pl.weatherApp.model.service.objects.ForecastWeather;
+import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.utils.Utils;
 import pl.weatherApp.model.utils.DialogUtils;
 
 import java.net.HttpURLConnection;
@@ -33,9 +34,9 @@ public class ForecastWeatherService {
             if (responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode " + this.responseCode);
             } else {
-                ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
+                Utils.informationString = Utils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
-                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(ApiUtils.informationString));
+                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(Utils.informationString));
 
                 JSONObject dailyObj = (JSONObject) weatherData.get("daily");
                 JSONArray tempMaxArray = (JSONArray) dailyObj.get("temperature_2m_max");
@@ -49,7 +50,7 @@ public class ForecastWeatherService {
                 JSONArray precipitationArray = (JSONArray) dailyObj.get("precipitation_sum");
 
                 for (int i = 0; i < days; i++) {
-                    int code = Converters.convertLongToIntArray(weatherCodeArray, i);
+                    int code = Utils.convertLongToIntArray(weatherCodeArray, i);
                     dayWeather = new ForecastWeather();
 
                     addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather, location);
@@ -66,12 +67,12 @@ public class ForecastWeatherService {
         if(windDirectionArray.get(i)!=null) {
             dayWeather.setTime((String) timeArray.get(i));
             dayWeather.setWeather_code(WeatherCodes.mapCodes(code));
-            dayWeather.setTempMax(Converters.convertDoubleToIntArray(tempMaxArray, i));
-            dayWeather.setTempMin(Converters.convertDoubleToIntArray(tempMinArray, i));
-            dayWeather.setFeels_likeMax(Converters.convertDoubleToIntArray(feelsLikeArray, i));
-            dayWeather.setFeels_likeMin(Converters.convertDoubleToIntArray(feelsLikeMinArray, i));
+            dayWeather.setTempMax(Utils.convertDoubleToIntArray(tempMaxArray, i));
+            dayWeather.setTempMin(Utils.convertDoubleToIntArray(tempMinArray, i));
+            dayWeather.setFeels_likeMax(Utils.convertDoubleToIntArray(feelsLikeArray, i));
+            dayWeather.setFeels_likeMin(Utils.convertDoubleToIntArray(feelsLikeMinArray, i));
             dayWeather.setWindSpeed((Double) windSpeedArray.get(i));
-            dayWeather.setWindDirection(Converters.convertLongToIntArray(windDirectionArray, i));
+            dayWeather.setWindDirection(Utils.convertLongToIntArray(windDirectionArray, i));
             dayWeather.setPrecipitation((Double) precipitationArray.get(i));
             dayWeather.setCountryCode(location.getCountry_code());
         }

@@ -1,6 +1,6 @@
 package pl.weatherApp.model;
 
-import pl.weatherApp.model.service.ForecastWeather;
+import pl.weatherApp.model.service.objects.ForecastWeather;
 
 import java.util.ArrayList;
 

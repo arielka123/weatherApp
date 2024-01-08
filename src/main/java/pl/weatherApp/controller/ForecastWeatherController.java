@@ -25,6 +25,13 @@ public class ForecastWeatherController {
     private TilePane tilePaneId;
     @FXML
     private Label countryCode;
+    private WeatherServiceFactory weatherServiceFactory;
+    private ViewFactory viewFactory;
+
+    public ForecastWeatherController() {
+        this.viewFactory = new ViewFactory();
+        this.weatherServiceFactory = new WeatherServiceFactory();
+    }
 
     @FXML
     public void initialize(){
@@ -42,9 +49,6 @@ public class ForecastWeatherController {
 
         if (days != 0) {
             WeatherCollection weatherCollection;
-            WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-            ViewFactory viewFactory = new ViewFactory();
-
             if (TextValidation.inputValidation(inputCityId)) {
                 weatherCollection = weatherServiceFactory.createForecastDays(inputCityId.getText());
                 viewFactory.createForecastView(weatherCollection, days,tilePaneId, countryCode);
