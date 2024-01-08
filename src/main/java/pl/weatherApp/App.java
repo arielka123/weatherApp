@@ -14,6 +14,7 @@ public class App extends Application
     }
     public void start(Stage primaryStage) {
         Locale.setDefault(new Locale(Config.language));
-        ViewFactory.createMainView(primaryStage);
+        ViewFactory viewFactory = new ViewFactory();
+        viewFactory.createMainView(primaryStage);
     }
 }
