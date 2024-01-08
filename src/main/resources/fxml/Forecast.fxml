@@ -15,25 +15,30 @@
       <HBox prefHeight="30.0" prefWidth="613.0">
          <Label text="%current.inputCity">
             <opaqueInsets>
-               <Insets/>
+               <Insets />
             </opaqueInsets>
             <HBox.margin>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
          </Label>
          <TextField fx:id="inputCityId">
             <HBox.margin>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
          </TextField>
+         <Label fx:id="countryCode">
+            <HBox.margin>
+               <Insets bottom="10.0" right="10.0" top="10.0" />
+            </HBox.margin>
+         </Label>
          <ChoiceBox fx:id="choiceBoxId" prefHeight="25.0" prefWidth="82.0">
             <HBox.margin>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
          </ChoiceBox>
          <Button fx:id="showButton" mnemonicParsing="false" onAction="#showOnAction" text="%show.button">
             <HBox.margin>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
          </Button>
       </HBox>

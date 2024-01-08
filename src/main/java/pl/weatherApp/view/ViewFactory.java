@@ -14,12 +14,13 @@ public class ViewFactory {
         MainView.showMainWindow(primaryStage);
     }
 
-    public void createForecastView(WeatherCollection weatherCollection , int days, TilePane tilePaneId){
-        ForecastView forecastView = new ForecastView(weatherCollection, days, tilePaneId);
+    public void createForecastView(WeatherCollection weatherCollection , int days, TilePane tilePaneId, Label countryCode){
+        ForecastView forecastView = new ForecastView(weatherCollection, days, tilePaneId, countryCode);
         forecastView.createForecastView();
     }
 
     public void createCurrentWeather(WeatherServiceFactory weatherServiceFactory, TextField textField, Text desc, Text temp,Text feelsLike, Text pressure,Text visibility,Text clouds,Text humidity,Label countryCode,ImageView imageView){
+
         CurrentWeatherView currentWeatherView = new CurrentWeatherView(weatherServiceFactory, textField, desc, temp, feelsLike, pressure, visibility,clouds, humidity, countryCode, imageView);
         currentWeatherView.create();
     }

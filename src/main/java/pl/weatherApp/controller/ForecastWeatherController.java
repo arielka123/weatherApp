@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import pl.weatherApp.model.WeatherCollection;
@@ -22,6 +23,8 @@ public class ForecastWeatherController {
     private TextField inputCityId;
     @FXML
     private TilePane tilePaneId;
+    @FXML
+    private Label countryCode;
 
     @FXML
     public void initialize(){
@@ -44,7 +47,7 @@ public class ForecastWeatherController {
 
             if (TextValidation.inputValidation(inputCityId)) {
                 weatherCollection = weatherServiceFactory.createForecastDays(inputCityId.getText());
-                viewFactory.createForecastView(weatherCollection, days,tilePaneId);
+                viewFactory.createForecastView(weatherCollection, days,tilePaneId, countryCode);
             }
         }
     }
@@ -52,6 +55,7 @@ public class ForecastWeatherController {
     private void clear() {
         tilePaneId.getChildren().clear();
     }
+
     private void setItemsInChoiceBox() {
         choiceBoxId.setItems(FXCollections.observableArrayList(
                 5, 10, 15

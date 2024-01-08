@@ -50,7 +50,7 @@ public class ForecastWeatherService {
                     int code = Converters.convertLongToIntArray(weatherCodeArray, i);
                     dayWeather = new ForecastWeather();
 
-                    addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather);
+                    addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather, location);
 
                     weatherCollection.addObjectToForecastList(dayWeather);
                 }
@@ -60,7 +60,7 @@ public class ForecastWeatherService {
         }
         return weatherCollection;
     }
-    private static void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather) {
+    private static void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather, Location location) {
         if(windDirectionArray.get(i)!=null) {
             dayWeather.setTime((String) timeArray.get(i));
             dayWeather.setWeather_code(WeatherCodes.mapCodes(code));
@@ -71,6 +71,7 @@ public class ForecastWeatherService {
             dayWeather.setWindSpeed((Double) windSpeedArray.get(i));
             dayWeather.setWindDirection(Converters.convertLongToIntArray(windDirectionArray, i));
             dayWeather.setPrecipitation((Double) precipitationArray.get(i));
+            dayWeather.setCountryCode(location.getCountry_code());
         }
     }
 }

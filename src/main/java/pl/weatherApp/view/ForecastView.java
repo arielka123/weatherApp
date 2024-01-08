@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 import pl.weatherApp.model.Directions;
 import pl.weatherApp.model.Units;
 import pl.weatherApp.model.WeatherCollection;
@@ -12,12 +13,14 @@ public class ForecastView {
     private final WeatherCollection weatherCollection;
     private final TilePane tilePaneId;
     private final int days;
+    private final Label countryCode;
     private String directions;
 
-    ForecastView(WeatherCollection weatherCollection ,int days,TilePane tilePaneId){
+    ForecastView(WeatherCollection weatherCollection ,int days,TilePane tilePaneId, Label countryCode){
         this.weatherCollection = weatherCollection;
         this.tilePaneId=tilePaneId;
         this.days=days;
+        this.countryCode=countryCode;
     }
 
     public void createForecastView() {
@@ -47,6 +50,8 @@ public class ForecastView {
             labelFeelsLike1.setText("Temperatura odczuwalna: " + weatherCollection.getForecastList(i).getFeels_likeMin() + Units.temperature);
             labelPrecipitation1.setText("Opady: " + weatherCollection.getForecastList(i).getPrecipitation() + Units.precipitation);
             labelWindSpeed1.setText("Wiatr: " + directions + " " + weatherCollection.getForecastList(i).getWindSpeed() + Units.wind);
+            countryCode.setText(weatherCollection.getForecastList(i).getCountryCode());
+            countryCode.setTextFill(Color.GRAY);
 
             labelDate1.setPadding(new Insets(5));
             labelInfo1.setPadding(new Insets(5));
