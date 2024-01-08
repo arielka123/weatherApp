@@ -12,8 +12,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeatherService {
-    String iconNumber=null;
-    int responseCode;
+    private String iconNumber=null;
+    private int responseCode;
 
     public CurrentWeather init(Location location){
        CurrentWeather currentWeather = new CurrentWeather();

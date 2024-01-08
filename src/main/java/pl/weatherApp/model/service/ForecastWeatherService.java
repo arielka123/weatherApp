@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ForecastWeatherService {
+    private int responseCode;
+
     public ForecastWeatherService(){}
 
     public WeatherCollection init(Location location){
@@ -27,9 +29,9 @@ public class ForecastWeatherService {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
 
-            int responseCode = conn.getResponseCode();
+            responseCode = conn.getResponseCode();
             if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode_Forecast: " + responseCode);
+                throw new RuntimeException("HttpResponseCode " + this.responseCode);
             } else {
                 ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
@@ -56,7 +58,7 @@ public class ForecastWeatherService {
                 }
             }
         } catch (Exception e) {
-            DialogUtils.errorDialog(e.getMessage());
+            DialogUtils.errorDialog(String.valueOf(this.responseCode));
         }
         return weatherCollection;
     }
