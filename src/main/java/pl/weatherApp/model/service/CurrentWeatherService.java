@@ -18,13 +18,13 @@ public class CurrentWeatherService {
   //  https://openweathermap.org/weather-conditions
 
 
-    public CurrentWeather init(LocationService localizationService){
+    public CurrentWeather init(Location location){
        CurrentWeather currentWeather = new CurrentWeather();
         int temp;
         int feelsLike;
 
         try {
-            URL url = new URL(WeatherClient.getCurrentWeatherURL(localizationService));
+            URL url = new URL(WeatherClient.getCurrentWeatherURL(location));
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
             this.responseCode = conn.getResponseCode();

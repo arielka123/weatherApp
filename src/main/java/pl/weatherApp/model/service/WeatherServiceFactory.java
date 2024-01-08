@@ -4,10 +4,9 @@ import pl.weatherApp.model.WeatherCollection;
 
 public class WeatherServiceFactory {
 
-    public LocationService createLocalization(String city){
+    public Location createLocalization(String city){
         LocationService localizationService= new LocationService(city);
-        localizationService.init();
-        return localizationService;
+        return localizationService.init();
     }
     public CurrentWeather createCurrentWeather(String city){
         CurrentWeatherService currentWeatherService = new CurrentWeatherService();

@@ -16,13 +16,13 @@ import java.net.URL;
 public class ForecastWeatherService {
     public ForecastWeatherService(){}
 
-    public WeatherCollection init(LocationService localizationService){
+    public WeatherCollection init(Location location){
         int days = 16;
         ForecastWeather dayWeather;
         WeatherCollection weatherCollection = new WeatherCollection();
 
         try {
-            URL url = new URL(WeatherClient.getForecastURL(localizationService));
+            URL url = new URL(WeatherClient.getForecastURL(location));
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
