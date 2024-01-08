@@ -12,11 +12,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeatherService {
-    String iconNumber;
+    String iconNumber=null;
     int responseCode;
-    //String iconURL = " https://openweathermap.org/img/wn/"+icon+"@2x.png"; //TODO icons for current weather // mapa ?
-  //  https://openweathermap.org/weather-conditions
-
 
     public CurrentWeather init(Location location){
        CurrentWeather currentWeather = new CurrentWeather();
@@ -29,7 +26,7 @@ public class CurrentWeatherService {
             conn.connect();
             this.responseCode = conn.getResponseCode();
             if (this.responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode_currentWeather: " + this.responseCode);
+                throw new RuntimeException("HttpResponseCode: " + this.responseCode);
             } else {
                 ApiUtils.informationString = ApiUtils.getStringFromURL(url.openStream());
                 JSONParser parse = new JSONParser();
@@ -43,6 +40,7 @@ public class CurrentWeatherService {
                     JSONObject new_obj = (JSONObject) o;
                     currentWeather.setDescription((String) new_obj.get("description"));
                     this.iconNumber = (String) new_obj.get("icon");
+                    currentWeather.setIconURL("https://openweathermap.org/img/wn/"+iconNumber+"@2x.png");
                 }
                 if(objMain.get("temp")!=null){
                     temp = Converters.convertDoubleToInt((Double)objMain.get("temp"));
@@ -62,6 +60,7 @@ public class CurrentWeatherService {
                 currentWeather.setFeels_like(feelsLike);
                 currentWeather.setVisibility((Long) weatherData.get("visibility"));
                 currentWeather.setClouds((Long) objClouds.get("all"));
+                currentWeather.setCountryCode(location.getCountry_code());
             }
         } catch (Exception e) {
             DialogUtils.errorDialog(String.valueOf(this.responseCode));

@@ -2,10 +2,13 @@ package pl.weatherApp.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import pl.weatherApp.model.service.CurrentWeather;
 import pl.weatherApp.model.Units;
+import pl.weatherApp.model.service.CurrentWeather;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.TextValidation;
 
@@ -47,6 +50,14 @@ public class CurrentWeatherController {
     private Text pressureCity1;
     @FXML
     private Text visibilityCity1;
+    @FXML
+    private ImageView imageViewCity1;
+    @FXML
+    private ImageView imageViewCity2;
+    @FXML
+    private Label countryCodeCity1;
+    @FXML
+    private Label countryCodeCity2;
 
     @FXML
     public void initialize(){
@@ -57,12 +68,15 @@ public class CurrentWeatherController {
 
     private void initControlles() {
         descCity1.setText("");
+        countryCodeCity1.setText("");
         tempCity1.setText(Units.temperature);
         feelsLikeCity1.setText(Units.temperature);
         pressureCity1.setText(Units.pressure);
         visibilityCity1.setText(Units.visibility);
         cloudsCity1.setText(Units.cloud);
         humidityCity1.setText(Units.humidity);
+        ///
+        countryCodeCity2.setText("");
         descCity2.setText("");
         tempCity2.setText(Units.temperature);
         feelsLikeCity2.setText(Units.temperature);
@@ -73,19 +87,26 @@ public class CurrentWeatherController {
     }
 
     public void showWeatherCity1() {
-        CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
-        if(TextValidation.inputValidation(textFieldCity1)){
-            currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity1.getText());
-            descCity1.setText(currentWeather.getDescription());
-            tempCity1.setText(currentWeather.getTemp() + Units.temperature);
-            feelsLikeCity1.setText(currentWeather.getFeels_like() + Units.temperature);
-            pressureCity1.setText(currentWeather.getPressure() + Units.pressure);
-            visibilityCity1.setText(currentWeather.getVisibility() + Units.visibility);
-            cloudsCity1.setText(currentWeather.getClouds() + Units.cloud);
-            humidityCity1.setText(currentWeather.getHumidity() + Units.humidity);
+        createView(weatherServiceFactory, textFieldCity1, descCity1, tempCity1, feelsLikeCity1, pressureCity1, visibilityCity1, cloudsCity1, humidityCity1, countryCodeCity1, imageViewCity1);
+    }
+
+    private <imageViewCity> void createView(WeatherServiceFactory weatherServiceFactory, TextField textFieldCity, Text descCity, Text tempCity, Text feelsLikeCity, Text pressureCity, Text visibilityCity, Text cloudsCity, Text humidityCity, Label countryCode, ImageView imageViewCity) {
+        if(TextValidation.inputValidation(textFieldCity)){
+            CurrentWeather currentWeather = weatherServiceFactory.createCurrentWeather(textFieldCity.getText());
+            descCity.setText(currentWeather.getDescription());
+            countryCode.setText(currentWeather.getCountryCode());
+            tempCity.setText(currentWeather.getTemp() + Units.temperature);
+            feelsLikeCity.setText(currentWeather.getFeels_like() + Units.temperature);
+            pressureCity.setText(currentWeather.getPressure() + Units.pressure);
+            visibilityCity.setText(currentWeather.getVisibility() + Units.visibility);
+            cloudsCity.setText(currentWeather.getClouds() + Units.cloud);
+            humidityCity.setText(currentWeather.getHumidity() + Units.humidity);
+            setImage(currentWeather, imageViewCity);
+
         }
     }
+
     public void showWeatherCity2() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();
@@ -98,6 +119,13 @@ public class CurrentWeatherController {
             visibilityCity2.setText(currentWeather.getVisibility() + Units.visibility);
             cloudsCity2.setText(currentWeather.getClouds() + Units.cloud);
             humidityCity2.setText(currentWeather.getHumidity() + Units.humidity);
+            setImage(currentWeather, imageViewCity2);
         }
+    }
+
+    private void setImage(CurrentWeather currentWeather, ImageView imageView) {
+        String imageSource = currentWeather.getIconURL();
+        Image image = new Image(imageSource);
+        imageView.setImage(image);
     }
 }
