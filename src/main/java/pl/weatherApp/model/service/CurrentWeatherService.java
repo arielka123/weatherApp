@@ -3,6 +3,7 @@ package pl.weatherApp.model.service;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import pl.weatherApp.model.client.WeatherClient;
 import pl.weatherApp.model.utils.ApiUtils;
 import pl.weatherApp.model.utils.Converters;
 import pl.weatherApp.model.utils.DialogUtils;

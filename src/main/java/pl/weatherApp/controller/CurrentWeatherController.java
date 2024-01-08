@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import pl.weatherApp.model.service.CurrentWeather;
-import pl.weatherApp.model.service.Units;
+import pl.weatherApp.model.Units;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.TextValidation;
 
@@ -52,7 +52,10 @@ public class CurrentWeatherController {
     public void initialize(){
         buttonCity1.disableProperty().bind(this.textFieldCity1.textProperty().isEmpty());
         buttonCity2.disableProperty().bind(this.textFieldCity2.textProperty().isEmpty());
+        initControlles();
+    }
 
+    private void initControlles() {
         descCity1.setText("");
         tempCity1.setText(Units.temperature);
         feelsLikeCity1.setText(Units.temperature);
@@ -68,6 +71,7 @@ public class CurrentWeatherController {
         cloudsCity2.setText(Units.cloud);
         humidityCity2.setText(Units.humidity);
     }
+
     public void showWeatherCity1() {
         CurrentWeather currentWeather;
         WeatherServiceFactory weatherServiceFactory = new WeatherServiceFactory();

@@ -1,4 +1,4 @@
-package pl.weatherApp.model.service;
+package pl.weatherApp.model;
 
 public class Units {
     public static String degree = Character.toString((char)186);

@@ -3,6 +3,9 @@ package pl.weatherApp.model.service;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import pl.weatherApp.model.WeatherCodes;
+import pl.weatherApp.model.WeatherCollection;
+import pl.weatherApp.model.client.WeatherClient;
 import pl.weatherApp.model.utils.ApiUtils;
 import pl.weatherApp.model.utils.Converters;
 import pl.weatherApp.model.utils.DialogUtils;
@@ -50,9 +53,6 @@ public class ForecastWeatherService {
                     addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather);
 
                     weatherCollection.addObjectToForecastList(dayWeather);
-
-//                    System.out.println(weatherCollection.getForecastList(i).getPrecipitation());
-//                    System.out.println(weatherCollection.getForecastList(i).getWindSpeed());
                 }
             }
         } catch (Exception e) {

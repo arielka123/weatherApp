@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import pl.weatherApp.model.client.WeatherClient;
 import pl.weatherApp.model.utils.ApiUtils;
 
 import java.io.IOException;

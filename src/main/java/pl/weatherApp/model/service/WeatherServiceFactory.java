@@ -1,5 +1,7 @@
 package pl.weatherApp.model.service;
 
+import pl.weatherApp.model.WeatherCollection;
+
 public class WeatherServiceFactory {
 
     public LocationService createLocalization(String city){
@@ -12,9 +14,8 @@ public class WeatherServiceFactory {
         return currentWeatherService.init(createLocalization(city));
     }
 
-    public WeatherCollection createForecastFiveDays(String city){
+    public WeatherCollection createForecastDays(String city){
         ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
         return forecastWeatherService.init(createLocalization(city));
-//        return new ForecastWeatherService(createLocalization(city));
     }
 }

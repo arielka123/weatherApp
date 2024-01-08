@@ -1,4 +1,6 @@
-package pl.weatherApp.model.service;
+package pl.weatherApp.model;
+
+import pl.weatherApp.model.service.ForecastWeather;
 
 import java.util.ArrayList;
 
