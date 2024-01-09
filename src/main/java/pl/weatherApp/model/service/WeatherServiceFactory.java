@@ -6,6 +6,18 @@ import pl.weatherApp.model.service.objects.Location;
 
 public class WeatherServiceFactory {
 
+    private static WeatherServiceFactory instance;
+    private WeatherServiceFactory(){
+        instance = this;
+    }
+
+    public static WeatherServiceFactory init() {
+        if (instance == null) {
+            instance = new WeatherServiceFactory();
+        }
+        return instance;
+    }
+
     public Location createLocalization(String city){
         LocationService localizationService= new LocationService(city);
         return localizationService.init();

@@ -8,5 +8,9 @@ module pl.weatherApp.Main {
     opens pl.weatherApp.controller to javafx.fxml;
 
     exports pl.weatherApp;
-    exports  pl.weatherApp.controller;
+    exports pl.weatherApp.controller;
+    exports pl.weatherApp.view;
+    exports pl.weatherApp.model;
+    exports pl.weatherApp.model.service;
+    exports pl.weatherApp.model.service.objects;
 }

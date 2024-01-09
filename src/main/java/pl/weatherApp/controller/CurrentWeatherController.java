@@ -7,10 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import pl.weatherApp.model.Units;
-import pl.weatherApp.model.service.WeatherServiceFactory;
-import pl.weatherApp.view.ViewFactory;
 
-public class CurrentWeatherController {
+public class CurrentWeatherController extends BaseController{
     @FXML
     private Button buttonCity2;
     @FXML
@@ -55,13 +53,6 @@ public class CurrentWeatherController {
     private Label countryCodeCity1;
     @FXML
     private Label countryCodeCity2;
-    private WeatherServiceFactory weatherServiceFactory;
-    private ViewFactory viewFactory;
-
-    public CurrentWeatherController() {
-        this.viewFactory = new ViewFactory();
-        this.weatherServiceFactory = new WeatherServiceFactory();
-    }
 
     @FXML
     public void initialize(){
@@ -69,7 +60,6 @@ public class CurrentWeatherController {
         buttonCity2.disableProperty().bind(this.textFieldCity2.textProperty().isEmpty());
         initControlles();
     }
-
     private void initControlles() {
         descCity1.setText("");
         countryCodeCity1.setText("");

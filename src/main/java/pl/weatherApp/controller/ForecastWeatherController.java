@@ -8,15 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import pl.weatherApp.model.WeatherCollection;
-import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.TextValidation;
-import pl.weatherApp.view.ViewFactory;
 
-public class ForecastWeatherController {
+public class ForecastWeatherController extends BaseController {
 
     @FXML
     private ChoiceBox<Integer> choiceBoxId;
-
     @FXML
     private Button showButton;
     @FXML
@@ -25,13 +22,6 @@ public class ForecastWeatherController {
     private TilePane tilePaneId;
     @FXML
     private Label countryCode;
-    private WeatherServiceFactory weatherServiceFactory;
-    private ViewFactory viewFactory;
-
-    public ForecastWeatherController() {
-        this.viewFactory = new ViewFactory();
-        this.weatherServiceFactory = new WeatherServiceFactory();
-    }
 
     @FXML
     public void initialize(){

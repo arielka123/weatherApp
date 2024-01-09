@@ -12,7 +12,6 @@ import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.TextValidation;
 
 public class CurrentWeatherView {
-
     private final TextField textField;
     private final Text humidity;
     private final Text clouds;

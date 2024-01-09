@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import pl.weatherApp.model.utils.Utils;
 
-public class MainView extends ViewFactory {
+public class MainView {
 
     public static final BorderPane MAIN_VIEW =(BorderPane) Utils.loadFXML(ViewFactory.BORDER_PAIN_MAIN_FXML);
     private static final Scene scene = new Scene(MAIN_VIEW);

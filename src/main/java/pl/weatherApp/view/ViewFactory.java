@@ -10,12 +10,22 @@ import pl.weatherApp.model.WeatherCollection;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 
 public class ViewFactory {
-
+    private static ViewFactory instance;
     public static final String DAY_FXML = "/fxml/CurrentDay.fxml";
     public static final String FORECAST_FXML = "/fxml/Forecast.fxml";
     public static final String START_VIEW_FXML = "/fxml/StartView.fxml";
     public static final String BORDER_PAIN_MAIN_FXML = "/fxml/MainBorderPane.fxml";
 
+    private ViewFactory() {
+        instance = this;
+    }
+
+    public static ViewFactory init(){
+        if(instance==null){
+            instance= new ViewFactory();
+        }
+        return instance;
+    }
     public void createMainView(Stage primaryStage){
         MainView.showMainWindow(primaryStage);
     }
