@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import pl.weatherApp.model.collections.Directions;
 import pl.weatherApp.model.collections.Units;
 import pl.weatherApp.model.collections.WeatherCollection;
@@ -14,7 +15,6 @@ public class ForecastView {
     private final TilePane tilePaneId;
     private final int days;
     private final Label countryCode;
-    private String directions;
 
     ForecastView(WeatherCollection weatherCollection ,int days,TilePane tilePaneId, Label countryCode){
         this.weatherCollection = weatherCollection;
@@ -24,47 +24,49 @@ public class ForecastView {
     }
 
     public void create() {
-        directions="";
         for (int i = 0; i < days; i++) {
             TilePane tilePaneInner = new TilePane();
 
-            TilePane.setMargin(tilePaneInner, new Insets(5, 5, 5, 5));
+            TilePane.setMargin(tilePaneInner, new Insets(3));
+
             tilePaneInner.setPrefRows(6);
             tilePaneInner.setPrefColumns(1);
             tilePaneInner.setAlignment(Pos.TOP_CENTER);
             tilePaneInner.setStyle("-fx-background-color:rgb(237,237,237); -fx-background-radius:30;");
 
-            Label labelDate1 = new Label();
-            Label labelInfo1 = new Label();
-            Label labelFeelsLike1 = new Label();
+            Label labelDate = new Label();
+            Label labelDayWeek = new Label();
+            Label labelInfo = new Label();
+            Label labelFeelsLike = new Label();
             Label labelTempMin = new Label();
-            Label labelPrecipitation1 = new Label();
+            Label labelPrecipitation = new Label();
             Label labelWindSpeed1 = new Label();
 
-            int windValue = weatherCollection.getForecastList(i).getWindDirection();
-            directions = Directions.findDirectionName(windValue);
+            labelFeelsLike.setPadding(new Insets(2));
+            countryCode.setTextFill(Color.GRAY);
+            labelDayWeek.setStyle("-fx-font-weight: bold");
+            labelDate.setFont(Font.font(10));
+            labelDate.setTextFill(Color.GRAY);
+            labelInfo.setTextFill(Color.valueOf("#2554c7"));
 
-            labelDate1.setText(weatherCollection.getForecastList(i).getDateStr());
-            labelInfo1.setText(weatherCollection.getForecastList(i).getWeather_code());
+            int windValue = weatherCollection.getForecastList(i).getWindDirection();
+            String directions = Directions.findDirectionName(windValue);
+
+            labelDayWeek.setText(weatherCollection.getForecastList(i).getDayOfWeek());
+            labelDate.setText(weatherCollection.getForecastList(i).getDateStr());
+            labelInfo.setText(weatherCollection.getForecastList(i).getWeather_code());
             labelTempMin.setText("Temperatura: " + weatherCollection.getForecastList(i).getTempMin() + Units.temperature);
-            labelFeelsLike1.setText("Temperatura odczuwalna: " + weatherCollection.getForecastList(i).getFeels_likeMin() + Units.temperature);
-            labelPrecipitation1.setText("Opady: " + weatherCollection.getForecastList(i).getPrecipitation() + Units.precipitation);
+            labelFeelsLike.setText("Temperatura odczuwalna: " + weatherCollection.getForecastList(i).getFeels_likeMin() + Units.temperature);
+            labelPrecipitation.setText("Opady: " + weatherCollection.getForecastList(i).getPrecipitation() + Units.precipitation);
             labelWindSpeed1.setText("Wiatr: " + directions + " " + weatherCollection.getForecastList(i).getWindSpeed() + Units.wind);
             countryCode.setText(weatherCollection.getForecastList(i).getCountryCode());
-            countryCode.setTextFill(Color.GRAY);
 
-            labelDate1.setPadding(new Insets(5));
-            labelInfo1.setPadding(new Insets(5));
-            labelTempMin.setPadding(new Insets(5));
-            labelFeelsLike1.setPadding(new Insets(5));
-            labelPrecipitation1.setPadding(new Insets(5));
-            labelWindSpeed1.setPadding(new Insets(5));
-
-            tilePaneInner.getChildren().add(labelDate1);
-            tilePaneInner.getChildren().add(labelInfo1);
+            tilePaneInner.getChildren().add(labelDayWeek);
+            tilePaneInner.getChildren().add(labelDate);
+            tilePaneInner.getChildren().add(labelInfo);
             tilePaneInner.getChildren().add(labelTempMin);
-            tilePaneInner.getChildren().add(labelFeelsLike1);
-            tilePaneInner.getChildren().add(labelPrecipitation1);
+            tilePaneInner.getChildren().add(labelFeelsLike);
+            tilePaneInner.getChildren().add(labelPrecipitation);
             tilePaneInner.getChildren().add(labelWindSpeed1);
             tilePaneId.getChildren().add(tilePaneInner);
         }
