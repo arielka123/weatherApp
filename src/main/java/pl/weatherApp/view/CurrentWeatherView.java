@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import pl.weatherApp.model.Units;
+import pl.weatherApp.model.collections.Units;
 import pl.weatherApp.model.service.objects.CurrentWeather;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.utils.TextValidation;

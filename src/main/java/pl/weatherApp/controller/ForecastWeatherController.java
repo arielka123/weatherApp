@@ -7,7 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
-import pl.weatherApp.model.WeatherCollection;
+import pl.weatherApp.model.collections.WeatherCollection;
 import pl.weatherApp.model.utils.TextValidation;
 
 public class ForecastWeatherController extends BaseController {

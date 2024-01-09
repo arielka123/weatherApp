@@ -3,7 +3,8 @@ package pl.weatherApp.model.service.objects;
 import javafx.beans.property.*;
 
 public class ForecastWeather {
-    private  final StringProperty time = new SimpleStringProperty();
+    private  final StringProperty dateStr = new SimpleStringProperty();
+    private final StringProperty dayOfWeek = new SimpleStringProperty();
     private final IntegerProperty tempMax = new SimpleIntegerProperty();
     private final IntegerProperty tempMin = new SimpleIntegerProperty();
     private final IntegerProperty feels_likeMax= new SimpleIntegerProperty();
@@ -32,11 +33,11 @@ public class ForecastWeather {
     public void setPrecipitation(double precipitation) {
         this.precipitation.set(precipitation);
     }
-    public String getTime() {
-        return time.get();
+    public String getDateStr() {
+        return dateStr.get();
     }
-    public void setTime(String time) {
-        this.time.set(time);
+    public void setDateStr(String dateStr) {
+        this.dateStr.set(dateStr);
     }
 //    public int getTempMax() {
 //        return tempMax.get();
@@ -73,5 +74,12 @@ public class ForecastWeather {
     }
     public void setWindDirection(Integer windDirection) {
         this.windDirection = windDirection;
+    }
+
+    public String getDayOfWeek() {
+        return dayOfWeek.get();
+    }
+    public void setDayOfWeek(String dayOfWeek) {
+        this.dayOfWeek.set(dayOfWeek);
     }
 }

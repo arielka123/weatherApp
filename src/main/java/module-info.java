@@ -10,7 +10,8 @@ module pl.weatherApp.Main {
     exports pl.weatherApp;
     exports pl.weatherApp.controller;
     exports pl.weatherApp.view;
-    exports pl.weatherApp.model;
+    exports pl.weatherApp.model.collections;
     exports pl.weatherApp.model.service;
     exports pl.weatherApp.model.service.objects;
+    exports pl.weatherApp.model.utils;
 }

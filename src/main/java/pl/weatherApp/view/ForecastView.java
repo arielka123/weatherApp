@@ -5,9 +5,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
-import pl.weatherApp.model.Directions;
-import pl.weatherApp.model.Units;
-import pl.weatherApp.model.WeatherCollection;
+import pl.weatherApp.model.collections.Directions;
+import pl.weatherApp.model.collections.Units;
+import pl.weatherApp.model.collections.WeatherCollection;
 
 public class ForecastView {
     private final WeatherCollection weatherCollection;
@@ -44,7 +44,7 @@ public class ForecastView {
             int windValue = weatherCollection.getForecastList(i).getWindDirection();
             directions = Directions.findDirectionName(windValue);
 
-            labelDate1.setText(weatherCollection.getForecastList(i).getTime());
+            labelDate1.setText(weatherCollection.getForecastList(i).getDateStr());
             labelInfo1.setText(weatherCollection.getForecastList(i).getWeather_code());
             labelTempMin.setText("Temperatura: " + weatherCollection.getForecastList(i).getTempMin() + Units.temperature);
             labelFeelsLike1.setText("Temperatura odczuwalna: " + weatherCollection.getForecastList(i).getFeels_likeMin() + Units.temperature);

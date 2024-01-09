@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import pl.weatherApp.model.Units;
+import pl.weatherApp.model.collections.Units;
 
 public class CurrentWeatherController extends BaseController{
     @FXML

@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import pl.weatherApp.model.WeatherCollection;
+import pl.weatherApp.model.collections.WeatherCollection;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 
 public class ViewFactory {

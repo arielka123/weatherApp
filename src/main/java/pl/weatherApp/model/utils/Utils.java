@@ -39,8 +39,11 @@ public class Utils {
     }
 
     public static ResourceBundle getResourceBundle(){
-        ResourceBundle bundle = ResourceBundle.getBundle("bundle.message");
-        return bundle;
+        return ResourceBundle.getBundle("bundle.message");
+    }
+
+    public static String getBundle(String name){
+        return Utils.getResourceBundle().getString(name);
     }
 
     public static Parent loadFXML(String Path) {

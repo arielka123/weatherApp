@@ -3,16 +3,18 @@ package pl.weatherApp.model.service;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import pl.weatherApp.model.WeatherCodes;
-import pl.weatherApp.model.WeatherCollection;
 import pl.weatherApp.model.client.WeatherClient;
+import pl.weatherApp.model.collections.WeatherCodes;
+import pl.weatherApp.model.collections.WeatherCollection;
 import pl.weatherApp.model.service.objects.ForecastWeather;
 import pl.weatherApp.model.service.objects.Location;
-import pl.weatherApp.model.utils.Utils;
+import pl.weatherApp.model.utils.DateManager;
 import pl.weatherApp.model.utils.DialogUtils;
+import pl.weatherApp.model.utils.Utils;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 
 public class ForecastWeatherService {
     private int responseCode;
@@ -54,7 +56,6 @@ public class ForecastWeatherService {
                     dayWeather = new ForecastWeather();
 
                     addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather, location);
-
                     weatherCollection.addObjectToForecastList(dayWeather);
                 }
             }
@@ -63,9 +64,9 @@ public class ForecastWeatherService {
         }
         return weatherCollection;
     }
-    private static void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather, Location location) {
+    private static void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather, Location location) throws ParseException {
         if(windDirectionArray.get(i)!=null) {
-            dayWeather.setTime((String) timeArray.get(i));
+            dayWeather.setDateStr((String) timeArray.get(i));
             dayWeather.setWeather_code(WeatherCodes.mapCodes(code));
             dayWeather.setTempMax(Utils.convertDoubleToIntArray(tempMaxArray, i));
             dayWeather.setTempMin(Utils.convertDoubleToIntArray(tempMinArray, i));
@@ -75,6 +76,7 @@ public class ForecastWeatherService {
             dayWeather.setWindDirection(Utils.convertLongToIntArray(windDirectionArray, i));
             dayWeather.setPrecipitation((Double) precipitationArray.get(i));
             dayWeather.setCountryCode(location.getCountry_code());
+            dayWeather.setDayOfWeek(DateManager.getDayOfWeek(dayWeather.getDateStr()));
         }
     }
 }

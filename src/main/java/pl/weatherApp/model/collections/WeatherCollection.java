@@ -1,4 +1,4 @@
-package pl.weatherApp.model;
+package pl.weatherApp.model.collections;
 
 import pl.weatherApp.model.service.objects.ForecastWeather;
 
