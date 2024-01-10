@@ -40,7 +40,8 @@ public class CurrentWeatherView {
 
     public void create() {
         if (TextValidation.inputValidation(textField)) {
-            CurrentWeather currentWeather = weatherServiceFactory.createCurrentWeather(textField.getText());
+            String txt = textField.getText();
+            CurrentWeather currentWeather = weatherServiceFactory.createCurrentWeather(txt);
             desc.setText(currentWeather.getDescription());
             countryCode.setText(currentWeather.getCountryCode());
             temp.setText(currentWeather.getTemp() + Units.temperature);

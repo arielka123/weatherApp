@@ -13,6 +13,8 @@ public class App extends Application
         launch(args);
     }
     public void start(Stage primaryStage) {
+        Config.setCharset();
+
         Locale.setDefault(new Locale(Config.language));
         ViewFactory viewFactory = ViewFactory.init();
         viewFactory.createMainView(primaryStage);
