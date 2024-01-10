@@ -13,11 +13,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeatherService {
-    private String iconNumber=null;
+    private String iconNumber;
     private int responseCode;
 
     public CurrentWeather init(Location location){
-       CurrentWeather currentWeather = new CurrentWeather();
+       CurrentWeather currentWeather = null;
         int temp;
         int feelsLike;
 
@@ -38,6 +38,7 @@ public class CurrentWeatherService {
                 JSONArray arrayWeather = (JSONArray) weatherData.get("weather");
 
                 for (Object o : arrayWeather) {
+                    currentWeather= new CurrentWeather();
                     JSONObject new_obj = (JSONObject) o;
                     currentWeather.setDescription((String) new_obj.get("description"));
                     this.iconNumber = (String) new_obj.get("icon");
