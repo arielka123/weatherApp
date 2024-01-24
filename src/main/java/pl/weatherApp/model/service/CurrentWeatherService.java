@@ -13,16 +13,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CurrentWeatherService {
-    private String iconNumber;
+    private CurrentWeather currentWeather;
     private int responseCode;
 
     public CurrentWeather init(Location location){
-       CurrentWeather currentWeather = null;
         int temp;
         int feelsLike;
 
         try {
-            URL url = new URL(WeatherClient.getCurrentWeatherURL(location));
+            URL url = WeatherClient.getCurrentWeatherURL(location);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
             this.responseCode = conn.getResponseCode();
@@ -41,7 +40,7 @@ public class CurrentWeatherService {
                     currentWeather= new CurrentWeather();
                     JSONObject new_obj = (JSONObject) o;
                     currentWeather.setDescription((String) new_obj.get("description"));
-                    this.iconNumber = (String) new_obj.get("icon");
+                    String iconNumber = (String) new_obj.get("icon");
                     currentWeather.setIconURL("https://openweathermap.org/img/wn/"+iconNumber+"@2x.png");
                 }
                 if(objMain.get("temp")!=null){

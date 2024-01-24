@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 import pl.weatherApp.model.collections.Units;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.service.objects.CurrentWeather;
-import pl.weatherApp.model.utils.TextValidation;
+import pl.weatherApp.model.utils.Validation;
 
 public class CurrentWeatherView {
     private final TextField textField;
@@ -39,7 +39,7 @@ public class CurrentWeatherView {
     }
 
     public void create() {
-        if (TextValidation.inputValidation(textField)) {
+        if (Validation.textValidation(textField.getText())) {
             String txt = textField.getText();
             CurrentWeather currentWeather = weatherServiceFactory.createCurrentWeather(txt);
             desc.setText(currentWeather.getDescription());

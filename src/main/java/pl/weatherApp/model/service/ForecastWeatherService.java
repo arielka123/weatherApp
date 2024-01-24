@@ -19,15 +19,15 @@ import java.text.ParseException;
 public class ForecastWeatherService {
     private int responseCode;
 
+
     public ForecastWeatherService(){}
 
     public WeatherCollection init(Location location){
         int days = 16;
-        ForecastWeather dayWeather;
         WeatherCollection weatherCollection = new WeatherCollection();
 
         try {
-            URL url = new URL(WeatherClient.getForecastURL(location));
+            URL url = WeatherClient.getForecastURL(location);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
@@ -53,7 +53,7 @@ public class ForecastWeatherService {
 
                 for (int i = 0; i < days; i++) {
                     int code = Utils.convertLongToIntArray(weatherCodeArray, i);
-                    dayWeather = new ForecastWeather();
+                    ForecastWeather dayWeather = new ForecastWeather();
 
                     addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather, location);
                     weatherCollection.addObjectToForecastList(dayWeather);

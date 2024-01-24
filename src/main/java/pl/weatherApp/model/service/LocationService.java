@@ -24,7 +24,7 @@ public class LocationService {
 
     public Location init() {
         try {
-            URL url = new URL(WeatherClient.getLocationURL(location.getCity()));
+            URL url = WeatherClient.getLocationURL(location.getCity());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
 
