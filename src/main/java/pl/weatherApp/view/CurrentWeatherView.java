@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import pl.weatherApp.model.collections.Units;
 import pl.weatherApp.model.service.WeatherServiceFactory;
 import pl.weatherApp.model.service.objects.CurrentWeather;
+import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Validation;
 
 public class CurrentWeatherView {
@@ -39,7 +40,8 @@ public class CurrentWeatherView {
     }
 
     public void create() {
-        if (Validation.textValidation(textField.getText())) {
+        Validation validation = new Validation();
+        if (validation.textValidation(textField.getText())) {
             String txt = textField.getText();
             CurrentWeather currentWeather = weatherServiceFactory.createCurrentWeather(txt);
             desc.setText(currentWeather.getDescription());
@@ -52,7 +54,8 @@ public class CurrentWeatherView {
             humidity.setText(currentWeather.getHumidity() + Units.humidity);
             setImage(currentWeather, imageView);
             countryCode.setTextFill(Color.GRAY);
-        }
+        }else DialogUtils.inputDialog();
+
     }
     private void setImage(CurrentWeather currentWeather, ImageView imageView) {
         String imageSource = currentWeather.getIconURL();
