@@ -42,7 +42,7 @@ public class ForecastWeatherController extends BaseController {
             WeatherCollection weatherCollection;
             Validation validation = new Validation();
             if (validation.textValidation(inputCityId.getText())) {
-                weatherCollection = weatherServiceFactory.createForecastDays(inputCityId.getText());
+                weatherCollection = weatherServiceFactory.createForecast(inputCityId.getText());
                 viewFactory.createForecastView(weatherCollection, days,tilePaneId, countryCode);
             }
             else DialogUtils.inputDialog();

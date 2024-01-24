@@ -49,17 +49,17 @@ public class ForecastView {
             labelDate.setTextFill(Color.GRAY);
             labelInfo.setTextFill(Color.valueOf("#2554c7"));
 
-            int windValue = weatherCollection.getForecastList(i).getWindDirection();
+            int windValue = weatherCollection.getOneOfForecastList(i).getWindDirection();
             String directions = Directions.findDirectionName(windValue);
 
-            labelDayWeek.setText(weatherCollection.getForecastList(i).getDayOfWeek());
-            labelDate.setText(weatherCollection.getForecastList(i).getDateStr());
-            labelInfo.setText(weatherCollection.getForecastList(i).getWeather_code());
-            labelTempMin.setText("Temperatura: " + weatherCollection.getForecastList(i).getTempMin() + Units.temperature);
-            labelFeelsLike.setText("Temperatura odczuwalna: " + weatherCollection.getForecastList(i).getFeels_likeMin() + Units.temperature);
-            labelPrecipitation.setText("Opady: " + weatherCollection.getForecastList(i).getPrecipitation() + Units.precipitation);
-            labelWindSpeed1.setText("Wiatr: " + directions + " " + weatherCollection.getForecastList(i).getWindSpeed() + Units.wind);
-            countryCode.setText(weatherCollection.getForecastList(i).getCountryCode());
+            labelDayWeek.setText(weatherCollection.getOneOfForecastList(i).getDayOfWeek());
+            labelDate.setText(weatherCollection.getOneOfForecastList(i).getDateStr());
+            labelInfo.setText(weatherCollection.getOneOfForecastList(i).getWeather_code());
+            labelTempMin.setText("Temperatura: " + weatherCollection.getOneOfForecastList(i).getTempMin() + Units.temperature);
+            labelFeelsLike.setText("Temperatura odczuwalna: " + weatherCollection.getOneOfForecastList(i).getFeels_likeMin() + Units.temperature);
+            labelPrecipitation.setText("Opady: " + weatherCollection.getOneOfForecastList(i).getPrecipitation() + Units.precipitation);
+            labelWindSpeed1.setText("Wiatr: " + directions + " " + weatherCollection.getOneOfForecastList(i).getWindSpeed() + Units.wind);
+            countryCode.setText(weatherCollection.getOneOfForecastList(i).getCountryCode());
 
             tilePaneInner.getChildren().add(labelDayWeek);
             tilePaneInner.getChildren().add(labelDate);

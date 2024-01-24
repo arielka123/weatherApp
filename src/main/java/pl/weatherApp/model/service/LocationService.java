@@ -32,9 +32,8 @@ public class LocationService {
             if (responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode: " + this.responseCode);
             } else {
-                StringBuilder informationString = Utils.getStringFromURL(url.openStream());
-                JSONParser parse = new JSONParser();
-                JSONArray localizationData = (JSONArray) parse.parse(String.valueOf(informationString));
+                JSONArray localizationData = getJsonArray(url);
+
                 if(!localizationData.isEmpty()){
                     for (Object result : localizationData) {
                         JSONObject resultObj = (JSONObject) result;
@@ -46,9 +45,18 @@ public class LocationService {
                 else location.setCity("");
             }
         } catch (IOException | ParseException e) {
-            DialogUtils.errorDialog(String.valueOf(this.responseCode));
-        }
+            if(responseCode==200){
+                DialogUtils.errorDialog("");
+            }else{
+                DialogUtils.errorDialog(String.valueOf(this.responseCode));
+            }        }
         return location;
+    }
+
+    private  JSONArray getJsonArray(URL url) throws IOException, ParseException {
+        StringBuilder informationString = Utils.getStringFromURL(url.openStream());
+        JSONParser parse = new JSONParser();
+        return (JSONArray) parse.parse(String.valueOf(informationString));
     }
 
     public int getResponseCode() {
