@@ -12,33 +12,32 @@ import pl.weatherApp.model.utils.DateManager;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Utils;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 
 public class ForecastWeatherService {
     private int responseCode;
-
+    public int getResponseCode() {
+        return responseCode;
+    }
     public ForecastWeatherService(){}
 
     public WeatherCollection init(Location location){
         int days = 16;
-        ForecastWeather dayWeather;
         WeatherCollection weatherCollection = new WeatherCollection();
 
         try {
-            URL url = new URL(WeatherClient.getForecastURL(location));
+            URL url = WeatherClient.getForecastURL(location);
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.connect();
-
+            HttpURLConnection conn = getHttpURLConnection(url);
             responseCode = conn.getResponseCode();
+
             if (responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode " + this.responseCode);
             } else {
-                Utils.informationString = Utils.getStringFromURL(url.openStream());
-                JSONParser parse = new JSONParser();
-                JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(Utils.informationString));
+                JSONObject weatherData = getJsonObject(url);
 
                 JSONObject dailyObj = (JSONObject) weatherData.get("daily");
                 JSONArray tempMaxArray = (JSONArray) dailyObj.get("temperature_2m_max");
@@ -53,18 +52,40 @@ public class ForecastWeatherService {
 
                 for (int i = 0; i < days; i++) {
                     int code = Utils.convertLongToIntArray(weatherCodeArray, i);
-                    dayWeather = new ForecastWeather();
+                    ForecastWeather dayWeather = new ForecastWeather();
 
                     addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather, location);
                     weatherCollection.addObjectToForecastList(dayWeather);
                 }
             }
         } catch (Exception e) {
-            DialogUtils.errorDialog(String.valueOf(this.responseCode));
-        }
+            if(responseCode==200){
+                DialogUtils.errorDialog("");
+            }else{
+                DialogUtils.errorDialog(String.valueOf(this.responseCode));
+            }        }
         return weatherCollection;
     }
-    private static void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather, Location location) throws ParseException {
+
+    public HttpURLConnection getHttpURLConnection(URL url) {
+        HttpURLConnection conn;
+        try {
+            conn = (HttpURLConnection) url.openConnection();
+            conn.connect();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+        return conn;
+    }
+
+    private JSONObject getJsonObject(URL url) throws IOException, org.json.simple.parser.ParseException {
+        StringBuilder informationString = Utils.getStringFromURL(url.openStream());
+        JSONParser parse = new JSONParser();
+        JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(informationString));
+        return weatherData;
+    }
+
+    private void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather, Location location) throws ParseException {
         if(windDirectionArray.get(i)!=null) {
             dayWeather.setDateStr((String) timeArray.get(i));
             dayWeather.setWeather_code(WeatherCodes.mapCodes(code));

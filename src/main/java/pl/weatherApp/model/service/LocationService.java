@@ -6,8 +6,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pl.weatherApp.model.client.WeatherClient;
 import pl.weatherApp.model.service.objects.Location;
-import pl.weatherApp.model.utils.Utils;
 import pl.weatherApp.model.utils.DialogUtils;
+import pl.weatherApp.model.utils.Utils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -24,30 +24,42 @@ public class LocationService {
 
     public Location init() {
         try {
-            URL url = new URL(WeatherClient.getLocationURL(location.getCity()));
+            URL url = WeatherClient.getLocationURL(location.getCity());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
+            this.responseCode = conn.getResponseCode();
 
-            responseCode = conn.getResponseCode();
             if (responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode: " + this.responseCode);
             } else {
-                Utils.informationString = Utils.getStringFromURL(url.openStream());
-                JSONParser parse = new JSONParser();
-                JSONArray localizationData = (JSONArray) parse.parse(String.valueOf(Utils.informationString));
+                JSONArray localizationData = getJsonArray(url);
 
-                for (Object result : localizationData) {
-                    JSONObject resultObj = (JSONObject) result;
-
-                    location.setLongitude((Double) resultObj.get("lon"));
-                    location.setLatitude((Double) resultObj.get("lat"));
-                    location.setCountry_code((String) resultObj.get("country"));
+                if(!localizationData.isEmpty()){
+                    for (Object result : localizationData) {
+                        JSONObject resultObj = (JSONObject) result;
+                        location.setLongitude((Double) resultObj.get("lon"));
+                        location.setLatitude((Double) resultObj.get("lat"));
+                        location.setCountry_code((String) resultObj.get("country"));
+                    }
                 }
+                else location.setCity("");
             }
         } catch (IOException | ParseException e) {
-//            throw new RuntimeException(e);
-            DialogUtils.errorDialog(String.valueOf(this.responseCode));
-        }
+            if(responseCode==200){
+                DialogUtils.errorDialog("");
+            }else{
+                DialogUtils.errorDialog(String.valueOf(this.responseCode));
+            }        }
         return location;
+    }
+
+    private  JSONArray getJsonArray(URL url) throws IOException, ParseException {
+        StringBuilder informationString = Utils.getStringFromURL(url.openStream());
+        JSONParser parse = new JSONParser();
+        return (JSONArray) parse.parse(String.valueOf(informationString));
+    }
+
+    public int getResponseCode() {
+        return responseCode;
     }
 }

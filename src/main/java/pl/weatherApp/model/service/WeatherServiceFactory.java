@@ -18,17 +18,19 @@ public class WeatherServiceFactory {
         return instance;
     }
 
-    public Location createLocalization(String city){
+    private Location createLocalization(String city){
         LocationService localizationService= new LocationService(city);
         return localizationService.init();
     }
     public CurrentWeather createCurrentWeather(String city){
         CurrentWeatherService currentWeatherService = new CurrentWeatherService();
-        return currentWeatherService.init(createLocalization(city));
+        Location location = createLocalization(city);
+        return currentWeatherService.init(location);
     }
 
-    public WeatherCollection createForecastDays(String city){
+    public WeatherCollection createForecast(String city){
         ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
-        return forecastWeatherService.init(createLocalization(city));
+        Location location = createLocalization(city);
+        return forecastWeatherService.init(location);
     }
 }

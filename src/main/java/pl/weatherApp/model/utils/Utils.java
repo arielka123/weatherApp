@@ -11,10 +11,8 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Utils {
-    public static StringBuilder informationString = new StringBuilder();
 
     public static StringBuilder getStringFromURL(InputStream inputStream){
-        informationString = null;
         StringBuilder informationString = new StringBuilder();
         Scanner scanner = new Scanner(inputStream);
         while (scanner.hasNext()) {
