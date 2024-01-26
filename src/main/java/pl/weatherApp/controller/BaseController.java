@@ -1,14 +1,14 @@
 package pl.weatherApp.controller;
 
-import pl.weatherApp.model.service.WeatherServiceFactory;
-import pl.weatherApp.view.ViewFactory;
+import pl.weatherApp.model.service.WeatherServiceManager;
+import pl.weatherApp.view.ViewManager;
 
 public abstract class BaseController {
-    protected  WeatherServiceFactory weatherServiceFactory;
-    protected  ViewFactory viewFactory;
+    protected WeatherServiceManager weatherServiceManager;
+    protected ViewManager viewManager;
 
     protected BaseController() {
-        weatherServiceFactory = WeatherServiceFactory.init();
-        viewFactory = ViewFactory.init();
+        weatherServiceManager = WeatherServiceManager.init();
+        viewManager = ViewManager.init();
     }
 }

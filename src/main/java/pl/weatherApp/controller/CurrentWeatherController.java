@@ -81,10 +81,10 @@ public class CurrentWeatherController extends BaseController{
     }
 
     public void showWeatherCity1() {
-        viewFactory.createCurrentWeather(weatherServiceFactory, textFieldCity1, descCity1, tempCity1, feelsLikeCity1, pressureCity1, visibilityCity1, cloudsCity1, humidityCity1, countryCodeCity1, imageViewCity1);
+        viewManager.createCurrentWeather(weatherServiceManager, textFieldCity1, descCity1, tempCity1, feelsLikeCity1, pressureCity1, visibilityCity1, cloudsCity1, humidityCity1, countryCodeCity1, imageViewCity1);
     }
 
     public void showWeatherCity2() {
-        viewFactory.createCurrentWeather(weatherServiceFactory, textFieldCity2, descCity2, tempCity2, feelsLikeCity2, pressureCity2, visibilityCity2,cloudsCity2, humidityCity2, countryCodeCity2, imageViewCity2);
+        viewManager.createCurrentWeather(weatherServiceManager, textFieldCity2, descCity2, tempCity2, feelsLikeCity2, pressureCity2, visibilityCity2,cloudsCity2, humidityCity2, countryCodeCity2, imageViewCity2);
     }
 }

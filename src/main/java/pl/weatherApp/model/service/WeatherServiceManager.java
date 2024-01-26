@@ -4,16 +4,16 @@ import pl.weatherApp.model.collections.WeatherCollection;
 import pl.weatherApp.model.service.objects.CurrentWeather;
 import pl.weatherApp.model.service.objects.Location;
 
-public class WeatherServiceFactory {
+public class WeatherServiceManager {
 
-    private static WeatherServiceFactory instance;
-    private WeatherServiceFactory(){
+    private static WeatherServiceManager instance;
+    private WeatherServiceManager(){
         instance = this;
     }
 
-    public static WeatherServiceFactory init() {
+    public static WeatherServiceManager init() {
         if (instance == null) {
-            instance = new WeatherServiceFactory();
+            instance = new WeatherServiceManager();
         }
         return instance;
     }

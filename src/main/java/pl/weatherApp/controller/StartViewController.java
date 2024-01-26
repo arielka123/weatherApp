@@ -1,6 +1,6 @@
 package pl.weatherApp.controller;
 
-import pl.weatherApp.view.ViewFactory;
+import pl.weatherApp.view.ViewManager;
 
 public class StartViewController {
     private MainController mainController;
@@ -10,15 +10,15 @@ public class StartViewController {
     }
 
     public void todayWeatherOnAction() {
-        mainController.setCenter(ViewFactory.DAY_FXML);
+        mainController.setCenter(ViewManager.DAY_FXML);
     }
 
     public void weakWeatherOnAction() {
-        mainController.setCenter(ViewFactory.FORECAST_FXML);
+        mainController.setCenter(ViewManager.FORECAST_FXML);
     }
 
     public void mainViewOnAction() {
-        mainController.setCenter(ViewFactory.START_VIEW_FXML);
+        mainController.setCenter(ViewManager.START_VIEW_FXML);
     }
 }
 

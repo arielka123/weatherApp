@@ -7,7 +7,7 @@ import pl.weatherApp.model.utils.Utils;
 
 public class MainView {
 
-    public static final BorderPane MAIN_VIEW =(BorderPane) Utils.loadFXML(ViewFactory.BORDER_PAIN_MAIN_FXML);
+    public static final BorderPane MAIN_VIEW =(BorderPane) Utils.loadFXML(ViewManager.BORDER_PAIN_MAIN_FXML);
     private static final Scene scene = new Scene(MAIN_VIEW);
 
     public static void showMainWindow(Stage primaryStage) {

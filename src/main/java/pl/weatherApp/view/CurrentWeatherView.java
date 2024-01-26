@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import pl.weatherApp.model.collections.Units;
-import pl.weatherApp.model.service.WeatherServiceFactory;
+import pl.weatherApp.model.service.WeatherServiceManager;
 import pl.weatherApp.model.service.objects.CurrentWeather;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Validation;
@@ -23,10 +23,10 @@ public class CurrentWeatherView {
     private final Text visibility;
     private final ImageView imageView;
     private final Label countryCode;
-    private final WeatherServiceFactory weatherServiceFactory;
+    private final WeatherServiceManager weatherServiceManager;
 
-    public CurrentWeatherView(WeatherServiceFactory weatherServiceFactory, TextField textField, Text desc, Text temp,Text feelsLike, Text pressure,Text visibility,Text clouds,Text humidity,Label countryCode,ImageView imageView) {
-        this.weatherServiceFactory = weatherServiceFactory;
+    public CurrentWeatherView(WeatherServiceManager weatherServiceManager, TextField textField, Text desc, Text temp, Text feelsLike, Text pressure, Text visibility, Text clouds, Text humidity, Label countryCode, ImageView imageView) {
+        this.weatherServiceManager = weatherServiceManager;
         this.textField = textField;
         this.humidity = humidity;
         this.clouds = clouds;
@@ -43,7 +43,7 @@ public class CurrentWeatherView {
         Validation validation = new Validation();
         if (validation.textValidation(textField.getText())) {
             String txt = textField.getText();
-            CurrentWeather currentWeather = weatherServiceFactory.createCurrentWeather(txt);
+            CurrentWeather currentWeather = weatherServiceManager.createCurrentWeather(txt);
             desc.setText(currentWeather.getDescription());
             countryCode.setText(currentWeather.getCountryCode());
             temp.setText(currentWeather.getTemp() + Units.temperature);
