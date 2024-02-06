@@ -16,7 +16,7 @@ public class WeatherServiceManager {
         return instance;
     }
 
-    public  Object createWeather(String city, IService service){
+    public  Object createWeather(String city, IWeatherService service){
         Location location = createLocalization(city);
         return service.init(location);
     }

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CurrentWeatherService extends IService{
+public class CurrentWeatherWeatherService extends IWeatherService {
     private CurrentWeather currentWeather;
     private int responseCode;
 
