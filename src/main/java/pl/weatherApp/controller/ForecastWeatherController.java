@@ -8,8 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import pl.weatherApp.model.objects.collections.ForecastCollection;
-import pl.weatherApp.model.service.ForecastWeatherService;
-import pl.weatherApp.model.service.IService;
+import pl.weatherApp.model.service.ForecastWeatherWeatherService;
+import pl.weatherApp.model.service.IWeatherService;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Validation;
 
@@ -45,7 +45,7 @@ public class ForecastWeatherController extends BaseController {
             Validation validation = new Validation();
             if (validation.textValidation(inputCityId.getText())) {
 
-                IService forecastWeatherService = new ForecastWeatherService();
+                IWeatherService forecastWeatherService = new ForecastWeatherWeatherService();
                 forecastCollection = (ForecastCollection) weatherServiceManager.createWeather(inputCityId.getText(), forecastWeatherService);
 
                 viewManager.createForecastView(forecastCollection, days,tilePaneId, countryCode);

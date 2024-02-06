@@ -17,12 +17,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 
-public class ForecastWeatherService extends IService{
+public class ForecastWeatherWeatherService implements IWeatherService {
     private int responseCode;
     public int getResponseCode() {
         return responseCode;
     }
-    public ForecastWeatherService(){}
+    public ForecastWeatherWeatherService(){}
 
     public ForecastCollection init(Location location){
         int days = 16;
