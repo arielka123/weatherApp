@@ -19,7 +19,7 @@ class ForecastWeatherServiceTest {
     @Test
     void exceptionShouldBeThrownWhenConnectionHasWrongURL() {
         //given
-        ForecastWeatherWeatherService forecastWeatherService  = new ForecastWeatherWeatherService();
+        ForecastWeatherService forecastWeatherService  = new ForecastWeatherService();
 
         //when
         //then
@@ -29,7 +29,7 @@ class ForecastWeatherServiceTest {
     @Test
     void initShouldReturnCode200() {
         //given
-        ForecastWeatherWeatherService forecastWeatherService = new ForecastWeatherWeatherService();
+        ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
         LocationService locationService = mock();
         Location location = mock();
 
@@ -45,7 +45,7 @@ class ForecastWeatherServiceTest {
     @Test
     void initShouldReturnForecastWeather(){
         //given
-        ForecastWeatherWeatherService forecastWeatherService = new ForecastWeatherWeatherService();
+        ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
         LocationService locationService = mock();
         Location location = mock();
         LocalDate currentDate = LocalDate.now();
@@ -62,7 +62,7 @@ class ForecastWeatherServiceTest {
     @Test
     void forecastShouldHaveWeatherFor16Days(){
         //given
-        ForecastWeatherWeatherService forecastWeatherService = new ForecastWeatherWeatherService();
+        ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
         LocationService locationService = mock();
         Location location = mock();
         //when

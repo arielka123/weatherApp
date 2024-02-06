@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import pl.weatherApp.model.objects.collections.Units;
-import pl.weatherApp.model.service.CurrentWeatherWeatherService;
+import pl.weatherApp.model.service.CurrentWeatherService;
 import pl.weatherApp.model.service.IWeatherService;
 import pl.weatherApp.model.service.WeatherServiceManager;
 import pl.weatherApp.model.objects.CurrentWeather;
@@ -46,7 +46,7 @@ public class CurrentWeatherView {
         if (validation.textValidation(textField.getText())) {
             String txt = textField.getText();
 
-            IWeatherService currentWeatherService = new CurrentWeatherWeatherService();
+            IWeatherService currentWeatherService = new CurrentWeatherService();
             CurrentWeather currentWeather = (CurrentWeather) weatherServiceManager.createWeather(txt,currentWeatherService);
 
             desc.setText(currentWeather.getDescription());
