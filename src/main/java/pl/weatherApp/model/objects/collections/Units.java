@@ -1,4 +1,4 @@
-package pl.weatherApp.model.collections;
+package pl.weatherApp.model.objects.collections;
 
 public class Units {
 //    public static String degree = Character.toString((char)186);

@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import pl.weatherApp.model.collections.WeatherCollection;
+import pl.weatherApp.model.objects.collections.ForecastCollection;
 import pl.weatherApp.model.service.WeatherServiceManager;
 
 public class ViewManager {
@@ -30,8 +30,8 @@ public class ViewManager {
         MainView.showMainWindow(primaryStage);
     }
 
-    public void createForecastView(WeatherCollection weatherCollection , int days, TilePane tilePaneId, Label countryCode){
-        ForecastView forecastView = new ForecastView(weatherCollection, days, tilePaneId, countryCode);
+    public void createForecastView(ForecastCollection forecastCollection, int days, TilePane tilePaneId, Label countryCode){
+        ForecastView forecastView = new ForecastView(forecastCollection, days, tilePaneId, countryCode);
         forecastView.create();
     }
 

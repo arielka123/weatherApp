@@ -1,6 +1,6 @@
 package pl.weatherApp.model.client;
 
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.Location;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package pl.weatherApp.model.service.objects;
+package pl.weatherApp.model.objects;
 
 public class Location {
     private String city;

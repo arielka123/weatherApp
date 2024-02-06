@@ -1,8 +1,8 @@
 package pl.weatherApp.model.service;
 
 import org.junit.jupiter.api.Test;
-import pl.weatherApp.model.collections.WeatherCollection;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.collections.ForecastCollection;
+import pl.weatherApp.model.objects.Location;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,10 +53,10 @@ class ForecastWeatherServiceTest {
         //when
         when(location.getCity()).thenReturn("Warszawa");
         when(locationService.init()).thenReturn(location);
-        WeatherCollection weatherCollection = forecastWeatherService.init(location);
+        ForecastCollection forecastCollection = forecastWeatherService.init(location);
 
         //then
-        assertThat(weatherCollection.getOneOfForecastList(0).getDateStr(), is(currentDate.toString()));
+        assertThat(forecastCollection.getOneOfForecastList(0).getDateStr(), is(currentDate.toString()));
     }
 
     @Test
@@ -68,10 +68,10 @@ class ForecastWeatherServiceTest {
         //when
         when(location.getCity()).thenReturn("Warszawa");
         when(locationService.init()).thenReturn(location);
-        WeatherCollection weatherCollection = forecastWeatherService.init(location);
+        ForecastCollection forecastCollection = forecastWeatherService.init(location);
 
         //then
-        assertThat(weatherCollection.getOneOfForecastList(15), is(notNullValue()));
-        assertThat(weatherCollection.getForecastList().size(), is(16));
+        assertThat(forecastCollection.getOneOfForecastList(15), is(notNullValue()));
+        assertThat(forecastCollection.getForecastList().size(), is(16));
     }
 }

@@ -4,10 +4,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import pl.weatherApp.model.client.WeatherClient;
-import pl.weatherApp.model.collections.WeatherCodes;
-import pl.weatherApp.model.collections.WeatherCollection;
-import pl.weatherApp.model.service.objects.ForecastWeather;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.collections.WeatherCodes;
+import pl.weatherApp.model.objects.collections.ForecastCollection;
+import pl.weatherApp.model.objects.ForecastWeather;
+import pl.weatherApp.model.objects.Location;
 import pl.weatherApp.model.utils.DateManager;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Utils;
@@ -17,16 +17,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 
-public class ForecastWeatherService {
+public class ForecastWeatherService extends IService{
     private int responseCode;
     public int getResponseCode() {
         return responseCode;
     }
     public ForecastWeatherService(){}
 
-    public WeatherCollection init(Location location){
+    public ForecastCollection init(Location location){
         int days = 16;
-        WeatherCollection weatherCollection = new WeatherCollection();
+        ForecastCollection forecastCollection = new ForecastCollection();
 
         try {
             URL url = WeatherClient.getForecastURL(location);
@@ -55,7 +55,7 @@ public class ForecastWeatherService {
                     ForecastWeather dayWeather = new ForecastWeather();
 
                     addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather, location);
-                    weatherCollection.addObjectToForecastList(dayWeather);
+                    forecastCollection.addObjectToForecastList(dayWeather);
                 }
             }
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class ForecastWeatherService {
             }else{
                 DialogUtils.errorDialog(String.valueOf(this.responseCode));
             }        }
-        return weatherCollection;
+        return forecastCollection;
     }
 
     public HttpURLConnection getHttpURLConnection(URL url) {
@@ -81,8 +81,7 @@ public class ForecastWeatherService {
     private JSONObject getJsonObject(URL url) throws IOException, org.json.simple.parser.ParseException {
         StringBuilder informationString = Utils.getStringFromURL(url.openStream());
         JSONParser parse = new JSONParser();
-        JSONObject weatherData = (JSONObject) parse.parse(String.valueOf(informationString));
-        return weatherData;
+        return (JSONObject) parse.parse(String.valueOf(informationString));
     }
 
     private void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather, Location location) throws ParseException {

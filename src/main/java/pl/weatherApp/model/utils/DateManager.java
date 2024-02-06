@@ -1,6 +1,6 @@
 package pl.weatherApp.model.utils;
 
-import pl.weatherApp.model.collections.DaysWeek;
+import pl.weatherApp.model.objects.collections.DaysWeek;
 
 import java.text.DateFormat;
 import java.text.ParseException;

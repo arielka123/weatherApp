@@ -7,7 +7,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
-import pl.weatherApp.model.collections.WeatherCollection;
+import pl.weatherApp.model.objects.collections.ForecastCollection;
+import pl.weatherApp.model.service.ForecastWeatherService;
+import pl.weatherApp.model.service.IService;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Validation;
 
@@ -39,11 +41,14 @@ public class ForecastWeatherController extends BaseController {
         int days = Integer.parseInt(choiceBoxId.getSelectionModel().getSelectedItem().toString());
 
         if (days != 0) {
-            WeatherCollection weatherCollection;
+            ForecastCollection forecastCollection;
             Validation validation = new Validation();
             if (validation.textValidation(inputCityId.getText())) {
-                weatherCollection = weatherServiceManager.createForecast(inputCityId.getText());
-                viewManager.createForecastView(weatherCollection, days,tilePaneId, countryCode);
+
+                IService forecastWeatherService = new ForecastWeatherService();
+                forecastCollection = (ForecastCollection) weatherServiceManager.createWeather(inputCityId.getText(), forecastWeatherService);
+
+                viewManager.createForecastView(forecastCollection, days,tilePaneId, countryCode);
             }
             else DialogUtils.inputDialog();
         }

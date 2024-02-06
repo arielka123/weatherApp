@@ -1,6 +1,6 @@
 package pl.weatherApp.model.client;
 
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.Location;
 
 public class OpenMeteo {
     public static String getForecastURL(Location location){

@@ -1,8 +1,8 @@
 package pl.weatherApp.model.service;
 
 import org.junit.jupiter.api.Test;
-import pl.weatherApp.model.service.objects.CurrentWeather;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.CurrentWeather;
+import pl.weatherApp.model.objects.Location;
 
 import java.net.MalformedURLException;
 import java.net.URL;

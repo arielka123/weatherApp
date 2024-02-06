@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pl.weatherApp.model.client.WeatherClient;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.Location;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Utils;
 

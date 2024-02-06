@@ -1,10 +1,10 @@
-package pl.weatherApp.model.collections;
+package pl.weatherApp.model.objects.collections;
 
-import pl.weatherApp.model.service.objects.ForecastWeather;
+import pl.weatherApp.model.objects.ForecastWeather;
 
 import java.util.ArrayList;
 
-public class WeatherCollection {
+public class ForecastCollection {
     private final ArrayList<ForecastWeather> ForecastList = new ArrayList<>();
     public ForecastWeather getOneOfForecastList(int i){
         return ForecastList.get(i);
@@ -16,7 +16,5 @@ public class WeatherCollection {
 
     public void addObjectToForecastList(ForecastWeather forecastWeather){
         ForecastList.add(forecastWeather);
-
-
     }
 }

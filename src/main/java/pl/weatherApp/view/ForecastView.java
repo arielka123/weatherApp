@@ -6,18 +6,18 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import pl.weatherApp.model.collections.Directions;
-import pl.weatherApp.model.collections.Units;
-import pl.weatherApp.model.collections.WeatherCollection;
+import pl.weatherApp.model.objects.collections.Directions;
+import pl.weatherApp.model.objects.collections.Units;
+import pl.weatherApp.model.objects.collections.ForecastCollection;
 
 public class ForecastView {
-    private final WeatherCollection weatherCollection;
+    private final ForecastCollection forecastCollection;
     private final TilePane tilePaneId;
     private final int days;
     private final Label countryCode;
 
-    ForecastView(WeatherCollection weatherCollection ,int days,TilePane tilePaneId, Label countryCode){
-        this.weatherCollection = weatherCollection;
+    ForecastView(ForecastCollection forecastCollection, int days, TilePane tilePaneId, Label countryCode){
+        this.forecastCollection = forecastCollection;
         this.tilePaneId=tilePaneId;
         this.days=days;
         this.countryCode=countryCode;
@@ -49,17 +49,17 @@ public class ForecastView {
             labelDate.setTextFill(Color.GRAY);
             labelInfo.setTextFill(Color.valueOf("#2554c7"));
 
-            int windValue = weatherCollection.getOneOfForecastList(i).getWindDirection();
+            int windValue = forecastCollection.getOneOfForecastList(i).getWindDirection();
             String directions = Directions.findDirectionName(windValue);
 
-            labelDayWeek.setText(weatherCollection.getOneOfForecastList(i).getDayOfWeek());
-            labelDate.setText(weatherCollection.getOneOfForecastList(i).getDateStr());
-            labelInfo.setText(weatherCollection.getOneOfForecastList(i).getWeather_code());
-            labelTempMin.setText("Temperatura: " + weatherCollection.getOneOfForecastList(i).getTempMin() + Units.temperature);
-            labelFeelsLike.setText("Temperatura odczuwalna: " + weatherCollection.getOneOfForecastList(i).getFeels_likeMin() + Units.temperature);
-            labelPrecipitation.setText("Opady: " + weatherCollection.getOneOfForecastList(i).getPrecipitation() + Units.precipitation);
-            labelWindSpeed1.setText("Wiatr: " + directions + " " + weatherCollection.getOneOfForecastList(i).getWindSpeed() + Units.wind);
-            countryCode.setText(weatherCollection.getOneOfForecastList(i).getCountryCode());
+            labelDayWeek.setText(forecastCollection.getOneOfForecastList(i).getDayOfWeek());
+            labelDate.setText(forecastCollection.getOneOfForecastList(i).getDateStr());
+            labelInfo.setText(forecastCollection.getOneOfForecastList(i).getWeather_code());
+            labelTempMin.setText("Temperatura: " + forecastCollection.getOneOfForecastList(i).getTempMin() + Units.temperature);
+            labelFeelsLike.setText("Temperatura odczuwalna: " + forecastCollection.getOneOfForecastList(i).getFeels_likeMin() + Units.temperature);
+            labelPrecipitation.setText("Opady: " + forecastCollection.getOneOfForecastList(i).getPrecipitation() + Units.precipitation);
+            labelWindSpeed1.setText("Wiatr: " + directions + " " + forecastCollection.getOneOfForecastList(i).getWindSpeed() + Units.wind);
+            countryCode.setText(forecastCollection.getOneOfForecastList(i).getCountryCode());
 
             tilePaneInner.getChildren().add(labelDayWeek);
             tilePaneInner.getChildren().add(labelDate);

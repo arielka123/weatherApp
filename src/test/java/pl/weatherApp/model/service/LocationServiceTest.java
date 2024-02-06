@@ -1,7 +1,7 @@
 package pl.weatherApp.model.service;
 
 import org.junit.jupiter.api.Test;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.Location;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

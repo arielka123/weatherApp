@@ -5,8 +5,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pl.weatherApp.model.client.WeatherClient;
-import pl.weatherApp.model.service.objects.CurrentWeather;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.CurrentWeather;
+import pl.weatherApp.model.objects.Location;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Utils;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CurrentWeatherService {
+public class CurrentWeatherService extends IService{
     private CurrentWeather currentWeather;
     private int responseCode;
 

@@ -1,8 +1,6 @@
 package pl.weatherApp.model.service;
 
-import pl.weatherApp.model.collections.WeatherCollection;
-import pl.weatherApp.model.service.objects.CurrentWeather;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.Location;
 
 public class WeatherServiceManager {
 
@@ -18,19 +16,13 @@ public class WeatherServiceManager {
         return instance;
     }
 
+    public  Object createWeather(String city, IService service){
+        Location location = createLocalization(city);
+        return service.init(location);
+    }
+
     private Location createLocalization(String city){
         LocationService localizationService= new LocationService(city);
         return localizationService.init();
-    }
-    public CurrentWeather createCurrentWeather(String city){
-        CurrentWeatherService currentWeatherService = new CurrentWeatherService();
-        Location location = createLocalization(city);
-        return currentWeatherService.init(location);
-    }
-
-    public WeatherCollection createForecast(String city){
-        ForecastWeatherService forecastWeatherService = new ForecastWeatherService();
-        Location location = createLocalization(city);
-        return forecastWeatherService.init(location);
     }
 }

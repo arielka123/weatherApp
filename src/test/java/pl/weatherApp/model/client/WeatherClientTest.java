@@ -1,7 +1,7 @@
 package pl.weatherApp.model.client;
 
 import org.junit.jupiter.api.Test;
-import pl.weatherApp.model.service.objects.Location;
+import pl.weatherApp.model.objects.Location;
 
 import java.net.URL;
 
