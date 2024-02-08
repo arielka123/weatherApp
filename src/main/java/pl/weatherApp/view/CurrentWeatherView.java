@@ -42,25 +42,24 @@ public class CurrentWeatherView {
     }
 
     public void create() {
-        Validation validation = new Validation();
-        if (validation.textValidation(textField.getText())) {
-            String txt = textField.getText();
+            Validation validation = new Validation();
+            if (validation.textValidation(textField.getText())) {
+                String txt = textField.getText();
 
-            IWeatherService currentWeatherService = new CurrentWeatherService();
-            CurrentWeather currentWeather = (CurrentWeather) weatherServiceManager.createWeather(txt,currentWeatherService);
+                IWeatherService currentWeatherService = new CurrentWeatherService();
+                CurrentWeather currentWeather = (CurrentWeather) weatherServiceManager.createWeather(txt,currentWeatherService);
 
-            desc.setText(currentWeather.getDescription());
-            countryCode.setText(currentWeather.getCountryCode());
-            temp.setText(currentWeather.getTemp() + Units.temperature);
-            feelsLike.setText(currentWeather.getFeels_like() + Units.temperature);
-            pressure.setText(currentWeather.getPressure() + Units.pressure);
-            visibility.setText(currentWeather.getVisibility() + Units.visibility);
-            clouds.setText(currentWeather.getClouds() + Units.cloud);
-            humidity.setText(currentWeather.getHumidity() + Units.humidity);
-            setImage(currentWeather, imageView);
-            countryCode.setTextFill(Color.GRAY);
-        }else DialogUtils.inputDialog();
-
+                desc.setText(currentWeather.getDescription());
+                countryCode.setText(currentWeather.getCountryCode());
+                temp.setText(currentWeather.getTemp() + Units.temperature);
+                feelsLike.setText(currentWeather.getFeels_like() + Units.temperature);
+                pressure.setText(currentWeather.getPressure() + Units.pressure);
+                visibility.setText(currentWeather.getVisibility() + Units.visibility);
+                clouds.setText(currentWeather.getClouds() + Units.cloud);
+                humidity.setText(currentWeather.getHumidity() + Units.humidity);
+                setImage(currentWeather, imageView);
+                countryCode.setTextFill(Color.GRAY);
+            }else DialogUtils.inputDialog();
     }
     private void setImage(CurrentWeather currentWeather, ImageView imageView) {
         String imageSource = currentWeather.getIconURL();

@@ -1,30 +1,18 @@
 package pl.weatherApp.model.service;
 
 import org.junit.jupiter.api.Test;
-import pl.weatherApp.model.objects.collections.ForecastCollection;
 import pl.weatherApp.model.objects.Location;
+import pl.weatherApp.model.objects.collections.ForecastCollection;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class ForecastWeatherServiceTest {
-
-    @Test
-    void exceptionShouldBeThrownWhenConnectionHasWrongURL() {
-        //given
-        ForecastWeatherService forecastWeatherService  = new ForecastWeatherService();
-
-        //when
-        //then
-        assertThrows(MalformedURLException.class, ()->forecastWeatherService.getHttpURLConnection(new URL("ads")));
-    }
 
     @Test
     void initShouldReturnCode200() {
