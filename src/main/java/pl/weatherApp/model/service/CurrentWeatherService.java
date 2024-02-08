@@ -2,19 +2,17 @@ package pl.weatherApp.model.service;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import pl.weatherApp.model.client.WeatherClient;
 import pl.weatherApp.model.objects.CurrentWeather;
 import pl.weatherApp.model.objects.Location;
+import pl.weatherApp.model.utils.ApiUtils;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Utils;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CurrentWeatherService implements IWeatherService{
+public class CurrentWeatherService implements IWeatherService {
     CurrentWeather currentWeather;
     int responseCode;
     String countryCode;
@@ -32,13 +30,13 @@ public class CurrentWeatherService implements IWeatherService{
         try {
             URL url = WeatherClient.getCurrentWeatherURL(location);
 
-            HttpURLConnection conn = getHttpURLConnection(url);
+            HttpURLConnection conn = ApiUtils.getHttpURLConnection(url);
             responseCode = conn.getResponseCode();
 
             if (responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode: " + responseCode);
             } else {
-                JSONObject weatherData = getJsonObject(url);
+                JSONObject weatherData = ApiUtils.getJsonObject(url);
 
                 JSONObject objMain = (JSONObject) weatherData.get("main");
                 JSONObject objClouds = (JSONObject) weatherData.get("clouds");
@@ -79,23 +77,6 @@ public class CurrentWeatherService implements IWeatherService{
             }
         }
         return currentWeather;
-    }
-
-    public HttpURLConnection getHttpURLConnection(URL url) {
-        HttpURLConnection conn;
-        try {
-            conn = (HttpURLConnection) url.openConnection();
-            conn.connect();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return conn;
-    }
-
-    private JSONObject getJsonObject(URL url) throws IOException, ParseException {
-        StringBuilder informationString = Utils.getStringFromURL(url.openStream());
-        JSONParser parse = new JSONParser();
-        return (JSONObject) parse.parse(String.valueOf(informationString));
     }
 
     public int getResponseCode() {

@@ -2,7 +2,6 @@ package pl.weatherApp.model.service;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import pl.weatherApp.model.client.WeatherClient;
 import pl.weatherApp.model.objects.ForecastWeather;
 import pl.weatherApp.model.objects.Location;
@@ -13,7 +12,6 @@ import pl.weatherApp.model.utils.DateManager;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Utils;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -47,7 +45,7 @@ public class ForecastWeatherService implements IWeatherService {
             if (responseCode != 200) {
                 throw new RuntimeException("HttpResponseCode " + this.responseCode);
             } else {
-                JSONObject weatherData = getJsonObject(url);
+                JSONObject weatherData = ApiUtils.getJsonObject(url);
 
                 JSONObject dailyObj = (JSONObject) weatherData.get("daily");
                 JSONArray tempMaxArray = (JSONArray) dailyObj.get("temperature_2m_max");
@@ -96,24 +94,6 @@ public class ForecastWeatherService implements IWeatherService {
     public int getResponseCode() {
         return responseCode;
     }
-
-//    public HttpURLConnection getHttpURLConnection(URL url) {
-//        HttpURLConnection conn;
-//        try {
-//            conn = (HttpURLConnection) url.openConnection();
-//            conn.connect();
-//        } catch (IOException e) {
-//            throw new RuntimeException();
-//        }
-//        return conn;
-//    }
-
-    private JSONObject getJsonObject(URL url) throws IOException, org.json.simple.parser.ParseException {
-        StringBuilder informationString = Utils.getStringFromURL(url.openStream());
-        JSONParser parse = new JSONParser();
-        return (JSONObject) parse.parse(String.valueOf(informationString));
-    }
-
 
 }
 
