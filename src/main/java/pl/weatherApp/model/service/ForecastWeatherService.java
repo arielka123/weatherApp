@@ -4,10 +4,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import pl.weatherApp.model.client.WeatherClient;
-import pl.weatherApp.model.objects.collections.WeatherCodes;
-import pl.weatherApp.model.objects.collections.ForecastCollection;
 import pl.weatherApp.model.objects.ForecastWeather;
 import pl.weatherApp.model.objects.Location;
+import pl.weatherApp.model.objects.collections.ForecastCollection;
+import pl.weatherApp.model.objects.collections.WeatherCodes;
+import pl.weatherApp.model.utils.ApiUtils;
 import pl.weatherApp.model.utils.DateManager;
 import pl.weatherApp.model.utils.DialogUtils;
 import pl.weatherApp.model.utils.Utils;
@@ -15,23 +16,32 @@ import pl.weatherApp.model.utils.Utils;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
 
 public class ForecastWeatherService implements IWeatherService {
+    ForecastWeather forecastWeather;
     private int responseCode;
-    public int getResponseCode() {
-        return responseCode;
-    }
-    public ForecastWeatherService(){}
+    String countryCode;
+    String weatherCode;
+    String date;
+    String dayOfWeek;
+    Integer tempMax;
+    Integer tempMin;
+    Integer feels_likeMax;
+    Integer feels_likeMin;
+    Double precipitation;
+    Double windSpeed;
+    Integer windDirection;
 
-    public ForecastCollection init(Location location){
+    public ForecastWeatherService() {
+    }
+
+    public ForecastCollection init(Location location) {
         int days = 16;
         ForecastCollection forecastCollection = new ForecastCollection();
 
         try {
             URL url = WeatherClient.getForecastURL(location);
-
-            HttpURLConnection conn = getHttpURLConnection(url);
+            HttpURLConnection conn = ApiUtils.getHttpURLConnection(url);
             responseCode = conn.getResponseCode();
 
             if (responseCode != 200) {
@@ -52,31 +62,51 @@ public class ForecastWeatherService implements IWeatherService {
 
                 for (int i = 0; i < days; i++) {
                     int code = Utils.convertLongToIntArray(weatherCodeArray, i);
-                    ForecastWeather dayWeather = new ForecastWeather();
 
-                    addDataToObjDayWeather(tempMaxArray, tempMinArray, feelsLikeMaxArray, feelsLikeMinArray, windSpeedArray, windDirectionArray, timeArray, precipitationArray, i, code, dayWeather, location);
-                    forecastCollection.addObjectToForecastList(dayWeather);
+                    if (windDirectionArray.get(i) != null) {
+                        forecastWeather = new ForecastWeather();
+                        date = (String) timeArray.get(i);
+                        weatherCode = WeatherCodes.mapCodes(code);
+                        tempMax = Utils.convertDoubleToIntArray(tempMaxArray, i);
+                        tempMin = Utils.convertDoubleToIntArray(tempMinArray, i);
+                        feels_likeMax = Utils.convertDoubleToIntArray(feelsLikeMaxArray, i);
+                        feels_likeMin = Utils.convertDoubleToIntArray(feelsLikeMinArray, i);
+                        windSpeed = (Double) windSpeedArray.get(i);
+                        windDirection = Utils.convertLongToIntArray(windDirectionArray, i);
+                        precipitation = (Double) precipitationArray.get(i);
+                        countryCode = location.getCountry_code();
+                        dayOfWeek = DateManager.getDayOfWeek(date);
+
+                        forecastWeather = new ForecastWeather(countryCode, weatherCode, date, dayOfWeek, tempMax, tempMin, feels_likeMin, feels_likeMax, precipitation, windSpeed, windDirection);
+
+                        forecastCollection.addObjectToForecastList(forecastWeather);
+                    }
                 }
             }
         } catch (Exception e) {
-            if(responseCode==200){
+            if (responseCode == 200) {
                 DialogUtils.errorDialog("");
-            }else{
+            } else {
                 DialogUtils.errorDialog(String.valueOf(this.responseCode));
-            }        }
+            }
+        }
         return forecastCollection;
     }
 
-    public HttpURLConnection getHttpURLConnection(URL url) {
-        HttpURLConnection conn;
-        try {
-            conn = (HttpURLConnection) url.openConnection();
-            conn.connect();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        return conn;
+    public int getResponseCode() {
+        return responseCode;
     }
+
+//    public HttpURLConnection getHttpURLConnection(URL url) {
+//        HttpURLConnection conn;
+//        try {
+//            conn = (HttpURLConnection) url.openConnection();
+//            conn.connect();
+//        } catch (IOException e) {
+//            throw new RuntimeException();
+//        }
+//        return conn;
+//    }
 
     private JSONObject getJsonObject(URL url) throws IOException, org.json.simple.parser.ParseException {
         StringBuilder informationString = Utils.getStringFromURL(url.openStream());
@@ -84,20 +114,6 @@ public class ForecastWeatherService implements IWeatherService {
         return (JSONObject) parse.parse(String.valueOf(informationString));
     }
 
-    private void addDataToObjDayWeather(JSONArray tempMaxArray, JSONArray tempMinArray, JSONArray feelsLikeArray, JSONArray feelsLikeMinArray, JSONArray windSpeedArray, JSONArray windDirectionArray, JSONArray timeArray, JSONArray precipitationArray, int i, int code, ForecastWeather dayWeather, Location location) throws ParseException {
-        if(windDirectionArray.get(i)!=null) {
-            dayWeather.setDateStr((String) timeArray.get(i));
-            dayWeather.setWeather_code(WeatherCodes.mapCodes(code));
-            dayWeather.setTempMax(Utils.convertDoubleToIntArray(tempMaxArray, i));
-            dayWeather.setTempMin(Utils.convertDoubleToIntArray(tempMinArray, i));
-            dayWeather.setFeels_likeMax(Utils.convertDoubleToIntArray(feelsLikeArray, i));
-            dayWeather.setFeels_likeMin(Utils.convertDoubleToIntArray(feelsLikeMinArray, i));
-            dayWeather.setWindSpeed((Double) windSpeedArray.get(i));
-            dayWeather.setWindDirection(Utils.convertLongToIntArray(windDirectionArray, i));
-            dayWeather.setPrecipitation((Double) precipitationArray.get(i));
-            dayWeather.setCountryCode(location.getCountry_code());
-            dayWeather.setDayOfWeek(DateManager.getDayOfWeek(dayWeather.getDateStr()));
-        }
-    }
+
 }
 
