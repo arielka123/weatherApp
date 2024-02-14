@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import pl.weatherApp.model.objects.collections.Directions;
 import pl.weatherApp.model.objects.collections.Units;
 import pl.weatherApp.model.objects.collections.ForecastCollection;
+import pl.weatherApp.model.utils.Utils;
 
 public class ForecastView {
     private final ForecastCollection forecastCollection;
@@ -55,10 +56,10 @@ public class ForecastView {
             labelDayWeek.setText(forecastCollection.getOneOfForecastList(i).getDayOfWeek());
             labelDate.setText(forecastCollection.getOneOfForecastList(i).getDateStr());
             labelInfo.setText(forecastCollection.getOneOfForecastList(i).getWeather_code());
-            labelTempMin.setText("Temperatura: " + forecastCollection.getOneOfForecastList(i).getTempMin() + Units.temperature);
-            labelFeelsLike.setText("Temperatura odczuwalna: " + forecastCollection.getOneOfForecastList(i).getFeels_likeMin() + Units.temperature);
-            labelPrecipitation.setText("Opady: " + forecastCollection.getOneOfForecastList(i).getPrecipitation() + Units.precipitation);
-            labelWindSpeed1.setText("Wiatr: " + directions + " " + forecastCollection.getOneOfForecastList(i).getWindSpeed() + Units.wind);
+            labelTempMin.setText(Utils.getResourceBundle().getString("weather.temperature") +": "+ forecastCollection.getOneOfForecastList(i).getTempMin() + Units.temperature);
+            labelFeelsLike.setText(Utils.getResourceBundle().getString("weather.feelsLike") +": "+ forecastCollection.getOneOfForecastList(i).getFeels_likeMin() + Units.temperature);
+            labelPrecipitation.setText(Utils.getResourceBundle().getString("weather.precipitation") +": "+ forecastCollection.getOneOfForecastList(i).getPrecipitation() + Units.precipitation);
+            labelWindSpeed1.setText(Utils.getResourceBundle().getString("weather.wind") + ": "+ directions + forecastCollection.getOneOfForecastList(i).getWindSpeed() + Units.wind);
             countryCode.setText(forecastCollection.getOneOfForecastList(i).getCountryCode());
 
             tilePaneInner.getChildren().add(labelDayWeek);

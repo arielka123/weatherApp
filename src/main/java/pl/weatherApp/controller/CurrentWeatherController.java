@@ -58,17 +58,17 @@ public class CurrentWeatherController extends BaseController{
     public void initialize(){
         buttonCity1.disableProperty().bind(this.textFieldCity1.textProperty().isEmpty());
         buttonCity2.disableProperty().bind(this.textFieldCity2.textProperty().isEmpty());
-        initControlles();
+        initControllers();
     }
-    private void initControlles() {
-        descCity1.setText("");
-        countryCodeCity1.setText("");
-        tempCity1.setText(Units.temperature);
-        feelsLikeCity1.setText(Units.temperature);
-        pressureCity1.setText(Units.pressure);
-        visibilityCity1.setText(Units.visibility);
-        cloudsCity1.setText(Units.cloud);
-        humidityCity1.setText(Units.humidity);
+    private void initControllers() {
+//        descCity1.setText("");
+//        countryCodeCity1.setText("");
+//        tempCity1.setText(Units.temperature);
+//        feelsLikeCity1.setText(Units.temperature);
+//        pressureCity1.setText(Units.pressure);
+//        visibilityCity1.setText(Units.visibility);
+//        cloudsCity1.setText(Units.cloud);
+//        humidityCity1.setText(Units.humidity);
         ///
         countryCodeCity2.setText("");
         descCity2.setText("");
