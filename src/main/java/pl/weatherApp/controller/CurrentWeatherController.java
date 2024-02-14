@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import pl.weatherApp.model.objects.collections.Units;
 
 public class CurrentWeatherController extends BaseController{
     @FXML
@@ -58,26 +57,6 @@ public class CurrentWeatherController extends BaseController{
     public void initialize(){
         buttonCity1.disableProperty().bind(this.textFieldCity1.textProperty().isEmpty());
         buttonCity2.disableProperty().bind(this.textFieldCity2.textProperty().isEmpty());
-        initControlles();
-    }
-    private void initControlles() {
-        descCity1.setText("");
-        countryCodeCity1.setText("");
-        tempCity1.setText(Units.temperature);
-        feelsLikeCity1.setText(Units.temperature);
-        pressureCity1.setText(Units.pressure);
-        visibilityCity1.setText(Units.visibility);
-        cloudsCity1.setText(Units.cloud);
-        humidityCity1.setText(Units.humidity);
-        ///
-        countryCodeCity2.setText("");
-        descCity2.setText("");
-        tempCity2.setText(Units.temperature);
-        feelsLikeCity2.setText(Units.temperature);
-        pressureCity2.setText(Units.pressure);
-        visibilityCity2.setText(Units.visibility);
-        cloudsCity2.setText(Units.cloud);
-        humidityCity2.setText(Units.humidity);
     }
 
     public void showWeatherCity1() {

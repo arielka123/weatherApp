@@ -12,7 +12,7 @@
 
 <VBox alignment="TOP_CENTER" prefHeight="470.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.weatherApp.controller.ForecastWeatherController">
    <children>
-      <HBox prefHeight="30.0" prefWidth="613.0">
+      <HBox>
          <Label text="%current.inputCity">
             <opaqueInsets>
                <Insets />
@@ -42,9 +42,9 @@
             </HBox.margin>
          </Button>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" prefWidth="600.0">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="391.0" prefWidth="613.0">
          <content>
-            <TilePane fx:id="tilePaneId" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumns="3" prefHeight="327.0" prefRows="6" prefWidth="597.0" />
+            <TilePane fx:id="tilePaneId" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumns="4" prefHeight="339.0" prefRows="6" prefWidth="600.0" />
          </content>
       </ScrollPane>
       <fx:include source="Footer.fxml" />

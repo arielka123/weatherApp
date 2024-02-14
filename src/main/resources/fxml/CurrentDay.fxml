@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.weatherApp.controller.CurrentWeatherController">
@@ -59,13 +60,13 @@
             </opaqueInsets>
          </HBox>
          <GridPane prefHeight="21.0" prefWidth="279.0">
-           <columnConstraints>
-             <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.66665649414062" minWidth="0.0" prefWidth="0.0" />
-             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="278.6666666666667" minWidth="10.0" prefWidth="278.6666666666667" />
-           </columnConstraints>
-           <rowConstraints>
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-           </rowConstraints>
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.66665649414062" minWidth="0.0" prefWidth="0.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="278.6666666666667" minWidth="10.0" prefWidth="278.6666666666667" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
             <children>
                <Button fx:id="buttonCity1" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#showWeatherCity1" text="%show.button" textAlignment="CENTER" GridPane.columnIndex="1" />
             </children>
@@ -73,19 +74,31 @@
          <HBox fx:id="hboxdescCity1">
             <children>
                <ImageView fx:id="imageViewCity1" fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-               <Text fx:id="descCity1" strokeType="OUTSIDE" strokeWidth="0.0">
+               <Text fx:id="tempCity1" fill="#a3a2a2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="40.0">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets top="15.0" />
+                  </HBox.margin></Text>
+               <Text fx:id="descCity1" fill="#a3a2a2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="161.3333125114441">
                   <HBox.margin>
                      <Insets left="10.0" top="15.0" />
-                  </HBox.margin></Text>
+                  </HBox.margin>
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font></Text>
             </children>
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin>
          </HBox>
-         <GridPane prefHeight="241.0" prefWidth="300.0">
+         <GridPane prefHeight="186.0" prefWidth="279.0">
             <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.33334350585938" minWidth="10.0" prefWidth="143.66666666666666" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="102.66670735677087" prefWidth="119.66666666666663" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.33334350585938" minWidth="10.0" prefWidth="50.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0" minWidth="102.66670735677087" prefWidth="238.66668701171875" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints maxHeight="-Infinity" minHeight="30.0" percentHeight="0.0" vgrow="SOMETIMES" />
@@ -94,18 +107,11 @@
                <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.temperature" />
-               <Text fx:id="tempCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="124.66665399074554" GridPane.columnIndex="1" />
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.feelsLike" GridPane.rowIndex="1" />
-               <Text fx:id="feelsLikeCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="125.00002789497375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.pressure" GridPane.rowIndex="2" />
-               <Text fx:id="pressureCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.66669178009033" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.visibility" GridPane.rowIndex="3" />
-               <Text fx:id="visibilityCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.9999668598175" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.humidity" GridPane.rowIndex="4" />
-               <Text fx:id="humidityCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.66666173934937" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.clouds" GridPane.rowIndex="5" />
-               <Text fx:id="cloudsCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="127.99997448921204" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               <Text fx:id="feelsLikeCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="247.66668438911438" GridPane.columnIndex="1" />
+               <Text fx:id="pressureCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="245.33334827423096" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <Text fx:id="visibilityCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="244.9999668598175" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <Text fx:id="humidityCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="249.33331823349" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <Text fx:id="cloudsCity1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="244.00000500679016" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
             <opaqueInsets>
                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
@@ -160,20 +166,32 @@
             <HBox fx:id="hboxdescCity2">
                <children>
                   <ImageView fx:id="imageViewCity2" fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="descCity2" strokeType="OUTSIDE" strokeWidth="0.0">
+                  <Text fx:id="tempCity2" fill="#a3a2a2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="40.0">
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Text>
+                  <Text fx:id="descCity2" fill="#a3a2a2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="166.6666145324707">
                      <HBox.margin>
                         <Insets left="10.0" top="15.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
                   </Text>
                </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
             </HBox>
-            <GridPane prefHeight="241.0" prefWidth="300.0">
+            <GridPane prefHeight="187.0" prefWidth="279.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.33334350585938" minWidth="10.0" prefWidth="154.9999796549479" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="102.66670735677087" prefWidth="120.33335367838538" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.33334350585938" minWidth="10.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0000464121501" minWidth="102.66670735677087" prefWidth="239.99998060862225" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="30.0" percentHeight="0.0" vgrow="SOMETIMES" />
@@ -182,18 +200,11 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.temperature" />
-                  <Text fx:id="tempCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="124.66665399074554" GridPane.columnIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.feelsLike" GridPane.rowIndex="1" />
-                  <Text fx:id="feelsLikeCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="125.00002789497375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.pressure" GridPane.rowIndex="2" />
-                  <Text fx:id="pressureCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.66669178009033" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.visibility" GridPane.rowIndex="3" />
-                  <Text fx:id="visibilityCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.9999668598175" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.humidity" GridPane.rowIndex="4" />
-                  <Text fx:id="humidityCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.66666173934937" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%weather.clouds" GridPane.rowIndex="5" />
-                  <Text fx:id="cloudsCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="127.99997448921204" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Text fx:id="feelsLikeCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="239.6666395664215" GridPane.columnIndex="1" />
+                  <Text fx:id="pressureCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="242.66667652130127" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text fx:id="visibilityCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="243.66664624214172" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Text fx:id="humidityCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="243.33333349227905" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Text fx:id="cloudsCity2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="248.66664624214172" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
                <opaqueInsets>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
