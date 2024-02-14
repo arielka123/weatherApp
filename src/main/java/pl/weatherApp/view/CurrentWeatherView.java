@@ -12,6 +12,7 @@ import pl.weatherApp.model.service.IWeatherService;
 import pl.weatherApp.model.service.WeatherServiceManager;
 import pl.weatherApp.model.objects.CurrentWeather;
 import pl.weatherApp.model.utils.DialogUtils;
+import pl.weatherApp.model.utils.Utils;
 import pl.weatherApp.model.utils.Validation;
 
 public class CurrentWeatherView {
@@ -52,11 +53,11 @@ public class CurrentWeatherView {
                 desc.setText(currentWeather.getDescription());
                 countryCode.setText(currentWeather.getCountryCode());
                 temp.setText(currentWeather.getTemp() + Units.temperature);
-                feelsLike.setText(currentWeather.getFeels_like() + Units.temperature);
-                pressure.setText(currentWeather.getPressure() + Units.pressure);
-                visibility.setText(currentWeather.getVisibility() + Units.visibility);
-                clouds.setText(currentWeather.getClouds() + Units.cloud);
-                humidity.setText(currentWeather.getHumidity() + Units.humidity);
+                feelsLike.setText(Utils.getResourceBundle().getString("weather.feelsLike") +":   "+ currentWeather.getFeels_like() + Units.temperature);
+                pressure.setText(Utils.getResourceBundle().getString("weather.pressure") +":        "+currentWeather.getPressure() + Units.pressure);
+                visibility.setText(Utils.getResourceBundle().getString("weather.visibility") +":   "+currentWeather.getVisibility() + Units.visibility);
+                clouds.setText(Utils.getResourceBundle().getString("weather.clouds") +": "+currentWeather.getClouds() + Units.cloud);
+                humidity.setText(Utils.getResourceBundle().getString("weather.humidity") +":     "+currentWeather.getHumidity() + Units.humidity);
                 setImage(currentWeather, imageView);
                 countryCode.setTextFill(Color.GRAY);
             }else DialogUtils.inputDialog();
